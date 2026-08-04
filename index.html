@@ -566,15 +566,36 @@
    <!-- SIDEBAR NAVIGASI (ULTRA PREMIUM) -->
     <aside class="sidebar hidden md:flex">
         <!-- Logo Area -->
-        <div class="px-7 pt-8 mb-8 flex items-center gap-4 relative z-10">
-            <div class="w-12 h-12 rounded-[14px] bg-gradient-to-tr from-omni-cyan via-omni-fuchsia to-omni-indigo flex items-center justify-center shadow-[0_0_25px_rgba(6,182,212,0.4)] p-[1px] shrink-0">
+       <!-- 1. LOGO AREA (ATAS) -->
+        <div class="px-6 pt-7 mb-4 flex items-center gap-3.5 relative z-10">
+            <div class="w-11 h-11 rounded-[14px] bg-gradient-to-tr from-omni-cyan via-omni-fuchsia to-omni-indigo flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] p-[1px] shrink-0">
                 <div class="w-full h-full bg-obsidian rounded-[13px] flex items-center justify-center">
-                    <i class="fa-brands fa-space-awesome text-transparent bg-clip-text bg-gradient-to-br from-omni-cyan to-white text-xl drop-shadow"></i>
+                    <i class="fa-brands fa-space-awesome text-transparent bg-clip-text bg-gradient-to-br from-omni-cyan to-white text-lg drop-shadow"></i>
                 </div>
             </div>
             <div>
-                <h1 class="font-heading font-black text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 leading-none drop-shadow-md">OMNIFLOW</h1>
-                <p class="text-[9px] text-omni-cyan tracking-[0.35em] font-bold mt-1.5 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">Super-App</p>
+                <h1 class="font-heading font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 leading-none drop-shadow-md">OMNIFLOW</h1>
+                <p class="text-[8.5px] text-omni-cyan tracking-[0.3em] font-bold mt-1 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">Super-App</p>
+            </div>
+        </div>
+
+        <!-- 2. SEARCH BAR MODUL (BAWAH LOGO) -->
+        <div class="px-5 mb-5 relative z-10 shrink-0">
+            <div class="relative flex items-center">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-xs text-slate-400 pointer-events-none"></i>
+                <input type="text" 
+                       id="sidebarSearch" 
+                       oninput="filterSidebarModules(this.value)" 
+                       placeholder="Cari modul (Cth: Tax, Bug, Sales)..." 
+                       class="glass-input w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-white/10 bg-black/40 focus:bg-slate-900/90 focus:border-omni-cyan transition-all font-medium placeholder:text-slate-500"
+                       autocomplete="off">
+                <!-- Tombol Hapus Search (X) -->
+                <button type="button" 
+                        id="btnClearSidebarSearch" 
+                        onclick="clearSidebarSearch()" 
+                        class="hidden absolute right-2.5 text-slate-400 hover:text-white p-1 text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
         </div>
         
@@ -1201,6 +1222,277 @@
             steps: ["Press Release Draft", "Pitching Media", "Published", "Monitoring Impact"],
             pdf: { title: "PUBLIC RELATIONS COVERAGE SUMMARY", pic: "PR Manager / Journalist" },
             cf: { label: "Nama Media & PR Value", ph: "Contoh: Detik.com - PR Value Rp 30M" }
+        },
+        // =========================================================================
+        // KATEGORI 34: KONSULTASI MANAJEMEN & STRATEGI (5 MODUL)
+        // =========================================================================
+        "Mod_CorporateRestructuring": {
+            cat: "Konsultasi & Strategi", name: "Restrukturisasi Organisasi", icon: "fa-sitemap", color: "indigo",
+            steps: ["Diagnostic Audit", "Strategy Design", "Execution Phase", "Post-Audit Verified"],
+            pdf: { title: "CORPORATE RESTRUCTURING REPORT", pic: "Lead Consultant" },
+            cf: { label: "Scope & Target Savings", ph: "Contoh: Redesign Divisi Ops (Save 15%)" }
+        },
+        "Mod_MnaDueDiligence": {
+            cat: "Konsultasi & Strategi", name: "M&A Due Diligence Audit", icon: "fa-handshake-simple", color: "cyan",
+            steps: ["NDA Signing", "Financial Audit", "Valuation Deal", "PMI Handover"],
+            pdf: { title: "M&A DUE DILIGENCE AUDIT REPORT", pic: "M&A Partner / Advisor" },
+            cf: { label: "Target Valuation & Deal Size", ph: "Contoh: Deal Value $5.5M" }
+        },
+        "Mod_ChangeManagement": {
+            cat: "Konsultasi & Strategi", name: "Transformasi & Change Ops", icon: "fa-arrows-rotate", color: "fuchsia",
+            steps: ["Readiness Assess", "Agent Alignment", "Training Rollout", "Adoption Verified"],
+            pdf: { title: "CHANGE MANAGEMENT ADOPTION REPORT", pic: "Change Manager" },
+            cf: { label: "Target Division & Adoption Rate", ph: "Contoh: Sales Dept (Adoption 85%)" }
+        },
+        "Mod_RiskManagement": {
+            cat: "Konsultasi & Strategi", name: "Enterprise Risk Audit", icon: "fa-triangle-exclamation", color: "rose",
+            steps: ["Risk Identification", "Impact Analysis", "Mitigation Control", "Board Risk Logged"],
+            pdf: { title: "ENTERPRISE RISK MANAGEMENT REPORT", pic: "Chief Risk Officer (CRO)" },
+            cf: { label: "Risk Category & Score", ph: "Contoh: Financial Risk (Severity High)" }
+        },
+        "Mod_BusinessContinuity": {
+            cat: "Konsultasi & Strategi", name: "Business Continuity BCP", icon: "fa-shield-heart", color: "emerald",
+            steps: ["BIA Analysis", "BCP Strategy", "Crisis Drill Test", "BCP Certified"],
+            pdf: { title: "BUSINESS CONTINUITY AUDIT SHEET", pic: "BCP Coordinator" },
+            cf: { label: "RTO / RPO Target Hours", ph: "Contoh: RTO 2 Jam, RPO 1 Jam" }
+        },
+
+        // =========================================================================
+        // KATEGORI 35: SAAS, SOFTWARE & DIGITAL PRODUCTS (5 MODUL)
+        // =========================================================================
+        "Mod_SaaSChurnReduction": {
+            cat: "SaaS & Digital Products", name: "Customer Churn Reduction", icon: "fa-user-slash", color: "rose",
+            steps: ["At-Risk Flagged", "Outreach Program", "Retention Offer", "Account Retained"],
+            pdf: { title: "CUSTOMER RETENTION CASE REPORT", pic: "Customer Success Lead" },
+            cf: { label: "MRR Value & Risk Reason", ph: "Contoh: MRR $1,200 (Low Usage)" }
+        },
+        "Mod_APIIntegration": {
+            cat: "SaaS & Digital Products", name: "Integrasi API Third-Party", icon: "fa-plug", color: "cyan",
+            steps: ["API Spec Review", "Sandbox Test", "Auth Webhook", "Production Live"],
+            pdf: { title: "API INTEGRATION COMPLIANCE LOG", pic: "Integration Engineer" },
+            cf: { label: "Partner Name & Endpoints", ph: "Contoh: Midtrans Payment (12 Endpoints)" }
+        },
+        "Mod_SaaSPricingTest": {
+            cat: "SaaS & Digital Products", name: "A/B Testing Model Harga", icon: "fa-tags", color: "amber",
+            steps: ["Hypothesis Setup", "Variant Testing", "Data Analysis", "Pricing Locked"],
+            pdf: { title: "SAAS PRICING EXPERIMENT REPORT", pic: "Growth Monetization Lead" },
+            cf: { label: "Test Variant & ARPU Delta", ph: "Contoh: Tier Pro $29 vs $39 (+18% ARPU)" }
+        },
+        "Mod_CustomerSuccessOnboard": {
+            cat: "SaaS & Digital Products", name: "B2B Customer Onboarding", icon: "fa-headset", color: "emerald",
+            steps: ["Kickoff Call", "Tech Integration", "Team Training", "QBR Scheduled"],
+            pdf: { title: "B2B CUSTOMER SUCCESS CLEARANCE", pic: "Dedicated CSM" },
+            cf: { label: "Contract Value & Seats", ph: "Contoh: ARR $24,000 (100 Seats)" }
+        },
+        "Mod_AppStoreOptimization": {
+            cat: "SaaS & Digital Products", name: "App Store ASO Optimization", icon: "fa-app-store-ios", color: "fuchsia",
+            steps: ["Keyword Mapping", "Creative Assets", "Store Submission", "Live Ranked"],
+            pdf: { title: "ASO PERFORMANCE & RANKING REPORT", pic: "ASO Specialist" },
+            cf: { label: "App ID & Target Keyword", ph: "Contoh: iOS App (Keyword Rank #1)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 36: MEDIA, YOUTUBE & DIGITAL PUBLISHING (5 MODUL)
+        // =========================================================================
+        "Mod_BookPublishing": {
+            cat: "Media & Digital Publishing", name: "Penerbitan Buku & E-Book", icon: "fa-book", color: "amber",
+            steps: ["Naskah Masuk", "Editing Proofread", "Layout Cover", "ISBN Published"],
+            pdf: { title: "BOOK PUBLISHING APPROVAL DEED", pic: "Chief Editor" },
+            cf: { label: "ISBN & Target Print Run", ph: "Contoh: ISBN 978-602-xxx (3.000 Eks)" }
+        },
+        "Mod_NewsroomEditorial": {
+            cat: "Media & Digital Publishing", name: "Redaksi Berita & News", icon: "fa-newspaper", color: "indigo",
+            steps: ["Pitching Issue", "News Writing", "Chief Editor Review", "Published Live"],
+            pdf: { title: "EDITORIAL NEWSROOM RELEASE SHEET", pic: "Managing Editor" },
+            cf: { label: "Kategori Berita & Target View", ph: "Contoh: Ekonomi Bisnis (Target 50K Views)" }
+        },
+        "Mod_YoutubeChannelOps": {
+            cat: "Media & Digital Publishing", name: "Produksi Konten YouTube", icon: "fa-youtube", color: "rose",
+            steps: ["Topic Scripting", "Shooting Recording", "Video Editing", "Upload Scheduled"],
+            pdf: { title: "YOUTUBE VIDEO PRODUCTION LOG", pic: "Channel Manager" },
+            cf: { label: "Sponsor Brand & Target CTR", ph: "Contoh: Sponsor Asus (Target CTR 8%)" }
+        },
+        "Mod_ComicMangaProd": {
+            cat: "Media & Digital Publishing", name: "Produksi Komik & Webtoon", icon: "fa-palette", color: "fuchsia",
+            steps: ["Story Script", "Drafting Name", "Inking Lineart", "Chapter Live"],
+            pdf: { title: "WEBTOON CHAPTER RELEASE SHEET", pic: "Comic Director" },
+            cf: { label: "Episode No & Page Count", ph: "Contoh: Chapter 42 (65 Panels)" }
+        },
+        "Mod_AdNetworkMonetization": {
+            cat: "Media & Digital Publishing", name: "Monetisasi AdX & AdSense", icon: "fa-rectangle-ad", color: "emerald",
+            steps: ["Placement Audit", "Header Bidding", "Revenue Monitoring", "Payout Reconciled"],
+            pdf: { title: "AD NETWORK REVENUE AUDIT SHEET", pic: "Monetization Lead" },
+            cf: { label: "eCPM Target & Monthly Revenue", ph: "Contoh: eCPM $2.40 (Rev $8,500)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 37: PERHOTELAN, HOSPITALITY & LUXURY (5 MODUL)
+        // =========================================================================
+        "Mod_HotelBanquetSales": {
+            cat: "Perhotelan & Luxury Ops", name: "Banquet & Wedding Sales", icon: "fa-champagne-glasses", color: "amber",
+            steps: ["Inquiry Masuk", "Site Visit Banquet", "DP Contract Lock", "Event Executed"],
+            pdf: { title: "HOTEL BANQUET EVENT ORDER (BEO)", pic: "Banquet Sales Manager" },
+            cf: { label: "Event Type & Guaranteed Pax", ph: "Contoh: Wedding (Guaranteed 800 Pax)" }
+        },
+        "Mod_HotelFrontDeskOps": {
+            cat: "Perhotelan & Luxury Ops", name: "VIP Guest Check-In Journey", icon: "fa-bell-concierge", color: "cyan",
+            steps: ["Pre-Arrival Prep", "Welcome Drink", "Check-in Escort", "Checkout Review"],
+            pdf: { title: "VIP GUEST SERVICE CLEARANCE LOG", pic: "Front Office Manager" },
+            cf: { label: "Guest Name & Villa Number", ph: "Contoh: Mr. Smith (Presidential Villa 01)" }
+        },
+        "Mod_RestaurantMenuRnD": {
+            cat: "Perhotelan & Luxury Ops", name: "Seasonal Menu R&D", icon: "fa-utensils", color: "rose",
+            steps: ["Concept Recipe", "Food Costing", "Tasting Panel", "POS System Live"],
+            pdf: { title: "RESTAURANT MENU DEVELOPMENT SHEET", pic: "Executive Corporate Chef" },
+            cf: { label: "Menu Name & Target Margin", ph: "Contoh: Wagyu Truffle (Food Cost 28%)" }
+        },
+        "Mod_SpaWellnessCare": {
+            cat: "Perhotelan & Luxury Ops", name: "Spa & Wellness Service", icon: "fa-spa", color: "fuchsia",
+            steps: ["Consultation", "Therapist Assigned", "Treatment Session", "Review Herbal Tea"],
+            pdf: { title: "WELLNESS TREATMENT CLEARANCE LOG", pic: "Spa Director" },
+            cf: { label: "Treatment Package & Duration", ph: "Contoh: Balinese Ritual (120 Mins)" }
+        },
+        "Mod_ConciergeTransport": {
+            cat: "Perhotelan & Luxury Ops", name: "VIP Limo & Airport Transfer", icon: "fa-car", color: "indigo",
+            steps: ["Limo Request", "Driver Vehicle Prep", "Airport Pick-up", "Safely Dropped"],
+            pdf: { title: "VIP CONCIERGE TRANSPORT MANIFEST", pic: "Head Concierge" },
+            cf: { label: "Vehicle Model & Flight No", ph: "Contoh: Mercedes S-Class (Flight SQ-952)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 38: TEKNIK, ELEKTRIKAL & LOGISTIK PABRIK (5 MODUL)
+        // =========================================================================
+        "Mod_ElectricalWiring": {
+            cat: "Teknik & Logistik Pabrik", name: "Instalasi Listrik Industri", icon: "fa-bolt", color: "amber",
+            steps: ["Load Calculator", "Conduit Piping", "Panel Wiring", "Megger Test Passed"],
+            pdf: { title: "ELECTRICAL INSTALLATION SAFETY SHEET", pic: "Chief Electrical Engineer" },
+            cf: { label: "Total KVA & Panel Location", ph: "Contoh: 250 KVA (Main Distribution Panel)" }
+        },
+        "Mod_HVACMaintenance": {
+            cat: "Teknik & Logistik Pabrik", name: "Maintenance HVAC Gedung", icon: "fa-fan", color: "cyan",
+            steps: ["Filter Washing", "Freon Pressure Check", "Compressor Test", "Temp Verified"],
+            pdf: { title: "HVAC CHILLER MAINTENANCE LOG", pic: "HVAC Supervisor" },
+            cf: { label: "Chiller Unit & CFM Capacity", ph: "Contoh: Chiller #02 (Capacity 100 Ton)" }
+        },
+        "Mod_ForkliftFleet": {
+            cat: "Teknik & Logistik Pabrik", name: "Forklift Fleet Maintenance", icon: "fa-truck-ramp-box", color: "emerald",
+            steps: ["Daily Inspection", "Periodic Servicing", "Hydraulic Testing", "Operasi Ready"],
+            pdf: { title: "HEAVY EQUIPMENT MAINTENANCE SHEET", pic: "Fleet Workshop Lead" },
+            cf: { label: "Equipment ID & Hour Meter", ph: "Contoh: Forklift-03 (3,400 Hours)" }
+        },
+        "Mod_ColdStorageOps": {
+            cat: "Teknik & Logistik Pabrik", name: "Gudang Beku Cold Storage", icon: "fa-snowflake", color: "cyan",
+            steps: ["Pallet Inbound", "Temp Logger Check", "Order Picking", "Reefer Loading"],
+            pdf: { title: "COLD STORAGE TEMPERATURE MANIFEST", pic: "Cold Chain Supervisor" },
+            cf: { label: "Storage Room & Temp (-22C)", ph: "Contoh: Room B (-22°C Verified)" }
+        },
+        "Mod_HazardousChemical": {
+            cat: "Teknik & Logistik Pabrik", name: "Penanganan Bahan Kimia B3", icon: "fa-flask-vial", color: "rose",
+            steps: ["MSDS Audit", "Safety Storage", "Lab Dispensing", "Waste Disposal"],
+            pdf: { title: "CHEMICAL SAFETY & MSDS COMPLIANCE", pic: "Chemical Safety Officer" },
+            cf: { label: "Chemical Class & CAS Number", ph: "Contoh: Acetone 99% (CAS 67-64-1)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 39: RISET PASAR & AUDIT TOKO (5 MODUL)
+        // =========================================================================
+        "Mod_MarketSurveyField": {
+            cat: "Riset Pasar & Audit Toko", name: "Field Survey & Data Sampling", icon: "fa-clipboard-question", color: "indigo",
+            steps: ["Questionnaire Lock", "Field Surveying", "Quality Control Call", "Data Processed"],
+            pdf: { title: "MARKET RESEARCH FIELD SURVEY LOG", pic: "Field Research Manager" },
+            cf: { label: "Target Sample & City Area", ph: "Contoh: 500 Respondent (Jabodetabek)" }
+        },
+        "Mod_FocusGroupDiscussion": {
+            cat: "Riset Pasar & Audit Toko", name: "Pelaksanaan FGD Research", icon: "fa-people-group", color: "fuchsia",
+            steps: ["Recruit Respondent", "FGD Session", "Transcript Analysis", "Insight Handover"],
+            pdf: { title: "FGD RESEARCH INSIGHT SUMMARY", pic: "FGD Moderator Lead" },
+            cf: { label: "Demographic & Product Category", ph: "Contoh: SEC A (Category Skincare)" }
+        },
+        "Mod_CustomerNPSAudit": {
+            cat: "Riset Pasar & Audit Toko", name: "Audit Net Promoter Score NPS", icon: "fa-face-smile", color: "emerald",
+            steps: ["Survey Blasted", "Score Calculated", "Detractor Followup", "Report Completed"],
+            pdf: { title: "NPS AUDIT & DETRACTOR RESOLUTION", pic: "Customer Experience Lead" },
+            cf: { label: "NPS Score & Response Rate", ph: "Contoh: NPS +68 (Response 1,200)" }
+        },
+        "Mod_MysteryShopping": {
+            cat: "Riset Pasar & Audit Toko", name: "Mystery Shopping Audit Toko", icon: "fa-user-secret", color: "cyan",
+            steps: ["Store Visit", "Service Evaluation", "Photo Proofing", "Audit Score Issued"],
+            pdf: { title: "MYSTERY SHOPPING SERVICE SCORECARD", pic: "Auditor Code Name" },
+            cf: { label: "Store Branch & Final Score", ph: "Contoh: Store Mall X (Score 94/100)" }
+        },
+        "Mod_BrandAwarenessStudy": {
+            cat: "Riset Pasar & Audit Toko", name: "Riset Brand Health Index", icon: "fa-chart-pie", color: "amber",
+            steps: ["Brand Tracking", "Ad Recall Test", "Metric Calculation", "Board Presentation"],
+            pdf: { title: "BRAND HEALTH INDEX STUDY REPORT", pic: "Brand Research Lead" },
+            cf: { label: "Top of Mind (TOM) Score", ph: "Contoh: TOM Recall 42% (Rank 1)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 40: DANA KEMANUSIAAN & ZAKAT (5 MODUL)
+        // =========================================================================
+        "Mod_ZakatDistribution": {
+            cat: "Dana Kemanusiaan & Zakat", name: "Penyaluran Zakat Mustahik", icon: "fa-hand-holding-heart", color: "emerald",
+            steps: ["Data Mustahik", "Verifikasi Kelayakan", "Penyaluran Dana", "Laporan Mustahik"],
+            pdf: { title: "MUSTAHIK ZAKAT DISBURSEMENT VOUCHER", pic: "Petugas Amil Zakat" },
+            cf: { label: "Asnaf Category & Nominal", ph: "Contoh: Fakir Miskin (Rp 2.500.000)" }
+        },
+        "Mod_DisasterReliefOps": {
+            cat: "Dana Kemanusiaan & Zakat", name: "Logistik Tanggap Bencana", icon: "fa-kit-medical", color: "rose",
+            steps: ["Kaji Cepat Field", "Posko Setup", "Distribusi Logistik", "De-escalation"],
+            pdf: { title: "DISASTER RELIEF LOGISTICS MANIFEST", pic: "Komandan Posko Bencana" },
+            cf: { label: "Lokasi Bencana & Jumlah Jiwa", ph: "Contoh: Posko Utama (1.200 Jiwa)" }
+        },
+        "Mod_CommunityEmpowerment": {
+            cat: "Dana Kemanusiaan & Zakat", name: "Pemberdayaan Masyarakat", icon: "fa-hands-holding-child", color: "cyan",
+            steps: ["Assessment Desa", "Pelatihan Skill", "Pendampingan Modal", "Mandiri Certified"],
+            pdf: { title: "COMMUNITY EMPOWERMENT CLEARANCE", pic: "Program Manager NGO" },
+            cf: { label: "Nama Desa & Jenis Usaha", ph: "Contoh: Desa Binaan (Usaha Jamur)" }
+        },
+        "Mod_EducationScholarshipGov": {
+            cat: "Dana Kemanusiaan & Zakat", name: "Beasiswa Pendidikan Pemda", icon: "fa-graduation-cap", color: "indigo",
+            steps: ["Seleksi Berkas", "Wawancara Komite", "SK Penetapan", "Pencairan Beasiswa"],
+            pdf: { title: "GOVERNMENT SCHOLARSHIP AWARD DEED", pic: "Ketua Komite Beasiswa" },
+            cf: { label: "Jenjang & Nominal Per Semester", ph: "Contoh: S1 PTN (Rp 6.000.000/Smt)" }
+        },
+        "Mod_CrowdfundingCampaign": {
+            cat: "Dana Kemanusiaan & Zakat", name: "Penggalangan Dana Digital", icon: "fa-hand-holding-dollar", color: "fuchsia",
+            steps: ["Draft Campaign", "Verifikasi Legalisasi", "Promotion Live", "Disbursed to Cause"],
+            pdf: { title: "CROWDFUNDING DISBURSEMENT REPORT", pic: "Campaign Manager" },
+            cf: { label: "Total Raised & Beneficiary", ph: "Contoh: Terkumpul Rp 85M (Panti Yatim)" }
+        },
+
+        // =========================================================================
+        // KATEGORI 41: PERIZINAN & REGULASI INDUSTRI (5 MODUL)
+        // =========================================================================
+        "Mod_SNICertification": {
+            cat: "Perizinan & Regulasi", name: "Sertifikasi SNI Produk", icon: "fa-certificate", color: "emerald",
+            steps: ["Audit Pabrik", "Sampling Lab Test", "Evaluasi Komite", "Sertifikat SNI"],
+            pdf: { title: "INDONESIAN NATIONAL STANDARD (SNI) DEED", pic: "Auditor LSPro" },
+            cf: { label: "Nomor Standar SNI & Produk", ph: "Contoh: SNI 04-6292.1 (Helm Motor)" }
+        },
+        "Mod_HalalCertification": {
+            cat: "Perizinan & Regulasi", name: "Sertifikat Halal BPJPH", icon: "fa-stamp", color: "amber",
+            steps: ["Pendaftaran SJPH", "Audit LPH LPPOM", "Sidang Fatwa MUI", "Sertifikat Terbit"],
+            pdf: { title: "HALAL COMPLIANCE AUDIT CERTIFICATE", pic: "Auditor Halal Lead" },
+            cf: { label: "No. Registrasi BPJPH & Produk", ph: "Contoh: ID32110000281 (Snack)" }
+        },
+        "Mod_EnvironmentAMDAL": {
+            cat: "Perizinan & Regulasi", name: "Pengurusan AMDAL Lingkungan", icon: "fa-tree", color: "emerald",
+            steps: ["Dokumen ANDAL", "RKL-RPL Plan", "Sidang Komisi", "Izin Lingkungan"],
+            pdf: { title: "ENVIRONMENTAL IMPACT PERMIT (AMDAL)", pic: "Ketua Komisi Penilai" },
+            cf: { label: "Kategori Usaha & Luas Lahan", ph: "Contoh: Industri Kimia (Luas 12 Ha)" }
+        },
+        "Mod_ImportLicenseAPI": {
+            cat: "Perizinan & Regulasi", name: "Pengurusan NIB & API Impor", icon: "fa-file-shield", color: "cyan",
+            steps: ["Submit OSS RBA", "Verifikasi Berkas", "Verifikasi Teknis", "NIB API Active"],
+            pdf: { title: "IMPORT IDENTIFICATION NUMBER (API) DEED", pic: "Petugas Perizinan OSS" },
+            cf: { label: "NIB Code & HS Code Barang", ph: "Contoh: NIB 1289001 (HS Code 8471)" }
+        },
+        "Mod_ClinicalLabPermit": {
+            cat: "Perizinan & Regulasi", name: "Izin Operasional Klinik/Lab", icon: "fa-hospital", color: "rose",
+            steps: ["Permohonan Dinkes", "Inspeksi Lapangan", "Rekomendasi OP", "Izin Terbit"],
+            pdf: { title: "CLINICAL OPERATIONAL LICENSE SHEET", pic: "Kepala Dinas Kesehatan" },
+            cf: { label: "Jenis Klinik & No. SIP Dokter", ph: "Contoh: Klinik Pratama (SIP 440/12)" }
         },
 
         // =========================================================================
@@ -2698,7 +2990,47 @@
             const container = document.getElementById('workflowStepList');
             setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
         }
+// --- FUNGSI HAPUS TUGAS DARI KARTU KANBAN ---
+        async function deleteTask(taskId, event = null) {
+            if (event) event.stopPropagation(); // Mencegah modal detail terbuka saat mengklik ikon sampah
+            if (!activeModule) return;
 
+            const task = (appCache[activeModule] || []).find(t => t.id === taskId);
+            const taskName = task ? task.nm : 'tugas ini';
+
+            Swal.fire({
+                title: 'Hapus Tugas?',
+                html: `Tugas <b class="text-rose-400">"${taskName}"</b> akan dihapus secara permanen dari database.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e11d48',
+                cancelButtonColor: '#475569',
+                confirmButtonText: 'Ya, Hapus Permanen',
+                cancelButtonText: 'Batal',
+                background: '#0f172a',
+                color: '#fff'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    ui.showLoader("Menghapus Tugas...");
+                    
+                    // Kirim aksi DELETE ke Google Apps Script
+                    const res = await fetchAPI('DELETE', { id: taskId });
+                    
+                    if (res && res.success) {
+                        // Hapus dari cache memori lokal
+                        appCache[activeModule] = appCache[activeModule].filter(t => t.id !== taskId);
+                        
+                        // Render ulang tampilan aktif (Kanban/Calendar/Gantt)
+                        renderActiveView();
+                        
+                        ui.notify("Tugas Berhasil Dihapus!");
+                    } else {
+                        ui.error("Gagal menghapus tugas dari server.");
+                    }
+                    ui.hideLoader();
+                }
+            });
+        }
         // 7. Hapus Step Kolom
         function deleteWorkflowStepItem(index) {
             if (tempWorkflowSteps.length <= 2) {
@@ -3528,6 +3860,9 @@
        // --- KANBAN CARD RENDERER (CLEAN & MINIMALIST) ---
       // --- REVISI CARD RENDERER (TOMBOL MUNDUR + REPORT PDF DI KOLOM TERAKHIR) ---
       // --- REVISI KANBAN CARD RENDERER (SINKRON DENGAN WARNA KOLOM DINAMIS) ---
+        // =========================================================
+        // REVISI: KANBAN CARD RENDERER (DENGAN TRASH CAN & COLOR PALETTE)
+        // =========================================================
         function createCard(t, stepIndex, conf, theme) {
             const isFirst = stepIndex === 0;
             const isLast = stepIndex === conf.steps.length - 1;
@@ -3559,7 +3894,7 @@
                             let iconClass = 'fa-tag';
                             if(f.type === 'currency') { displayValue = 'Rp ' + Number(f.value).toLocaleString('id-ID'); iconClass = 'fa-money-bill-wave'; }
                             else if(f.type === 'percent') { displayValue = f.value + '%'; iconClass = 'fa-chart-pie'; }
-                            else if(f.type === 'url') { displayValue = `<a href="${f.value}" target="_blank" class="underline hover:text-white transition-colors">${f.value.substring(0,15)}...</a>`; iconClass = 'fa-link'; }
+                            else if(f.type === 'url') { displayValue = `<a href="${f.value}" target="_blank" onclick="event.stopPropagation();" class="underline hover:text-white transition-colors">${f.value.substring(0,15)}...</a>`; iconClass = 'fa-link'; }
                             else if(f.type === 'number') { displayValue = Number(f.value).toLocaleString('id-ID'); iconClass = 'fa-hashtag'; }
 
                             dynamicBadgesHTML += `
@@ -3580,7 +3915,7 @@
                 btnHtml = `<button onclick="optimisticMove('${t.id}', '${conf.steps[stepIndex+1]}'); event.stopPropagation();" class="w-full bg-white/10 hover:bg-white/25 text-white py-3 rounded-xl text-[10px] font-black tracking-[0.2em] transition-all shadow-[0_5px_15px_rgba(0,0,0,0.2)] border border-white/20 hover:-translate-y-1"><i class="fa-solid fa-play mr-1.5"></i> PROSES NEXT</button>`;
             } 
             else if (isLast) {
-                // KARTU TERAKHIR (Selalu Emerald)
+                // KARTU TERAKHIR (Selalu Emerald + Tombol Mundur & Report PDF)
                 cardBgGrad = `background: linear-gradient(145deg, rgba(16,185,129,0.30), rgba(16,185,129,0.05));`; glowHex = '#10b981'; iconColor = 'text-omni-emerald';
                 btnHtml = `
                 <div class="flex gap-2.5 w-full">
@@ -3589,7 +3924,7 @@
                 </div>`;
             } 
             else {
-                // 🌟 KARTU TENGAH (Membaca Palet Dinamis Berdasarkan Index Kolom)
+                // KARTU TENGAH (Membaca Palet Dinamis Berdasarkan Index Kolom)
                 const paletteObj = COLOR_PALETTE[(stepIndex - 1) % COLOR_PALETTE.length];
                 cardBgGrad = `background: linear-gradient(145deg, ${paletteObj.hex}30, ${paletteObj.hex}05);`; 
                 glowHex = paletteObj.hex; 
@@ -3605,13 +3940,22 @@
             const startText = t.sd || '-'; const endText = t.ed || '-';
             const linkHtml = t.lk ? `<a href="${t.lk}" target="_blank" onclick="event.stopPropagation();" class="block mb-3.5 text-[9px] bg-black/30 text-blue-300 p-2.5 rounded-xl border border-white/10 truncate hover:bg-black/50 transition-colors font-medium hover:text-blue-200 shadow-inner"><i class="fa-solid fa-link mr-1.5"></i> ${t.lk}</a>` : '';
 
-            // 3. RENDER KARTU
+            // 3. RENDER KARTU DENGAN TOMBOL HAPUS (TRASH CAN) DI POJOK KANAN ATAS
             return `
             <div class="task-card group cursor-pointer" onclick="openDetailModal('${t.id}')" style="${cardBgGrad} --glow-color: ${glowHex}80;" title="Klik untuk lihat detail & edit">
                 
                 <div class="flex justify-between items-center mb-3.5 relative z-10 shrink-0">
                     <span class="text-[9px] bg-black/40 text-white px-2.5 py-1.5 rounded-lg border border-white/10 font-bold tracking-widest shadow-sm">P-${t.pr || '1'}</span>
-                    <span class="text-[9px] text-white font-bold bg-white/10 px-2.5 py-1.5 rounded-lg border border-white/10 shadow-sm flex items-center gap-1.5 backdrop-blur-md"><i class="fa-solid fa-user-astronaut ${iconColor}"></i> ${(t.pc || 'No PIC').substring(0,12)}</span>
+                    
+                    <!-- GRUP PIC & TOMBOL HAPUS TRASH CAN -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-[9px] text-white font-bold bg-white/10 px-2.5 py-1.5 rounded-lg border border-white/10 shadow-sm flex items-center gap-1.5 backdrop-blur-md"><i class="fa-solid fa-user-astronaut ${iconColor}"></i> ${(t.pc || 'No PIC').substring(0,12)}</span>
+                        
+                        <!-- 🗑️ TOMBOL TRASH CAN (HAPUS KARTU) -->
+                        <button onclick="deleteTask('${t.id}', event)" class="w-7 h-7 rounded-lg bg-black/40 hover:bg-rose-500/30 text-slate-400 hover:text-rose-300 border border-white/10 hover:border-rose-500/40 flex items-center justify-center transition-all shadow-sm group/btn" title="Hapus Tugas Permanen">
+                            <i class="fa-solid fa-trash-can text-[10px] group-hover/btn:scale-110 transition-transform"></i>
+                        </button>
+                    </div>
                 </div>
                 
                 <h4 class="font-extrabold text-base text-white mb-2 leading-tight drop-shadow-md relative z-10 shrink-0">${t.nm}</h4>
@@ -3870,7 +4214,65 @@
                 executePDF(taskId);
             }
         }
+// =========================================================
+        // SIDEBAR REAL-TIME MODULE SEARCH ENGINE
+        // =========================================================
+        function filterSidebarModules(query) {
+            const q = query.trim().toLowerCase();
+            const clearBtn = document.getElementById('btnClearSidebarSearch');
+            
+            // Tampilkan / Sembunyikan Tombol 'X'
+            if (clearBtn) {
+                clearBtn.classList.toggle('hidden', q === '');
+            }
 
+            const categoryGroups = document.querySelectorAll('#sidebarMenu > div');
+            
+            categoryGroups.forEach(group => {
+                const categoryTitle = group.querySelector('.nav-category');
+                const moduleList = group.querySelector('.space-y-1');
+                if (!moduleList) return;
+
+                const items = moduleList.querySelectorAll('.nav-item');
+                let hasMatch = false;
+
+                items.forEach(item => {
+                    const text = item.innerText.toLowerCase();
+                    const isMatch = text.includes(q);
+
+                    if (q === '') {
+                        item.classList.remove('hidden');
+                        hasMatch = true;
+                    } else if (isMatch) {
+                        item.classList.remove('hidden');
+                        hasMatch = true;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Tampilkan/Sembunyikan Kategori berdasarkan hasil pencarian
+                if (q !== '') {
+                    if (hasMatch) {
+                        group.classList.remove('hidden');
+                        moduleList.classList.remove('hidden'); // Buka accordion otomatis saat mencari
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                } else {
+                    group.classList.remove('hidden'); // Reset saat search kosong
+                }
+            });
+        }
+
+        // Fungsi Reset/Clear Pencarian
+        function clearSidebarSearch() {
+            const input = document.getElementById('sidebarSearch');
+            if (input) {
+                input.value = '';
+                filterSidebarModules('');
+            }
+        }
    // --- LAZY LOAD PDF ENGINE (SILUMAN / TANPA POP-UP DI LAYAR) ---
         function executePDF(taskId) {
             const task = appCache[activeModule].find(t => t.id === taskId);
