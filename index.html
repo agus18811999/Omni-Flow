@@ -455,6 +455,139 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 10;
         }
+        /* =========================================================
+   DOCUMENT VAULT & HEADER HORIZONTAL SCROLLER STYLES
+   ========================================================= */
+
+/* Scroller Horizontal Mulus untuk Header (Touch-Friendly & Anti-Nyungsep) */
+.header-actions-scroller {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    padding: 0.35rem 0.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 158, 11, 0.3) transparent;
+}
+.header-actions-scroller::-webkit-scrollbar {
+    height: 4px;
+}
+.header-actions-scroller::-webkit-scrollbar-thumb {
+    background: rgba(245, 158, 11, 0.25);
+    border-radius: 9999px;
+}
+.header-actions-scroller::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 158, 11, 0.6);
+}
+/* =========================================================
+   PRECISION HORIZONTAL SCROLLER (KHUSUS KOTAK SWITCHER)
+   ========================================================= */
+/* =========================================================
+   ULTRA-SMOOTH HORIZONTAL SCROLL (KINETIC MOMENTUM)
+   ========================================================= */
+.switcher-scroll-box {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch; /* Native smooth momentum di iOS/Android */
+    overscroll-behavior-x: contain;
+    cursor: grab;                      /* Kursor interaktif bisa di-drag */
+    user-select: none;
+    
+    /* Sembunyikan scrollbar bawaan agar tetap bersih dan mewah */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.switcher-scroll-box:active {
+    cursor: grabbing;                  /* Efek cengkeram saat mouse ditekan & digeser */
+}
+
+.switcher-scroll-box::-webkit-scrollbar {
+    display: none !important;
+    width: 0;
+    height: 0;
+}
+
+/* Proteksi agar tombol tidak menyusut */
+.switcher-scroll-box button {
+    flex-shrink: 0 !important;
+}
+/* Tombol Vault di Switcher Group */
+.vault-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.vault-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Card Dokumen di dalam Modal Vault */
+.vault-doc-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1.25rem;
+    padding: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+}
+.vault-doc-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+/* Filter Kategori Tag Pills */
+.vault-tag-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+.vault-tag-pill:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.1);
+}
+.vault-tag-pill.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(217, 70, 239, 0.3));
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.25);
+}
 
         .gantt-bar:hover {
             transform: translateY(-3px) scale(1.02);
@@ -463,6 +596,99 @@
             box-shadow: 0 15px 35px var(--bar-glow, rgba(6, 182, 212, 0.6)), inset 0 1px 1px rgba(255, 255, 255, 0.6);
             border-color: rgba(255, 255, 255, 0.5);
         }
+        /* =========================================================
+   ACTIVITY AUDIT TRAIL & SLIDE-OVER DRAWER STYLES
+   ========================================================= */
+
+/* Tombol Navigasi Audit di Switcher Box */
+.audit-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0 !important;
+}
+.audit-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Slide-over Drawer Panel */
+.audit-drawer-panel {
+    background: linear-gradient(165deg, rgba(15, 23, 42, 0.96) 0%, rgba(2, 6, 23, 0.98) 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Garis Stem Vertikal Timeline */
+.audit-timeline-line {
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.45rem;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.4) 0%, rgba(217, 70, 239, 0.4) 50%, rgba(16, 185, 129, 0.2) 100%);
+}
+
+/* Kartu Item Log */
+.audit-item-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.55), rgba(15, 23, 42, 0.65));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 1.15rem;
+    padding: 0.95rem 1.1rem;
+    position: relative;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(12px);
+}
+.audit-item-card:hover {
+    transform: translateX(-4px);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.12);
+}
+
+/* Tag Filter Pill Audit */
+.audit-tag-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+.audit-tag-pill:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.1);
+}
+.audit-tag-pill.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(99, 102, 241, 0.35));
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+}
 
         /* Garis Grid Vertikal Latar Belakang */
         .gantt-grid-bg {
@@ -608,12 +834,117 @@
             border: 1px solid transparent;
             cursor: pointer;
         }
+        
         .inbox-tab-btn.active {
             background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             border-color: rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
+        /* =========================================================
+   QUICK NOTES HUB & SCRATCHPAD STYLES
+   ========================================================= */
+
+/* Tombol Notes di Bar Switcher Header */
+.notes-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #f472b6;
+    background: rgba(244, 114, 182, 0.08);
+    border: 1px solid rgba(244, 114, 182, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0 !important;
+}
+.notes-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(244, 114, 182, 0.25);
+    border-color: rgba(244, 114, 182, 0.6);
+    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Slide-over Drawer Notes Panel */
+.notes-drawer-panel {
+    background: linear-gradient(165deg, rgba(15, 23, 42, 0.97) 0%, rgba(2, 6, 23, 0.99) 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.85), inset 1px 0 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Catatan / Memo */
+.note-item-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1.25rem;
+    padding: 1.15rem;
+    position: relative;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(14px);
+}
+.note-item-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(244, 114, 182, 0.5);
+    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(244, 114, 182, 0.15);
+}
+.note-item-card.is-pinned {
+    border-color: rgba(244, 114, 182, 0.6);
+    background: linear-gradient(145deg, rgba(244, 114, 182, 0.12), rgba(15, 23, 42, 0.8));
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.12);
+}
+
+/* Filter Tag Pills Notes */
+.note-tag-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+.note-tag-pill:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.1);
+}
+.note-tag-pill.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.35), rgba(168, 85, 247, 0.35));
+    border-color: rgba(244, 114, 182, 0.6);
+    box-shadow: 0 2px 10px rgba(244, 114, 182, 0.3);
+}
+
+/* Markdown Quick Formatting Button */
+.md-tool-btn {
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    transition: all 0.2s ease;
+}
+.md-tool-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
         .btn-icon-step:disabled { opacity: 0.25; cursor: not-allowed; }
         /* Optimistic UI Spinner */
         .btn-spinner { animation: spin 1s linear infinite; display: inline-block; }
@@ -895,45 +1226,66 @@
             </div>
         </div>
 
-        <!-- 2. SISI KANAN: Clock + View Switcher + Inbox Notif + Workflow + New Task (Scroll Horizontal Mulus) -->
-        <div class="flex items-center gap-2.5 max-w-full overflow-x-auto whitespace-nowrap custom-scrollbar py-1 relative z-10 w-full xl:w-auto justify-start xl:justify-end shrink-0">
-            
-            <!-- Widget Jam Ringkas & Presisi -->
+       <!-- 2. SISI KANAN: Clock + View Switcher + VAULT + Inbox Notif + Workflow + New Task (Scroll Horizontal Anti-Nyungsep) -->
+      <div class="flex items-center gap-2 sm:gap-2.5 relative z-10 w-full xl:w-auto justify-start xl:justify-end shrink-0">      
+            <!-- Widget Jam Ringkas -->
             <div class="flex flex-col items-center bg-black/40 px-3 py-1 rounded-lg border border-white/10 shadow-inner backdrop-blur-md shrink-0">
                 <span id="clock" class="font-mono text-xs md:text-sm font-black text-white tracking-widest drop-shadow-sm">00:00:00</span>
                 <span id="date" class="text-[7px] text-cyan-400 uppercase tracking-[0.2em] font-extrabold">TANGGAL</span>
             </div>
 
-            <!-- View Switcher Group (Kanban | Calendar | Gantt | Analytics Menyatu Rapi) -->
-            <div class="flex items-center gap-0.5 bg-black/50 p-1 rounded-xl border border-white/10 backdrop-blur-md shadow-inner shrink-0">
-                <button type="button" onclick="setModeView('kanban')" id="btnViewKanban" class="view-btn active !py-1.5 !px-2.5 !text-[9px]" title="Tampilan Papan Kanban">
-                    <i class="fa-solid fa-border-all text-[9px]"></i> <span class="hidden sm:inline">Kanban</span>
-                </button>
-                <button type="button" onclick="setModeView('calendar')" id="btnViewCalendar" class="view-btn !py-1.5 !px-2.5 !text-[9px]" title="Tampilan Kalender Bulanan">
-                    <i class="fa-solid fa-calendar-days text-[9px]"></i> <span class="hidden sm:inline">Calendar</span>
-                </button>
-                <button type="button" onclick="setModeView('gantt')" id="btnViewGantt" class="view-btn !py-1.5 !px-2.5 !text-[9px]" title="Tampilan Timeline Gantt Chart">
-                    <i class="fa-solid fa-chart-gantt text-[9px]"></i> <span class="hidden sm:inline">Gantt</span>
-                </button>
-                <button type="button" onclick="setModeView('analytics')" id="btnViewAnalytics" class="view-btn !py-1.5 !px-2.5 !text-[9px]" title="Tampilan Ringkasan Analitik & Grafik">
-                    <i class="fa-solid fa-chart-pie text-[9px]"></i> <span class="hidden sm:inline">Analytics</span>
-                </button>
-            </div>
+            <!-- View Switcher Group + TOMBOL VAULT INTEGRATED -->
+           <!-- View Switcher Group (HANYA BAGIAN INI YANG MEMILIKI SCROLL HORIZONTAL) -->
+<!-- View Switcher Group (DIBATASI LEBARNYA AGAR NEW TASK TIDAK TERDORONG) -->
+<div id="switcherScrollBox" class="switcher-scroll-box flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10 backdrop-blur-md shadow-inner shrink min-w-0 max-w-[180px] sm:max-w-[240px] lg:max-w-[280px] xl:max-w-[320px]">
+    
+    <button type="button" onclick="setModeView('kanban')" id="btnViewKanban" class="view-btn active !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Papan Kanban">
+        <i class="fa-solid fa-border-all text-[9px]"></i> <span class="hidden sm:inline">Kanban</span>
+    </button>
+    
+    <button type="button" onclick="setModeView('calendar')" id="btnViewCalendar" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Kalender Bulanan">
+        <i class="fa-solid fa-calendar-days text-[9px]"></i> <span class="hidden sm:inline">Calendar</span>
+    </button>
+    
+    <button type="button" onclick="setModeView('gantt')" id="btnViewGantt" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Timeline Gantt Chart">
+        <i class="fa-solid fa-chart-gantt text-[9px]"></i> <span class="hidden sm:inline">Gantt</span>
+    </button>
+    
+    <button type="button" onclick="setModeView('analytics')" id="btnViewAnalytics" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Ringkasan Analitik & Grafik">
+        <i class="fa-solid fa-chart-pie text-[9px]"></i> <span class="hidden sm:inline">Analytics</span>
+    </button>
 
-            <!-- FITUR INBOX LONCENG NOTIFIKASI DEADLINE (H-1 & TODAY ALERT) -->
+    <!-- 📂 FITUR DOKUMEN & ASSET VAULT BUTTON -->
+    <button type="button" onclick="openVaultModal()" id="btnOpenVault" class="vault-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Brankas Dokumen, SOP & Referensi Aset">
+        <i class="fa-solid fa-folder-open text-amber-400 text-[10px]"></i>
+        <span class="hidden sm:inline">Vault</span>
+        <span id="vaultBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-amber-500/30 text-amber-200 font-mono font-black">0</span>
+    </button>
+      <button type="button" onclick="openAuditDrawer()" id="btnOpenAudit" class="audit-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Jejak Audit & Riwayat Perubahan Modul">
+        <i class="fa-solid fa-clock-rotate-left text-sky-400 text-[10px]"></i>
+        <span class="hidden sm:inline">Audit</span>
+        <span id="auditBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-sky-500/30 text-sky-200 font-mono font-black">0</span>
+    </button>
+     <button type="button" onclick="openNotesDrawer()" id="btnOpenNotes" class="notes-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Catatan Cepat, Memo & Scratchpad Tim">
+        <i class="fa-solid fa-note-sticky text-fuchsia-400 text-[10px]"></i>
+        <span class="hidden sm:inline">Notes</span>
+        <span id="notesBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-fuchsia-500/30 text-fuchsia-200 font-mono font-black">0</span>
+    </button>
+</div>
+
+            <!-- FITUR INBOX LONCENG NOTIFIKASI DEADLINE -->
             <button type="button" onclick="openInboxModal()" id="btnInbox" class="relative flex items-center justify-center w-9 h-9 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white rounded-xl border border-white/10 hover:border-white/20 transition-all shadow-md backdrop-blur-md hover:-translate-y-0.5 shrink-0" title="Kotak Masuk Notifikasi Deadline">
                 <i class="fa-solid fa-bell text-xs text-amber-400"></i>
-                <!-- Badge Merah Pengingat Jumlah Notifikasi H-1 -->
                 <span id="inboxBadge" class="hidden absolute -top-1 -right-1 min-w-[16px] h-[16px] bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-full text-[8px] font-black px-1 flex items-center justify-center shadow-lg border border-slate-900 animate-pulse">0</span>
             </button>
 
-            <!-- Tombol Edit Workflow Ringkas -->
+            <!-- Tombol Edit Workflow -->
             <button type="button" onclick="openWorkflowModal()" class="flex items-center gap-1.5 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 text-[9px] font-extrabold tracking-wider uppercase transition-all duration-300 shadow-md backdrop-blur-md hover:-translate-y-0.5 shrink-0 whitespace-nowrap" title="Kustomisasi Kolom Kanban Modul">
                 <i class="fa-solid fa-sliders text-cyan-400 text-[10px]"></i>
                 <span class="hidden md:inline">Workflow</span>
             </button>
 
-            <!-- Tombol New Task Diperkecil & Presisi -->
+            <!-- Tombol New Task -->
             <button onclick="openTaskModal()" id="btnCreate" class="hidden text-white px-4 py-2 rounded-xl font-black text-[9.5px] tracking-[0.12em] uppercase shadow-md hover:-translate-y-0.5 transition-all items-center gap-1.5 border border-white/20 whitespace-nowrap shrink-0">
                 <i class="fa-solid fa-plus text-[10px]"></i> NEW TASK
             </button>
@@ -1161,6 +1513,329 @@
         </div>
     </div>
     <!-- ==========================================
+         MODAL BRANKAS DOKUMEN & ASSET VAULT (ULTRA LUXURY)
+         ========================================== -->
+    <div id="vaultModal" class="fixed inset-0 z-[160] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-4xl max-h-[92vh] p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col" id="vaultModalPanel">
+            
+            <!-- Atmospheric Orbs Amber & Cyan -->
+            <div class="absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-40 bg-amber-500"></div>
+            <div class="absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-25 bg-omni-cyan"></div>
+
+            <!-- 1. Header Brankas Dokumen -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5 pb-4 border-b border-white/10 relative z-20 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center shadow-[0_0_25px_rgba(245,158,11,0.5)] p-[1px] shrink-0">
+                        <div class="w-full h-full bg-obsidian rounded-[15px] flex items-center justify-center">
+                            <i class="fa-solid fa-vault text-xl text-amber-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-heading text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-orange-200 tracking-wide">
+                                Document & Asset Vault
+                            </h3>
+                            <span id="vaultModuleTag" class="text-[9px] font-mono font-bold bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/30 uppercase">MODUL</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-medium mt-0.5">Repositori aset, tautan SOP, file Google Drive, Figma & regulasi modul terpadu</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <button type="button" onclick="toggleVaultAddForm()" id="btnToggleVaultAdd" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white px-3.5 py-2 rounded-xl text-xs font-black tracking-wider uppercase transition-all shadow-md flex items-center gap-1.5 shrink-0">
+                        <i class="fa-solid fa-plus text-xs"></i> <span>Tambah Dokumen</span>
+                    </button>
+                    <button type="button" onclick="closeVaultModal()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/20 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md shrink-0">
+                        <i class="fa-solid fa-xmark text-base"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 2. Form Tambah Dokumen (Pilihan Kategori Standar) -->
+            <div id="vaultAddFormContainer" class="hidden bg-black/40 border border-amber-500/30 p-4 sm:p-5 rounded-2xl mb-4 relative z-20 shrink-0 shadow-inner">
+                <form id="vaultAddForm" onsubmit="saveVaultDocument(event)" class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="sm:col-span-2">
+                            <label class="block text-[9px] font-black uppercase tracking-wider text-amber-400 mb-1">Judul Dokumen / Nama Aset</label>
+                            <input type="text" id="vDocTitle" required class="glass-input w-full px-3.5 py-2 text-xs" placeholder="Contoh: SOP Standar Operasional Klaim">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-black uppercase tracking-wider text-amber-400 mb-1">Kategori Dokumen</label>
+                            <select id="vDocCategory" required class="glass-input w-full px-3 py-2 text-xs bg-slate-900 text-white font-bold">
+                                <option value="SOP & Panduan">SOP & Panduan</option>
+                                <option value="Template & Form">Template & Form</option>
+                                <option value="Kontrak & Legal">Kontrak & Legal</option>
+                                <option value="Desain & Media">Desain & Media</option>
+                                <option value="Laporan & Audit">Laporan & Audit</option>
+                                <option value="Link Eksternal">Link Eksternal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="sm:col-span-2">
+                            <label class="block text-[9px] font-black uppercase tracking-wider text-amber-400 mb-1">URL / Link File (Drive, Dropbox, Figma, dll)</label>
+                            <input type="url" id="vDocUrl" required class="glass-input w-full px-3.5 py-2 text-xs font-mono" placeholder="https://drive.google.com/...">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-black uppercase tracking-wider text-amber-400 mb-1">Pengunggah / PIC</label>
+                            <input type="text" id="vDocPic" required class="glass-input w-full px-3.5 py-2 text-xs font-bold" placeholder="Nama PIC">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[9px] font-black uppercase tracking-wider text-slate-300 mb-1">Deskripsi Singkat / Catatan</label>
+                        <input type="text" id="vDocDesc" class="glass-input w-full px-3.5 py-2 text-xs" placeholder="Keterangan singkat dokumen...">
+                    </div>
+
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="toggleVaultAddForm()" class="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white">Batal</button>
+                        <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 py-2 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md">
+                            Simpan ke Brankas
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 3. Toolbar Pencarian & Filter Kategori Presisi (Dapat Diklik Semua Kategori) -->
+            <div class="space-y-2.5 mb-4 relative z-20 shrink-0">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                    <input type="text" id="vaultSearchInput" oninput="filterVaultDisplay()" placeholder="Cari nama dokumen, SOP, link, atau deskripsi..." class="glass-input w-full pl-9 pr-4 py-2 text-xs bg-black/40 border-white/10 rounded-xl">
+                </div>
+
+                <!-- Tombol Filter Kategori (Presisi dengan data-category) -->
+                <div class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap pb-1 custom-scrollbar" id="vaultCategoryFilterPills">
+                    <button type="button" onclick="setVaultCategoryFilter('all')" data-category="all" class="vault-tag-pill active">Semua (<span id="vCount-all">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('SOP & Panduan')" data-category="SOP & Panduan" class="vault-tag-pill">SOP & Panduan (<span id="vCount-sop">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('Template & Form')" data-category="Template & Form" class="vault-tag-pill">Template & Form (<span id="vCount-tpl">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('Kontrak & Legal')" data-category="Kontrak & Legal" class="vault-tag-pill">Kontrak & Legal (<span id="vCount-leg">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('Desain & Media')" data-category="Desain & Media" class="vault-tag-pill">Desain & Media (<span id="vCount-med">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('Laporan & Audit')" data-category="Laporan & Audit" class="vault-tag-pill">Laporan & Audit (<span id="vCount-rep">0</span>)</button>
+                    <button type="button" onclick="setVaultCategoryFilter('Link Eksternal')" data-category="Link Eksternal" class="vault-tag-pill">Link Eksternal (<span id="vCount-ext">0</span>)</button>
+                </div>
+            </div>
+
+          
+
+            <!-- 4. Daftar Dokumen (Grid Cards Scrollable) -->
+            <div id="vaultDocListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 overflow-y-auto custom-scrollbar flex-grow pr-1 relative z-10 min-h-[220px]">
+                <!-- Item dokumen dirender dinamis via JS -->
+            </div>
+
+            <!-- 5. Footer Summary -->
+            <div class="pt-3 border-t border-white/10 flex justify-between items-center text-[10px] text-slate-500 font-mono relative z-20 shrink-0 mt-3">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-lock text-amber-400"></i> ISOLASI PERPINDAHAN DATABASE AKTIF</span>
+                <span id="vaultFooterStatus">Tersinkron Cloud</span>
+            </div>
+
+        </div>
+    </div>
+    <!-- ==========================================
+         DRAWER SLIDE-OVER: ACTIVITY AUDIT TRAIL & CHANGE LOG
+         ========================================== -->
+    <!-- Backdrop Overlay -->
+    <div id="auditDrawerBackdrop" onclick="closeAuditDrawer()" class="fixed inset-0 z-[165] bg-black/60 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+
+    <!-- Drawer Panel Samping -->
+<!-- =========================================================
+         1. DRAWER KHUSUS: ACTIVITY AUDIT TRAIL (#auditDrawer)
+         ========================================================= -->
+    <div id="auditDrawerBackdrop" onclick="closeAuditDrawer()" class="fixed inset-0 z-[165] bg-black/60 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+
+    <div id="auditDrawer" class="fixed inset-y-0 right-0 z-[170] w-full sm:w-[480px] max-w-full audit-drawer-panel translate-x-full flex flex-col shadow-2xl overflow-hidden">
+        <!-- Glow Orbs -->
+        <div class="absolute -top-28 -right-28 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-30 bg-sky-500"></div>
+        <div class="absolute -bottom-28 -left-28 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-20 bg-fuchsia-500"></div>
+
+        <!-- Header Khusus Audit -->
+        <div class="p-4 sm:p-5 border-b border-white/10 relative z-10 shrink-0 flex items-center justify-between bg-slate-950/40">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-fuchsia-500 p-[1.5px] shadow-[0_0_15px_rgba(56,189,248,0.4)] shrink-0">
+                    <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-clock-rotate-left text-base text-sky-400"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-heading text-sm sm:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-100 to-slate-200">
+                            Activity Audit Trail
+                        </h3>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Live Synced"></span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 font-medium mt-0.5">Jejak kronologis perubahan kartu & kepatuhan tim</p>
+                </div>
+            </div>
+
+            <!-- Tombol Close Audit -->
+            <button type="button" onclick="closeAuditDrawer()" class="group w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900/90 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 flex items-center justify-center transition-all duration-300 shadow-md shrink-0 active:scale-95" title="Tutup">
+                <i class="fa-solid fa-xmark text-xs transition-transform duration-300 group-hover:rotate-90"></i>
+            </button>
+        </div>
+
+        <!-- Search & Filter Khusus Audit -->
+        <div class="p-4 border-b border-white/5 space-y-2.5 relative z-10 shrink-0 bg-black/20">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                <input type="text" id="auditSearchInput" oninput="filterAuditDisplay()" placeholder="Cari nama tugas, PIC, atau peristiwa..." class="glass-input w-full pl-9 pr-4 py-2 text-xs bg-black/40 border-white/10 rounded-xl">
+            </div>
+
+            <div class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap pb-1 custom-scrollbar" id="auditActionFilterPills">
+                <button type="button" onclick="setAuditActionFilter('all')" data-action="all" class="audit-tag-pill active">Semua (<span id="aCount-all">0</span>)</button>
+                <button type="button" onclick="setAuditActionFilter('STATUS')" data-action="STATUS" class="audit-tag-pill">Pindah Status (<span id="aCount-status">0</span>)</button>
+                <button type="button" onclick="setAuditActionFilter('CREATE')" data-action="CREATE" class="audit-tag-pill">Tugas Baru (<span id="aCount-create">0</span>)</button>
+                <button type="button" onclick="setAuditActionFilter('EDIT')" data-action="EDIT" class="audit-tag-pill">Edit Data (<span id="aCount-edit">0</span>)</button>
+                <button type="button" onclick="setAuditActionFilter('DELETE')" data-action="DELETE" class="audit-tag-pill">Hapus (<span id="aCount-delete">0</span>)</button>
+                <button type="button" onclick="setAuditActionFilter('VAULT')" data-action="VAULT" class="audit-tag-pill">Dokumen (<span id="aCount-vault">0</span>)</button>
+            </div>
+        </div>
+
+        <!-- Body Timeline Audit -->
+        <div class="flex-grow overflow-y-auto custom-scrollbar p-4 sm:p-6 relative z-10">
+            <div class="audit-timeline-line"></div>
+            <div id="auditTimelineFeed" class="space-y-3.5 pl-7 relative"></div>
+        </div>
+
+        <!-- Footer Audit -->
+        <div class="p-4 border-t border-white/10 bg-black/40 relative z-10 shrink-0 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+            <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-fingerprint text-sky-400"></i>
+                <span id="auditFooterCount">0 Log Tercatat</span>
+            </span>
+            <button type="button" onclick="clearAuditHistory()" class="text-rose-400 hover:text-rose-300 transition-colors flex items-center gap-1 font-bold">
+                <i class="fa-solid fa-trash-can text-[9px]"></i> Bersihkan Riwayat
+            </button>
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         2. DRAWER KHUSUS: QUICK NOTES HUB (#notesDrawer)
+         ========================================================= -->
+    <div id="notesDrawerBackdrop" onclick="closeNotesDrawer()" class="fixed inset-0 z-[165] bg-black/60 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+
+    <div id="notesDrawer" class="fixed inset-y-0 right-0 z-[170] w-full sm:w-[500px] max-w-full notes-drawer-panel translate-x-full flex flex-col shadow-2xl overflow-hidden">
+        <!-- Glow Orbs -->
+        <div class="absolute -top-28 -right-28 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-30 bg-fuchsia-500"></div>
+        <div class="absolute -bottom-28 -left-28 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-25 bg-amber-500"></div>
+
+        <!-- Header Khusus Quick Notes -->
+        <div class="p-4 sm:p-5 border-b border-white/10 relative z-10 shrink-0 bg-slate-950/40">
+            <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-fuchsia-500 via-pink-500 to-amber-500 p-[1.5px] shadow-[0_0_15px_rgba(244,114,182,0.4)] shrink-0">
+                        <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-note-sticky text-base text-fuchsia-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="min-w-0">
+                        <h3 class="font-heading text-sm sm:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-fuchsia-100 to-pink-200 tracking-wide whitespace-nowrap leading-tight">
+                            Quick Notes Hub
+                        </h3>
+                        <div class="flex items-center gap-1.5 mt-1">
+                            <span id="notesModuleTag" class="text-[8px] font-mono font-bold bg-fuchsia-500/15 text-fuchsia-300 px-2 py-0.5 rounded-md border border-fuchsia-500/30 uppercase truncate max-w-[140px] sm:max-w-[200px] block" title="Modul Aktif">
+                                MODUL
+                            </span>
+                            <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                            <span class="text-[9px] text-slate-400 truncate hidden xs:inline">1-Click Kanban</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                    <button type="button" onclick="toggleNoteComposer()" id="btnToggleNoteComposer" class="bg-gradient-to-r from-fuchsia-500 to-pink-500 hover:from-fuchsia-400 hover:to-pink-400 text-white px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all shadow-[0_4px_15px_rgba(244,114,182,0.35)] hover:-translate-y-0.5 flex items-center gap-1.5 shrink-0 border border-white/20">
+                        <i class="fa-solid fa-plus text-[10px]"></i> <span>Tulis Memo</span>
+                    </button>
+                    
+                    <!-- Tombol Close Notes -->
+                    <button type="button" onclick="closeNotesDrawer()" class="group w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900/90 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 flex items-center justify-center transition-all duration-300 shadow-md shrink-0 active:scale-95" title="Tutup">
+                        <i class="fa-solid fa-xmark text-xs transition-transform duration-300 group-hover:rotate-90"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Tulis Memo (Collapsible Composer) -->
+        <div id="noteComposerContainer" class="hidden p-4 sm:p-5 border-b border-fuchsia-500/30 bg-black/40 relative z-20 shrink-0 shadow-inner">
+            <form id="formQuickNote" onsubmit="saveQuickNote(event)" class="space-y-3">
+                <input type="hidden" id="nNoteId" value="">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <div class="sm:col-span-2">
+                        <label class="block text-[9px] font-black uppercase tracking-wider text-fuchsia-300 mb-1">Judul Catatan / Pokok Ide</label>
+                        <input type="text" id="nNoteTitle" required class="glass-input w-full px-3 py-2 text-xs" placeholder="Contoh: Ide konten promosi Q4">
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-black uppercase tracking-wider text-fuchsia-300 mb-1">Kategori</label>
+                        <select id="nNoteCategory" class="glass-input w-full px-3 py-2 text-xs bg-slate-900 text-white font-bold">
+                            <option value="Ide Kilat">Ide Kilat</option>
+                            <option value="Notula Meeting">Notula Meeting</option>
+                            <option value="Brief Draft">Brief Draft</option>
+                            <option value="To-Do Sementara">To-Do Sementara</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Markdown Toolbar -->
+                <div class="flex items-center gap-1.5 pt-1">
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-wider mr-1">FORMAT:</span>
+                    <button type="button" onclick="insertNoteMarkdown('**', '**')" class="md-tool-btn" title="Tebal (Bold)"><i class="fa-solid fa-bold"></i></button>
+                    <button type="button" onclick="insertNoteMarkdown('- ', '')" class="md-tool-btn" title="Daftar Bullet"><i class="fa-solid fa-list-ul"></i></button>
+                    <button type="button" onclick="insertNoteMarkdown('[ ] ', '')" class="md-tool-btn" title="Checklist"><i class="fa-solid fa-square-check"></i></button>
+                    <button type="button" onclick="insertNoteMarkdown('`', '`')" class="md-tool-btn" title="Highlight"><i class="fa-solid fa-code"></i></button>
+                </div>
+
+                <div>
+                    <textarea id="nNoteContent" rows="4" required class="glass-input w-full px-3.5 py-2.5 text-xs font-mono leading-relaxed" placeholder="Tuliskan isi memo atau poin rapat di sini..."></textarea>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                    <label class="flex items-center gap-1.5 cursor-pointer text-[10px] text-fuchsia-300 font-bold">
+                        <input type="checkbox" id="nNotePin" class="accent-fuchsia-500 rounded">
+                        <span>Sematkan di Atas (Pin Note)</span>
+                    </label>
+
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="toggleNoteComposer()" class="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white">Batal</button>
+                        <button type="submit" class="bg-gradient-to-r from-fuchsia-500 to-pink-500 hover:from-fuchsia-400 hover:to-pink-400 text-white font-black px-4 py-1.5 rounded-xl text-xs uppercase tracking-wider shadow-md">
+                            Simpan Memo
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Search & Filter Khusus Quick Notes -->
+        <div class="p-4 border-b border-white/5 space-y-2.5 relative z-10 shrink-0 bg-black/20">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                <input type="text" id="notesSearchInput" oninput="filterNotesDisplay()" placeholder="Cari isi catatan, kata kunci ide, atau topik rapat..." class="glass-input w-full pl-9 pr-4 py-2 text-xs bg-black/40 border-white/10 rounded-xl">
+            </div>
+
+            <div class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap pb-1 custom-scrollbar" id="noteCategoryFilterPills">
+                <button type="button" onclick="setNoteCategoryFilter('all')" data-cat="all" class="note-tag-pill active">Semua (<span id="nCount-all">0</span>)</button>
+                <button type="button" onclick="setNoteCategoryFilter('Ide Kilat')" data-cat="Ide Kilat" class="note-tag-pill">Ide Kilat (<span id="nCount-ide">0</span>)</button>
+                <button type="button" onclick="setNoteCategoryFilter('Notula Meeting')" data-cat="Notula Meeting" class="note-tag-pill">Notula Meeting (<span id="nCount-notula">0</span>)</button>
+                <button type="button" onclick="setNoteCategoryFilter('Brief Draft')" data-cat="Brief Draft" class="note-tag-pill">Brief Draft (<span id="nCount-brief">0</span>)</button>
+                <button type="button" onclick="setNoteCategoryFilter('To-Do Sementara')" data-cat="To-Do Sementara" class="note-tag-pill">To-Do (<span id="nCount-todo">0</span>)</button>
+                <button type="button" onclick="setNoteCategoryFilter('Lainnya')" data-cat="Lainnya" class="note-tag-pill">Lainnya (<span id="nCount-lain">0</span>)</button>
+            </div>
+        </div>
+
+        <!-- Feed List Catatan -->
+        <div class="flex-grow overflow-y-auto custom-scrollbar p-4 sm:p-6 space-y-3.5 relative z-10 min-h-[220px]" id="notesFeedContainer"></div>
+
+        <!-- Footer Quick Notes -->
+        <div class="p-4 border-t border-white/10 bg-black/40 relative z-10 shrink-0 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+            <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-bolt text-fuchsia-400"></i>
+                <span id="notesFooterStatus">Auto-Saved Lokal (0ms)</span>
+            </span>
+            <span class="text-[9px] text-slate-500 uppercase tracking-widest">1-CLICK KANBAN CONVERTER</span>
+        </div>
+    </div>
+    <!-- ==========================================
          INBOX NOTIFICATION MODAL (ULTRA PREMIUM)
          ========================================== -->
     <div id="inboxModal" class="fixed inset-0 z-[160] flex items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
@@ -1221,6 +1896,7 @@
         </div>
     </div>
     </main>
+    
 
     <!-- MODAL FORM TASK -->
   <!-- ==========================================
@@ -2776,6 +3452,7 @@
 
             renderInboxModalContent();
         }
+// Memungkinkan scroll horizontal menggunakan roda mouse (Wheel) di PC/Laptop
 
         // 5. RENDER CONTENT TIKET NOTIFIKASI
         function renderInboxModalContent() {
@@ -2876,6 +3553,7 @@
             }, 300);
         }
         // Penampung instance chart agar bisa di-destroy dan dirender ulang dengan lancar
+        
         let activeChartInstances = {
             status: null,
             priority: null,
@@ -3101,6 +3779,781 @@
                 }
             });
         }
+        // =========================================================================
+// REAL-TIME ACTIVITY AUDIT TRAIL ENGINE (HYBRID STORAGE & AUTO-LOGGER)
+// =========================================================================
+// =========================================================================
+// QUICK NOTES & SCRATCHPAD ENGINE (HYBRID STORAGE & KANBAN CONVERTER)
+// =========================================================================
+let activeNotesCategoryFilter = 'all';
+
+// 1. HELPER LOCALSTORAGE (ANTI-HILANG SAAT REFRESH)
+function getNotesStorageKey() {
+    return `omniflow_notes_${currentUserId || 'GUEST'}`;
+}
+
+function getStoredQuickNotes(modKey = activeModule) {
+    if (!modKey) return [];
+    try {
+        const raw = localStorage.getItem(getNotesStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        return Array.isArray(allData[modKey]) ? allData[modKey] : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveStoredQuickNotes(modKey, notesArray) {
+    if (!modKey) return;
+    try {
+        const raw = localStorage.getItem(getNotesStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        allData[modKey] = notesArray;
+        localStorage.setItem(getNotesStorageKey(), JSON.stringify(allData));
+    } catch (e) {
+        console.error("Gagal simpan notes ke storage:", e);
+    }
+}
+
+// 2. KONTROL DRAWER CATATAN
+async function openNotesDrawer() {
+    if (!activeModule) {
+        ui.error("Silakan pilih modul di sidebar terlebih dahulu!");
+        return;
+    }
+
+    const conf = MODUL_REGISTRY[activeModule];
+    document.getElementById('notesModuleTag').innerText = conf ? conf.name : activeModule;
+
+    const drawer = document.getElementById('notesDrawer');
+    const backdrop = document.getElementById('notesDrawerBackdrop');
+    
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+    }, 10);
+
+    // Reset filter
+    activeNotesCategoryFilter = 'all';
+    document.getElementById('notesSearchInput').value = '';
+
+    // Muat data catatan
+    await loadQuickNotes(activeModule);
+}
+
+function closeNotesDrawer() {
+    const drawer = document.getElementById('notesDrawer');
+    const backdrop = document.getElementById('notesDrawerBackdrop');
+    
+    drawer.classList.add('translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+        backdrop.classList.add('hidden');
+        document.getElementById('noteComposerContainer').classList.add('hidden');
+    }, 300);
+}
+
+function toggleNoteComposer(noteToEdit = null) {
+    const composer = document.getElementById('noteComposerContainer');
+    const isHidden = composer.classList.contains('hidden');
+
+    if (noteToEdit) {
+        // Mode Edit
+        composer.classList.remove('hidden');
+        document.getElementById('nNoteId').value = noteToEdit.id;
+        document.getElementById('nNoteTitle').value = noteToEdit.title;
+        document.getElementById('nNoteCategory').value = noteToEdit.category;
+        document.getElementById('nNoteContent').value = noteToEdit.content;
+        document.getElementById('nNotePin').checked = !!noteToEdit.isPinned;
+        document.getElementById('nNoteTitle').focus();
+    } else {
+        // Toggle Buka/Tutup
+        composer.classList.toggle('hidden', !isHidden);
+        if (isHidden) {
+            document.getElementById('formQuickNote').reset();
+            document.getElementById('nNoteId').value = '';
+            document.getElementById('nNoteTitle').focus();
+        }
+    }
+}
+
+// 3. MARKDOWN INSERTION HELPER
+function insertNoteMarkdown(prefix, suffix) {
+    const txtArea = document.getElementById('nNoteContent');
+    const start = txtArea.selectionStart;
+    const end = txtArea.selectionEnd;
+    const selected = txtArea.value.substring(start, end);
+    const replacement = prefix + selected + suffix;
+
+    txtArea.value = txtArea.value.substring(0, start) + replacement + txtArea.value.substring(end);
+    txtArea.focus();
+    txtArea.setSelectionRange(start + prefix.length, end + prefix.length);
+}
+
+// 4. LOAD QUICK NOTES (INSTAN DARI LOKAL, DISINKRONKAN CLOUD)
+async function loadQuickNotes(modKey = activeModule) {
+    if (!modKey) return;
+
+    // 1. Tampilkan instan dari LocalStorage (0ms - anti hilang saat refresh)
+    const localNotes = getStoredQuickNotes(modKey);
+    filterNotesDisplay(localNotes);
+    updateNotesBadgeCounter(localNotes.length);
+
+    // 2. Ambil dari Cloud Google Sheets
+    document.getElementById('notesFooterStatus').innerText = "Menyinkronkan cloud...";
+    const res = await fetchAPI('GET_NOTES', null, modKey);
+    if (res && res.success && Array.isArray(res.data)) {
+        saveStoredQuickNotes(modKey, res.data);
+        filterNotesDisplay(res.data);
+        updateNotesBadgeCounter(res.data.length);
+        document.getElementById('notesFooterStatus').innerText = `Tersinkron: ${new Date().toLocaleTimeString('id-ID')}`;
+    } else {
+        document.getElementById('notesFooterStatus').innerText = "Tersimpan di local browser";
+    }
+}
+
+function updateNotesBadgeCounter(count) {
+    const badge = document.getElementById('notesBadgeCount');
+    if (badge) badge.innerText = count || 0;
+}
+
+// 5. SIMPAN CATATAN BARU / EDIT CATATAN
+async function saveQuickNote(e) {
+    e.preventDefault();
+    if (!activeModule) return;
+
+    const editId = document.getElementById('nNoteId').value.trim();
+    const isEdit = !!editId;
+
+    const noteItem = {
+        id: isEdit ? editId : ('NOTE-' + Math.floor(100000 + Math.random() * 900000)),
+        title: document.getElementById('nNoteTitle').value.trim(),
+        category: document.getElementById('nNoteCategory').value,
+        content: document.getElementById('nNoteContent').value.trim(),
+        pic: currentUserId || 'Team',
+        isPinned: document.getElementById('nNotePin').checked,
+        timestamp: new Date().toLocaleString('id-ID')
+    };
+
+    let currentNotes = getStoredQuickNotes(activeModule);
+
+    if (isEdit) {
+        const idx = currentNotes.findIndex(n => n.id === editId);
+        if (idx > -1) currentNotes[idx] = noteItem;
+    } else {
+        currentNotes.unshift(noteItem);
+    }
+
+    // Urutkan Pinned Note di paling atas
+    currentNotes.sort((a, b) => (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0));
+
+    // Simpan ke LocalStorage
+    saveStoredQuickNotes(activeModule, currentNotes);
+
+    // Render Ulang 0ms
+    filterNotesDisplay(currentNotes);
+    updateNotesBadgeCounter(currentNotes.length);
+
+    // Tutup Form Composer
+    document.getElementById('formQuickNote').reset();
+    document.getElementById('noteComposerContainer').classList.add('hidden');
+    ui.notify(isEdit ? "Catatan Diperbarui!" : "Memo Tersimpan!");
+
+    // Catat ke Audit Trail
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('VAULT', noteItem.title, `Menyimpan Catatan Cepat: [${noteItem.category}]`);
+    }
+
+    // Simpan ke Cloud di Background
+    await fetchAPI('SAVE_NOTE', noteItem, activeModule);
+}
+
+// 6. TOGGLE PIN CATATAN
+async function togglePinQuickNote(noteId, event) {
+    if (event) event.stopPropagation();
+
+    let currentNotes = getStoredQuickNotes(activeModule);
+    const note = currentNotes.find(n => n.id === noteId);
+    if (!note) return;
+
+    note.isPinned = !note.isPinned;
+    currentNotes.sort((a, b) => (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0));
+
+    saveStoredQuickNotes(activeModule, currentNotes);
+    filterNotesDisplay(currentNotes);
+
+    await fetchAPI('SAVE_NOTE', note, activeModule);
+}
+
+// 7. HAPUS CATATAN
+async function deleteQuickNote(noteId, event) {
+    if (event) event.stopPropagation();
+
+    Swal.fire({
+        title: 'Hapus Catatan?',
+        text: 'Catatan ini akan dihapus dari scratchpad.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            let currentNotes = getStoredQuickNotes(activeModule);
+            currentNotes = currentNotes.filter(n => n.id !== noteId);
+
+            saveStoredQuickNotes(activeModule, currentNotes);
+            filterNotesDisplay(currentNotes);
+            updateNotesBadgeCounter(currentNotes.length);
+            ui.notify("Catatan Dihapus");
+
+            await fetchAPI('DELETE_NOTE', { id: noteId }, activeModule);
+        }
+    });
+}
+
+// 8. ⚡ FITUR UTAMA: CONVERT TO TASK (UBAH MEMO JADI KARTU KANBAN 1-KLIK)
+async function convertNoteToKanbanTask(noteId, event) {
+    if (event) event.stopPropagation();
+    if (!activeModule) return;
+
+    const currentNotes = getStoredQuickNotes(activeModule);
+    const note = currentNotes.find(n => n.id === noteId);
+    if (!note) return;
+
+    const conf = MODUL_REGISTRY[activeModule];
+    const initialStatus = conf ? conf.steps[0] : 'Draft';
+
+    Swal.fire({
+        title: 'Konversi ke Kanban?',
+        html: `Memo <b>"${note.title}"</b> akan langsung dibuatkan kartu pekerjaan baru pada kolom <span class="text-fuchsia-400 font-bold">[${initialStatus}]</span>.`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#d946ef',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Buat Kartu Task',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            const newTaskData = {
+                id: 'TSK-' + Math.floor(100000 + Math.random() * 900000),
+                nm: note.title,
+                pr: '5', // Default Medium Priority
+                ds: note.content,
+                sd: todayStr,
+                ed: todayStr,
+                lk: '',
+                pc: note.pic || currentUserId || 'Team',
+                st: initialStatus,
+                cf: '[]'
+            };
+
+            // 1. Tambahkan kartu ke memori Kanban
+            if (!appCache[activeModule]) appCache[activeModule] = [];
+            appCache[activeModule].push(newTaskData);
+
+            // 2. Render ulang tampilan Kanban aktif secara instan
+            renderActiveView();
+
+            // 3. Catat di Jejak Audit Trail
+            if (typeof logAuditActivity === 'function') {
+                logAuditActivity('CREATE', newTaskData.nm, `Dikonversi dari Quick Note ke kolom ${initialStatus}`, newTaskData.pc);
+            }
+
+            // 4. Notifikasi tim jika di mode publik
+            if (typeof notifyDataChanged === 'function') {
+                notifyDataChanged();
+            }
+
+            ui.notify("Kartu Kanban Berhasil Dibuat!");
+            closeNotesDrawer();
+
+            // 5. Simpan ke database cloud
+            await fetchAPI('ADD', newTaskData, activeModule);
+        }
+    });
+}
+
+// 9. SALIN ISI CATATAN KE CLIPBOARD
+function copyNoteContent(content, event) {
+    if (event) event.stopPropagation();
+    navigator.clipboard.writeText(content).then(() => {
+        ui.notify("Isi Catatan Disalin!");
+    });
+}
+
+// 10. FILTER KATEGORI & PENCARIAN CATATAN (DENGAN DATA-CAT)
+function setNoteCategoryFilter(category) {
+    activeNotesCategoryFilter = category;
+
+    // Perbarui style tombol aktif
+    document.querySelectorAll('#noteCategoryFilterPills .note-tag-pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    filterNotesDisplay();
+}
+
+function filterNotesDisplay(notesData = null) {
+    const notes = notesData || getStoredQuickNotes(activeModule);
+    const query = (document.getElementById('notesSearchInput').value || '').toLowerCase().trim();
+
+    // 1. Update Angka Counter Pada Setiap Tombol
+    updateNoteCategoryCounters(notes);
+
+    // 2. Filter Berdasarkan Kategori dan Pencarian
+    const filtered = notes.filter(n => {
+        const matchCategory = (activeNotesCategoryFilter === 'all') || (n.category === activeNotesCategoryFilter);
+        const matchQuery = !query || 
+                           (n.title && n.title.toLowerCase().includes(query)) || 
+                           (n.content && n.content.toLowerCase().includes(query)) ||
+                           (n.category && n.category.toLowerCase().includes(query));
+        return matchCategory && matchQuery;
+    });
+
+    // 3. Render Daftar Catatan
+    renderNotesFeed(filtered);
+}
+
+function updateNoteCategoryCounters(notes) {
+    const counts = {
+        all: notes.length,
+        'Ide Kilat': 0,
+        'Notula Meeting': 0,
+        'Brief Draft': 0,
+        'To-Do Sementara': 0,
+        'Lainnya': 0
+    };
+
+    notes.forEach(n => {
+        if (counts[n.category] !== undefined) counts[n.category]++;
+    });
+
+    const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+    setEl('nCount-all', counts.all);
+    setEl('nCount-ide', counts['Ide Kilat']);
+    setEl('nCount-notula', counts['Notula Meeting']);
+    setEl('nCount-brief', counts['Brief Draft']);
+    setEl('nCount-todo', counts['To-Do Sementara']);
+    setEl('nCount-lain', counts['Lainnya']);
+}
+
+// 11. RENDER FEED CATATAN (CARD DISPLAY)
+function renderNotesFeed(notes) {
+    const container = document.getElementById('notesFeedContainer');
+    if (!container) return;
+
+    if (!notes || notes.length === 0) {
+        const catLabel = activeNotesCategoryFilter === 'all' ? 'Modul Ini' : `Kategori "${activeNotesCategoryFilter}"`;
+        container.innerHTML = `
+        <div class="py-16 flex flex-col items-center justify-center text-center">
+            <div class="w-14 h-14 rounded-2xl bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center mb-3 shadow-inner">
+                <i class="fa-solid fa-note-sticky text-2xl"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Belum Ada Catatan di ${catLabel}</h4>
+            <p class="text-[11px] text-slate-500 max-w-xs leading-relaxed">Klik tombol <b>+ Tulis Memo</b> untuk mencatat ide spontan atau hasil meeting tim.</p>
+        </div>`;
+        return;
+    }
+
+    container.innerHTML = notes.map(n => {
+        const pinnedClass = n.isPinned ? 'is-pinned' : '';
+        const pinIconColor = n.isPinned ? 'text-fuchsia-400' : 'text-slate-500 hover:text-slate-300';
+        
+        return `
+        <div class="note-item-card ${pinnedClass} group">
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-300 shadow-sm">
+                        ${n.category}
+                    </span>
+                    ${n.isPinned ? '<span class="text-[8px] font-bold text-fuchsia-400 flex items-center gap-1"><i class="fa-solid fa-thumbtack text-[8px]"></i> PINNED</span>' : ''}
+                </div>
+
+                <div class="flex items-center gap-1">
+                    <!-- Tombol Pin -->
+                    <button type="button" onclick="togglePinQuickNote('${n.id}', event)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/15 ${pinIconColor} flex items-center justify-center transition-all text-[11px]" title="${n.isPinned ? 'Lepas Sematan' : 'Sematkan di Atas'}">
+                        <i class="fa-solid fa-thumbtack"></i>
+                    </button>
+                    <!-- Tombol Salin -->
+                    <button type="button" onclick="copyNoteContent(\`${n.content.replace(/`/g, '\\`').replace(/"/g, '&quot;')}\`, event)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-all text-[11px]" title="Salin Isi Memo">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                    <!-- Tombol Edit -->
+                    <button type="button" onclick="toggleNoteComposer({ id: '${n.id}', title: '${n.title.replace(/'/g, "\\'")}', category: '${n.category}', content: \`${n.content.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, isPinned: ${n.isPinned} })" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-sky-500/20 text-slate-400 hover:text-sky-400 flex items-center justify-center transition-all text-[11px]" title="Edit Memo">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <!-- Tombol Hapus -->
+                    <button type="button" onclick="deleteQuickNote('${n.id}', event)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all text-[11px]" title="Hapus Memo">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h4 class="text-xs font-black text-white leading-snug mb-1.5 drop-shadow-sm group-hover:text-fuchsia-300 transition-colors">
+                ${n.title}
+            </h4>
+
+            <div class="text-[11px] text-slate-300 font-mono whitespace-pre-wrap leading-relaxed mb-3 bg-black/30 p-2.5 rounded-xl border border-white/5 max-h-36 overflow-y-auto custom-scrollbar">
+${n.content}
+            </div>
+
+            <div class="flex items-center justify-between pt-2.5 border-t border-white/5 text-[9px] font-mono text-slate-400">
+                <span class="flex items-center gap-1 text-slate-500">
+                    <i class="fa-solid fa-clock text-[8px]"></i> ${n.timestamp}
+                </span>
+
+                <!-- 🚀 1-CLICK CONVERT TO KANBAN TASK BUTTON -->
+                <button type="button" onclick="convertNoteToKanbanTask('${n.id}', event)" class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 hover:from-fuchsia-500 hover:to-pink-500 text-fuchsia-300 hover:text-white font-black tracking-wider uppercase transition-all flex items-center gap-1.5 border border-fuchsia-500/30 shadow-sm hover:-translate-y-0.5" title="Jadikan Kartu Pekerjaan Baru di Kolom Awal">
+                    <i class="fa-solid fa-bolt text-amber-400 text-[9px]"></i> <span>Convert to Task</span>
+                </button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// 12. HOOK OTOMATIS SAAT BERGANTI MODUL DI SIDEBAR
+const existingSwitchMod = window.switchModule;
+window.switchModule = async function(modKey) {
+    if (typeof existingSwitchMod === 'function') {
+        await existingSwitchMod(modKey);
+    }
+    // Muat catatan scratchpad sesuai modul yang baru dipilih
+    loadQuickNotes(modKey);
+};
+let activeAuditActionFilter = 'all';
+
+// 1. HELPER STORAGE LOKAL (ANTI-HILANG SAAT REFRESH)
+function getAuditStorageKey() {
+    return `omniflow_audit_${currentUserId || 'GUEST'}`;
+}
+
+function getStoredAuditLogs(modKey = activeModule) {
+    if (!modKey) return [];
+    try {
+        const raw = localStorage.getItem(getAuditStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        return Array.isArray(allData[modKey]) ? allData[modKey] : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveStoredAuditLogs(modKey, logsArray) {
+    if (!modKey) return;
+    try {
+        const raw = localStorage.getItem(getAuditStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        allData[modKey] = logsArray;
+        localStorage.setItem(getAuditStorageKey(), JSON.stringify(allData));
+    } catch (e) {
+        console.error("Gagal simpan audit log:", e);
+    }
+}
+
+// 2. FUNGSI SENTRAL PENCATATAN AKTIVITAS (LOG AUDIT ACTIVITY)
+async function logAuditActivity(actionType, taskName, detailsDesc, picName = null) {
+    if (!activeModule || !currentUserId) return;
+
+    const actor = picName || (currentUserId || 'Team Member');
+    const timestampStr = new Date().toLocaleString('id-ID', {
+        day: '2-digit', month: 'short', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    }).replace(/\./g, ':');
+
+    const newLogItem = {
+        id: 'LOG-' + Math.floor(100000 + Math.random() * 900000),
+        action: actionType, // 'STATUS' | 'CREATE' | 'EDIT' | 'DELETE' | 'VAULT'
+        taskName: taskName || 'Pekerjaan',
+        details: detailsDesc || '-',
+        pic: actor,
+        timestamp: timestampStr,
+        moduleKey: activeModule
+    };
+
+    // A. Simpan Instan ke LocalStorage
+    const currentLogs = getStoredAuditLogs(activeModule);
+    currentLogs.unshift(newLogItem);
+    saveStoredAuditLogs(activeModule, currentLogs);
+
+    // B. Perbarui Tampilan dan Badge Counter
+    updateAuditBadgeCounter(currentLogs.length);
+    if (!document.getElementById('auditDrawer').classList.contains('translate-x-full')) {
+        filterAuditDisplay(currentLogs);
+    }
+
+    // C. Notifikasi Real-time ke Rekan Tim (Khusus Mode Publik)
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // D. Simpan Permanen ke Google Sheets di Background
+    try {
+        await fetchAPI('ADD_LOG', newLogItem, activeModule);
+    } catch (err) {
+        console.warn("Gagal sync log ke cloud, data tersimpan di local storage.");
+    }
+}
+
+// 3. KONTROL SLIDE-OVER DRAWER
+async function openAuditDrawer() {
+    if (!activeModule) {
+        ui.error("Silakan pilih modul di sidebar terlebih dahulu!");
+        return;
+    }
+
+    const drawer = document.getElementById('auditDrawer');
+    const backdrop = document.getElementById('auditDrawerBackdrop');
+    
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+    }, 10);
+
+    // Reset filter
+    activeAuditActionFilter = 'all';
+    document.getElementById('auditSearchInput').value = '';
+
+    // Muat data log
+    await loadAuditLogs(activeModule);
+}
+
+function closeAuditDrawer() {
+    const drawer = document.getElementById('auditDrawer');
+    const backdrop = document.getElementById('auditDrawerBackdrop');
+    
+    drawer.classList.add('translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+        backdrop.classList.add('hidden');
+    }, 300);
+}
+
+// 4. LOAD AUDIT LOGS (HYBRID SYNC)
+async function loadAuditLogs(modKey = activeModule) {
+    if (!modKey) return;
+
+    // 1. Tampilkan instan dari LocalStorage (0ms)
+    const localLogs = getStoredAuditLogs(modKey);
+    filterAuditDisplay(localLogs);
+    updateAuditBadgeCounter(localLogs.length);
+
+    // 2. Ambil dari Cloud Google Sheets
+    const res = await fetchAPI('GET_LOGS', null, modKey);
+    if (res && res.success && Array.isArray(res.data)) {
+        saveStoredAuditLogs(modKey, res.data);
+        filterAuditDisplay(res.data);
+        updateAuditBadgeCounter(res.data.length);
+    }
+}
+
+function updateAuditBadgeCounter(count) {
+    const badge = document.getElementById('auditBadgeCount');
+    if (badge) badge.innerText = count || 0;
+}
+
+// 5. HELPER WARNA & IKON TIPE AKSI
+function getActionBadgeConfig(action) {
+    switch (action) {
+        case 'STATUS':
+            return {
+                label: 'Status Pindah',
+                icon: 'fa-arrow-right-arrow-left',
+                border: 'border-amber-500/40',
+                bg: 'bg-amber-500/15',
+                text: 'text-amber-300',
+                dot: 'bg-amber-400'
+            };
+        case 'CREATE':
+            return {
+                label: 'Tugas Baru',
+                icon: 'fa-plus',
+                border: 'border-emerald-500/40',
+                bg: 'bg-emerald-500/15',
+                text: 'text-emerald-300',
+                dot: 'bg-emerald-400'
+            };
+        case 'EDIT':
+            return {
+                label: 'Data Diubah',
+                icon: 'fa-pen-to-square',
+                border: 'border-sky-500/40',
+                bg: 'bg-sky-500/15',
+                text: 'text-sky-300',
+                dot: 'bg-sky-400'
+            };
+        case 'DELETE':
+            return {
+                label: 'Tugas Dihapus',
+                icon: 'fa-trash-can',
+                border: 'border-rose-500/40',
+                bg: 'bg-rose-500/15',
+                text: 'text-rose-300',
+                dot: 'bg-rose-400'
+            };
+        case 'VAULT':
+            return {
+                label: 'Dokumen Vault',
+                icon: 'fa-folder-plus',
+                border: 'border-fuchsia-500/40',
+                bg: 'bg-fuchsia-500/15',
+                text: 'text-fuchsia-300',
+                dot: 'bg-fuchsia-400'
+            };
+        default:
+            return {
+                label: 'Aktivitas',
+                icon: 'fa-circle-info',
+                border: 'border-slate-500/40',
+                bg: 'bg-slate-500/15',
+                text: 'text-slate-300',
+                dot: 'bg-slate-400'
+            };
+    }
+}
+
+// 6. FILTER AKSI & PENCARIAN PRESISI (DENGAN DATA-ACTION)
+function setAuditActionFilter(actionName) {
+    activeAuditActionFilter = actionName;
+
+    // Perbarui status aktif pada tombol
+    document.querySelectorAll('#auditActionFilterPills .audit-tag-pill').forEach(btn => {
+        if (btn.getAttribute('data-action') === actionName) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    filterAuditDisplay();
+}
+
+function filterAuditDisplay(logsData = null) {
+    const logs = logsData || getStoredAuditLogs(activeModule);
+    const query = (document.getElementById('auditSearchInput').value || '').toLowerCase().trim();
+
+    // Update Angka Counter Pada Setiap Tombol
+    updateAuditCategoryCounters(logs);
+
+    // Filter Sesuai Tab & Query Pencarian
+    const filtered = logs.filter(log => {
+        const matchAction = (activeAuditActionFilter === 'all') || (log.action === activeAuditActionFilter);
+        const matchQuery = !query || 
+                           (log.taskName && log.taskName.toLowerCase().includes(query)) ||
+                           (log.details && log.details.toLowerCase().includes(query)) ||
+                           (log.pic && log.pic.toLowerCase().includes(query));
+        return matchAction && matchQuery;
+    });
+
+    renderAuditTimeline(filtered);
+}
+
+function updateAuditCategoryCounters(logs) {
+    const counts = { all: logs.length, STATUS: 0, CREATE: 0, EDIT: 0, DELETE: 0, VAULT: 0 };
+    logs.forEach(l => {
+        if (counts[l.action] !== undefined) counts[l.action]++;
+    });
+
+    const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+    setEl('aCount-all', counts.all);
+    setEl('aCount-status', counts.STATUS);
+    setEl('aCount-create', counts.CREATE);
+    setEl('aCount-edit', counts.EDIT);
+    setEl('aCount-delete', counts.DELETE);
+    setEl('aCount-vault', counts.VAULT);
+
+    const footerCount = document.getElementById('auditFooterCount');
+    if (footerCount) footerCount.innerText = `${counts.all} Log Tercatat`;
+}
+
+// 7. RENDER TIMELINE FEED
+function renderAuditTimeline(logs) {
+    const feed = document.getElementById('auditTimelineFeed');
+    if (!feed) return;
+
+    if (!logs || logs.length === 0) {
+        feed.innerHTML = `
+        <div class="py-16 flex flex-col items-center justify-center text-center -ml-7 pr-2">
+            <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 mb-3 shadow-inner">
+                <i class="fa-solid fa-clock-rotate-left text-2xl"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Belum Ada Riwayat Aktivitas</h4>
+            <p class="text-[11px] text-slate-500 max-w-xs leading-relaxed">Setiap perpindahan tugas, penambahan, edit, atau hapus data akan terekam otomatis di sini.</p>
+        </div>`;
+        return;
+    }
+
+    feed.innerHTML = logs.map(log => {
+        const conf = getActionBadgeConfig(log.action);
+        return `
+        <div class="audit-item-card group">
+            <!-- Node Titik pada Timeline Stem -->
+            <div class="absolute -left-[35px] top-4 w-3.5 h-3.5 rounded-full ${conf.dot} border-2 border-slate-950 shadow-[0_0_10px_currentColor] z-20"></div>
+
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border ${conf.border} ${conf.bg} ${conf.text} flex items-center gap-1 shadow-sm">
+                    <i class="fa-solid ${conf.icon}"></i> ${conf.label}
+                </span>
+                <span class="text-[9px] font-mono text-slate-400">${log.timestamp}</span>
+            </div>
+
+            <h4 class="text-xs font-extrabold text-white leading-snug mb-1 drop-shadow-sm group-hover:text-sky-300 transition-colors">
+                ${log.taskName}
+            </h4>
+
+            <p class="text-[11px] text-slate-300 font-mono mb-2.5 bg-black/30 p-2 rounded-lg border border-white/5">
+                ${log.details}
+            </p>
+
+            <div class="flex items-center justify-between pt-2 border-t border-white/5 text-[9px] font-mono text-slate-400">
+                <span class="flex items-center gap-1 text-slate-300">
+                    <i class="fa-solid fa-user-astronaut text-sky-400"></i> ${log.pic}
+                </span>
+                <span class="text-[8px] text-slate-500 uppercase tracking-widest">VERIFIED AUDIT</span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// 8. BERSIHKAN RIWAYAT LOG
+async function clearAuditHistory() {
+    if (!activeModule) return;
+
+    Swal.fire({
+        title: 'Bersihkan Riwayat?',
+        text: 'Semua log audit untuk modul ini akan dihapus dari histori.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Bersihkan',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            saveStoredAuditLogs(activeModule, []);
+            filterAuditDisplay([]);
+            updateAuditBadgeCounter(0);
+            ui.notify("Riwayat Log Dibersihkan");
+
+            await fetchAPI('CLEAR_LOGS', null, activeModule);
+        }
+    });
+}
         // DYNAMIC CUSTOM WORKFLOW BUILDER ENGINE
         // =========================================================
         let tempWorkflowSteps = []; // Temporary array untuk modal editor
@@ -3256,6 +4709,7 @@
                         // Render ulang tampilan aktif (Kanban/Calendar/Gantt)
                         renderActiveView();
                         notifyDataChanged();
+                        logAuditActivity('DELETE', taskName, `Tugas dihapus permanen dari sistem`, task ? task.pc : null);
                         
                         ui.notify("Tugas Berhasil Dihapus!");
                     } else {
@@ -3355,6 +4809,335 @@
                 }
             });
         }
+        // =========================================================================
+// DOCUMENT & ASSET VAULT ENGINE (STATE & LOGIC)
+// =========================================================================
+// =========================================================================
+// REVISI: DOCUMENT & ASSET VAULT ENGINE (ANTI-HILANG + HYBRID STORAGE)
+// =========================================================================
+let activeVaultCategoryFilter = 'all';
+
+// 1. HELPER LOCALSTORAGE (DATA TIDAK AKAN HILANG WALAU DI-REFRESH)
+function getVaultStorageKey() {
+    return `omniflow_vault_${currentUserId || 'GUEST'}`;
+}
+
+function getStoredVaultDocs(modKey = activeModule) {
+    if (!modKey) return [];
+    try {
+        const raw = localStorage.getItem(getVaultStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        return Array.isArray(allData[modKey]) ? allData[modKey] : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveStoredVaultDocs(modKey, docsArray) {
+    if (!modKey) return;
+    try {
+        const raw = localStorage.getItem(getVaultStorageKey());
+        const allData = raw ? JSON.parse(raw) : {};
+        allData[modKey] = docsArray;
+        localStorage.setItem(getVaultStorageKey(), JSON.stringify(allData));
+    } catch (e) {
+        console.error("Gagal simpan ke storage:", e);
+    }
+}
+
+// 2. DETEKSI IKON PLATFORM LINK
+function getPlatformBadgeInfo(url) {
+    const u = String(url).toLowerCase();
+    if (u.includes('drive.google.com')) return { name: 'Google Drive', icon: 'fa-google-drive', color: 'text-emerald-400', bg: 'bg-emerald-500/10 border-emerald-500/30' };
+    if (u.includes('figma.com')) return { name: 'Figma Asset', icon: 'fa-figma', color: 'text-purple-400', bg: 'bg-purple-500/10 border-purple-500/30' };
+    if (u.includes('dropbox.com')) return { name: 'Dropbox', icon: 'fa-dropbox', color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30' };
+    if (u.includes('notion.so') || u.includes('notion.site')) return { name: 'Notion Doc', icon: 'fa-file-lines', color: 'text-slate-200', bg: 'bg-white/10 border-white/20' };
+    if (u.includes('github.com')) return { name: 'GitHub Repo', icon: 'fa-github', color: 'text-cyan-400', bg: 'bg-cyan-500/10 border-cyan-500/30' };
+    if (u.includes('.pdf')) return { name: 'PDF File', icon: 'fa-file-pdf', color: 'text-rose-400', bg: 'bg-rose-500/10 border-rose-500/30' };
+    if (u.includes('.xls') || u.includes('.xlsx') || u.includes('docs.google.com/spreadsheets')) return { name: 'Spreadsheet', icon: 'fa-file-excel', color: 'text-emerald-300', bg: 'bg-emerald-500/10 border-emerald-500/30' };
+    return { name: 'Web Link', icon: 'fa-link', color: 'text-amber-400', bg: 'bg-amber-500/10 border-amber-500/30' };
+}
+
+// 3. BUKA & TUTUP MODAL
+async function openVaultModal() {
+    if (!activeModule) {
+        ui.error("Silakan pilih modul di sidebar terlebih dahulu!");
+        return;
+    }
+
+    const conf = MODUL_REGISTRY[activeModule];
+    document.getElementById('vaultModuleTag').innerText = conf ? conf.name : activeModule;
+    document.getElementById('vaultModal').classList.remove('hidden');
+
+    // Reset filter ke Semua saat pertama buka
+    activeVaultCategoryFilter = 'all';
+    document.getElementById('vaultSearchInput').value = '';
+
+    // Muat dokumen
+    await loadVaultDocuments(activeModule);
+}
+
+function closeVaultModal() {
+    document.getElementById('vaultModal').classList.add('hidden');
+    document.getElementById('vaultAddFormContainer').classList.add('hidden');
+}
+
+function toggleVaultAddForm() {
+    const formContainer = document.getElementById('vaultAddFormContainer');
+    const isHidden = formContainer.classList.contains('hidden');
+    formContainer.classList.toggle('hidden', !isHidden);
+
+    if (isHidden) {
+        document.getElementById('vDocTitle').focus();
+        document.getElementById('vDocPic').value = (currentUserId || 'Team').substring(0, 15);
+    }
+}
+
+// 4. LOAD DOKUMEN (INSTAN DARI LOCAL DULU, LALU SYNC DARI GOOGLE SHEETS)
+async function loadVaultDocuments(modKey = activeModule) {
+    if (!modKey) return;
+
+    // A. BACA DARI LOCAL STORAGE (Tampilan instan 0ms tanpa takut hilang saat refresh)
+    const localDocs = getStoredVaultDocs(modKey);
+    filterVaultDisplay(localDocs);
+    updateVaultBadgeCount(localDocs.length);
+
+    // B. AMBIL DATA DARI DATABASE GOOGLE SHEETS
+    document.getElementById('vaultFooterStatus').innerText = "Menyinkronkan cloud...";
+    const res = await fetchAPI('GET_DOCS', null, modKey);
+
+    if (res && res.success && Array.isArray(res.data)) {
+        // Simpan hasil cloud ke local storage
+        saveStoredVaultDocs(modKey, res.data);
+        filterVaultDisplay(res.data);
+        updateVaultBadgeCount(res.data.length);
+        document.getElementById('vaultFooterStatus').innerText = `Cloud tersinkron: ${new Date().toLocaleTimeString('id-ID')}`;
+    } else {
+        document.getElementById('vaultFooterStatus').innerText = "Tersimpan di local browser";
+    }
+}
+
+function updateVaultBadgeCount(count) {
+    const badge = document.getElementById('vaultBadgeCount');
+    if (badge) badge.innerText = count || 0;
+}
+
+// 5. SIMPAN DOKUMEN BARU (SIMPAN KE DUA ARAH: LOCAL + GOOGLE SHEETS)
+async function saveVaultDocument(e) {
+    e.preventDefault();
+    if (!activeModule) return;
+
+    const newDoc = {
+        id: 'DOC-' + Math.floor(100000 + Math.random() * 900000),
+        title: document.getElementById('vDocTitle').value.trim(),
+        category: document.getElementById('vDocCategory').value,
+        url: document.getElementById('vDocUrl').value.trim(),
+        pic: document.getElementById('vDocPic').value.trim(),
+        description: document.getElementById('vDocDesc').value.trim(),
+        timestamp: new Date().toLocaleString('id-ID')
+    };
+
+    // 1. Simpan Instan ke LocalStorage
+    const currentDocs = getStoredVaultDocs(activeModule);
+    currentDocs.unshift(newDoc);
+    saveStoredVaultDocs(activeModule, currentDocs);
+    // 👉 Di dalam saveVaultDocument, setelah saveStoredVaultDocs:
+logAuditActivity('VAULT', newDoc.title, `Menambahkan file [${newDoc.category}] ke Brankas Dokumen`, newDoc.pic);
+
+    // 2. Render Ulang Layar (0ms)
+    filterVaultDisplay(currentDocs);
+    updateVaultBadgeCount(currentDocs.length);
+
+    // 3. Tutup Form
+    document.getElementById('vaultAddForm').reset();
+    document.getElementById('vaultAddFormContainer').classList.add('hidden');
+    ui.notify("Dokumen Berhasil Disimpan!");
+
+    // 4. Simpan ke Google Sheets Cloud
+    const res = await fetchAPI('ADD_DOC', newDoc, activeModule);
+    if (!res || !res.success) {
+        console.warn("Sinkron cloud gagal, data tetap aman di lokal.");
+    }
+}
+
+// 6. HAPUS DOKUMEN
+async function deleteVaultDocument(docId, event) {
+    if (event) event.stopPropagation();
+
+    Swal.fire({
+        title: 'Hapus Dokumen?',
+        text: 'Tautan dokumen ini akan dihapus dari brankas modul.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            // Hapus dari local
+            let currentDocs = getStoredVaultDocs(activeModule);
+            currentDocs = currentDocs.filter(d => d.id !== docId);
+            saveStoredVaultDocs(activeModule, currentDocs);
+
+            filterVaultDisplay(currentDocs);
+            updateVaultBadgeCount(currentDocs.length);
+            ui.notify("Dokumen Dihapus");
+
+            // Hapus dari Google Sheets
+            await fetchAPI('DELETE_DOC', { id: docId }, activeModule);
+        }
+    });
+}
+
+// 7. SALIN LINK
+function copyVaultDocLink(url, event) {
+    if (event) event.stopPropagation();
+    navigator.clipboard.writeText(url).then(() => {
+        ui.notify("Tautan Disalin ke Clipboard!");
+    });
+}
+
+// 8. LOGIKA FILTER KATEGORI (BERFUNGSI SEMPURNA UNTUK SEMUA TOMBOL)
+function setVaultCategoryFilter(category) {
+    activeVaultCategoryFilter = category;
+
+    // Update style tombol aktif
+    document.querySelectorAll('#vaultCategoryFilterPills .vault-tag-pill').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    filterVaultDisplay();
+}
+
+function filterVaultDisplay(docsData = null) {
+    const docs = docsData || getStoredVaultDocs(activeModule);
+    const query = (document.getElementById('vaultSearchInput').value || '').toLowerCase().trim();
+
+    // 1. Update Jumlah Counter di Setiap Tombol Kategori
+    updateCategoryCounters(docs);
+
+    // 2. Filter Sesuai Kategori dan Kata Kunci Pencarian
+    const filtered = docs.filter(d => {
+        const matchCategory = (activeVaultCategoryFilter === 'all') || (d.category === activeVaultCategoryFilter);
+        const matchQuery = !query || 
+                           (d.title && d.title.toLowerCase().includes(query)) || 
+                           (d.description && d.description.toLowerCase().includes(query)) ||
+                           (d.url && d.url.toLowerCase().includes(query));
+        return matchCategory && matchQuery;
+    });
+
+    // 3. Render Kartu
+    renderVaultDocGrid(filtered);
+}
+
+// 9. UPDATE COUNTER ANGKA PADA TOMBOL
+function updateCategoryCounters(docs) {
+    const counts = {
+        all: docs.length,
+        'SOP & Panduan': 0,
+        'Template & Form': 0,
+        'Kontrak & Legal': 0,
+        'Desain & Media': 0,
+        'Laporan & Audit': 0,
+        'Link Eksternal': 0
+    };
+
+    docs.forEach(d => {
+        if (counts[d.category] !== undefined) {
+            counts[d.category]++;
+        }
+    });
+
+    const setElText = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+    setElText('vCount-all', counts.all);
+    setElText('vCount-sop', counts['SOP & Panduan']);
+    setElText('vCount-tpl', counts['Template & Form']);
+    setElText('vCount-leg', counts['Kontrak & Legal']);
+    setElText('vCount-med', counts['Desain & Media']);
+    setElText('vCount-rep', counts['Laporan & Audit']);
+    setElText('vCount-ext', counts['Link Eksternal']);
+}
+
+// 10. RENDER GRID KARTU DOKUMEN
+function renderVaultDocGrid(docs) {
+    const grid = document.getElementById('vaultDocListGrid');
+    if (!grid) return;
+
+    if (!docs || docs.length === 0) {
+        const catName = activeVaultCategoryFilter === 'all' ? 'Modul Ini' : `Kategori "${activeVaultCategoryFilter}"`;
+        grid.innerHTML = `
+        <div class="col-span-full py-12 flex flex-col items-center justify-center text-center border border-dashed border-white/10 rounded-2xl bg-black/20 my-auto">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-3">
+                <i class="fa-solid fa-folder-open text-2xl"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Belum Ada Dokumen di ${catName}</h4>
+            <p class="text-[11px] text-slate-500 max-w-xs">Klik tombol <b>+ Tambah Dokumen</b> di atas untuk menambahkan dokumen ke modul ini.</p>
+        </div>`;
+        return;
+    }
+
+    grid.innerHTML = docs.map(doc => {
+        const platform = getPlatformBadgeInfo(doc.url);
+        return `
+        <div class="vault-doc-card group">
+            <div class="flex justify-between items-start mb-2.5">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border ${platform.bg} ${platform.color} flex items-center gap-1 shadow-sm">
+                        <i class="fa-brands ${platform.icon.startsWith('fa-') ? platform.icon : 'fa-link'}"></i>
+                        ${platform.name}
+                    </span>
+                    <span class="text-[8px] font-bold text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md">
+                        ${doc.category}
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-1">
+                    <button type="button" onclick="copyVaultDocLink('${doc.url}', event)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-all text-[11px]" title="Salin Tautan">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                    <button type="button" onclick="deleteVaultDocument('${doc.id}', event)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all text-[11px]" title="Hapus Dokumen">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-xs sm:text-sm text-white mb-1.5 leading-snug group-hover:text-amber-300 transition-colors truncate drop-shadow-sm" title="${doc.title}">
+                ${doc.title}
+            </h4>
+
+            <p class="text-[10px] text-slate-400 line-clamp-2 leading-relaxed mb-3">
+                ${doc.description || 'Tidak ada deskripsi tambahan.'}
+            </p>
+
+            <div class="flex items-center justify-between pt-2.5 border-t border-white/5 text-[9px] font-mono text-slate-400">
+                <span class="flex items-center gap-1 text-slate-500 truncate max-w-[120px]">
+                    <i class="fa-solid fa-user-circle text-slate-600"></i> ${doc.pic || 'Team'}
+                </span>
+                
+                <a href="${doc.url}" target="_blank" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-amber-500/30 shadow-sm">
+                    <span>Buka File</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                </a>
+            </div>
+        </div>`;
+    }).join('');
+}
+// 7. HOOK KE DALAM switchModule: OTOMATIS AMBIL JUMLAH DOKUMEN MODUL
+const originalSwitchModule = window.switchModule;
+window.switchModule = async function(modKey) {
+    if (typeof originalSwitchModule === 'function') {
+        await originalSwitchModule(modKey);
+    }
+    // Muat dokumen brankas untuk modul baru
+    loadVaultDocuments(modKey);
+    loadAuditLogs(modKey);
+};
         // VIEW SWITCHER STATE & ENGINE (KANBAN / CALENDAR / GANTT)
         // =========================================================
         let currentModeView = 'kanban'; // Default mode
@@ -3841,7 +5624,76 @@ function notifyDataChanged() {
         });
     }
 }
+// =========================================================================
+// ULTRA-SMOOTH KINETIC SCROLL ENGINE UNTUK SWITCHER BOX
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const box = document.getElementById('switcherScrollBox');
+    if (!box) return;
 
+    let isWheeling = false;
+    let targetScroll = box.scrollLeft;
+    let animFrame = null;
+
+    // 1. ENGINE EASE-OUT INTERPOLATION (Efek Luncur Halus Seperti Trackpad Apple)
+    function smoothStep() {
+        const diff = targetScroll - box.scrollLeft;
+        if (Math.abs(diff) > 0.4) {
+            box.scrollLeft += diff * 0.14; // Tingkat kelembutan luncuran (14% per frame)
+            animFrame = requestAnimationFrame(smoothStep);
+        } else {
+            box.scrollLeft = targetScroll;
+            isWheeling = false;
+            cancelAnimationFrame(animFrame);
+        }
+    }
+
+    // 2. MOUSE WHEEL & TRACKPAD HANDLER
+    box.addEventListener('wheel', (e) => {
+        // Jika pakai trackpad Mac (dua jari geser samping), biarkan browser jalan native 120Hz
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            return;
+        }
+
+        // Jika scroll vertikal (roda mouse biasa), luncurkan secara horizontal dengan momentum
+        if (e.deltaY !== 0) {
+            e.preventDefault();
+            const maxScroll = box.scrollWidth - box.clientWidth;
+            const current = isWheeling ? targetScroll : box.scrollLeft;
+            targetScroll = Math.max(0, Math.min(maxScroll, current + e.deltaY * 1.3));
+
+            if (!isWheeling) {
+                isWheeling = true;
+                animFrame = requestAnimationFrame(smoothStep);
+            }
+        }
+    }, { passive: false });
+
+    // 3. DRAG-TO-SCROLL (Klik mouse & geser langsung seperti di smartphone)
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    box.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - box.offsetLeft;
+        scrollStart = box.scrollLeft;
+        targetScroll = box.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    box.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - box.offsetLeft;
+        const walk = (x - startX) * 1.4; // Multiplier kecepatan geser
+        box.scrollLeft = scrollStart - walk;
+        targetScroll = box.scrollLeft;
+    });
+});
 // 5. ADAPTIVE LISTENER: PERCEPAT SINKRONISASI SAAT USER KEMBALI KE TAB
 document.addEventListener('visibilitychange', () => {
     if (currentWorkspaceMode !== 'public') return;
@@ -4619,6 +6471,7 @@ notifyDataChanged();
             const data = appCache[activeModule];
             const taskIndex = data.findIndex(t => t.id === taskId);
             if(taskIndex === -1) return;
+            logAuditActivity('STATUS', taskItem.nm, `Status dipindahkan ke: ${nextStatus}`, taskItem.pc);
 
             // 1. Instant UI Update (0ms)
             const oldStatus = data[taskIndex].st;
@@ -4834,7 +6687,12 @@ notifyDataChanged();
                   notifyDataChanged();
                 ui.notify(isEdit ? "Berhasil Diperbarui!" : "Berhasil Dibuat!");
                 document.getElementById('dynamicFieldsContainer').innerHTML = ''; 
-            }
+            }// 👉 Di dalam saveTask, sebelum ui.hideLoader():
+if (isEdit) {
+    logAuditActivity('EDIT', taskData.nm, `Memperbarui rincian tugas & prioritas P-${taskData.pr}`, taskData.pc);
+} else {
+    logAuditActivity('CREATE', taskData.nm, `Membuat tugas baru pada kolom: ${currentStatus}`, taskData.pc);
+}
             
             ui.hideLoader();
         }
