@@ -341,6 +341,98 @@
         .gantt-row:hover {
             background: rgba(255, 255, 255, 0.03);
         }
+        /* =========================================================
+   DUAL WORKSPACE (PRIVATE & PUBLIC COLLABORATION) STYLES
+   ========================================================= */
+
+/* Glowing Gradient Orbs untuk Public Emerald Theme */
+.glow-emerald {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
+}
+
+.glow-cyan {
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.35) 0%, rgba(99, 102, 241, 0.15) 70%, transparent 100%);
+}
+
+/* Tab Switcher Capsule */
+.auth-tab-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+}
+.auth-tab-btn:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.05);
+}
+.auth-tab-btn.active-private {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(99, 102, 241, 0.3));
+    color: #ffffff;
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 4px 20px -3px rgba(6, 182, 212, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.auth-tab-btn.active-public {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(20, 184, 166, 0.35));
+    color: #ffffff;
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 0 4px 20px -3px rgba(16, 185, 129, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Sub-Tab Radio Capsule (Buat Ruang vs Gabung) */
+.sub-tab-btn {
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.sub-tab-btn:hover { color: #cbd5e1; }
+.sub-tab-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #34d399;
+    border-color: rgba(52, 211, 153, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* High-Tech Room Code Display Box */
+.room-code-badge {
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.05));
+    border: 1px dashed rgba(16, 185, 129, 0.4);
+    box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.08);
+    transition: all 0.3s ease;
+}
+.room-code-badge:hover {
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.25), inset 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Sidebar Profile Badges (Private vs Public) */
+.profile-private {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(99, 102, 241, 0.08));
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.profile-public {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(20, 184, 166, 0.08));
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    box-shadow: 0 4px 25px -2px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
 
         /* Pita Bar Gantt Chart Menyala & Bergradasi */
         .gantt-bar {
@@ -540,27 +632,141 @@
     </div>
 
     <!-- AUTH/PIN MODAL -->
-    <div id="authModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-obsidian/90 backdrop-blur-xl transition-opacity">
-        <div class="glass-panel w-full max-w-md p-10 rounded-[2.5rem] text-center relative overflow-hidden">
-            <div class="absolute -top-20 -left-20 w-48 h-48 bg-omni-cyan/20 blur-[60px] rounded-full"></div>
-            <div class="absolute -bottom-20 -right-20 w-48 h-48 bg-omni-fuchsia/20 blur-[60px] rounded-full"></div>
-            
-            <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-omni-cyan to-omni-fuchsia p-[2px] rounded-3xl mb-6 shadow-[0_0_30px_rgba(6,182,212,0.4)]">
+   <!-- ==========================================
+     DUAL-MODE SECURE ACCESS MODAL (ULTRA LUXURY)
+     ========================================== -->
+<div id="authModal" class="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-obsidian/90 backdrop-blur-2xl transition-all duration-500">
+    <div class="glass-panel w-full max-w-lg p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.8)] max-h-[94vh] flex flex-col justify-between">
+        
+        <!-- Ambient Atmospheric Orbs -->
+        <div id="authOrb1" class="absolute -top-24 -left-24 w-56 h-56 glow-cyan blur-[70px] rounded-full pointer-events-none transition-all duration-700"></div>
+        <div id="authOrb2" class="absolute -bottom-24 -right-24 w-56 h-56 glow-cyan blur-[70px] rounded-full pointer-events-none transition-all duration-700"></div>
+
+        <!-- 1. Header Ikon & Judul -->
+        <div class="text-center relative z-10 shrink-0">
+            <div id="authIconWrapper" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-tr from-omni-cyan via-indigo-500 to-omni-fuchsia p-[2px] rounded-3xl mb-4 sm:mb-5 shadow-[0_0_35px_rgba(6,182,212,0.4)] transition-all duration-500">
                 <div class="w-full h-full bg-obsidian rounded-[22px] flex items-center justify-center">
-                    <i class="fa-solid fa-fingerprint text-3xl text-white"></i>
+                    <i id="authIcon" class="fa-solid fa-fingerprint text-2xl sm:text-3xl text-omni-cyan transition-all duration-500"></i>
                 </div>
             </div>
-            <h2 class="font-heading text-2xl font-bold text-white mb-2 tracking-wide">Secure Access</h2>
-            <p class="text-xs text-slate-400 mb-8 leading-relaxed">Masukkan PIN Rahasia Anda. Papan kerja diisolasi dengan Enkripsi Tenant-Level.</p>
+            <h2 id="authTitle" class="font-heading text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 tracking-wide">
+                Secure Access Engine
+            </h2>
+            <p id="authSubtitle" class="text-[11px] sm:text-xs text-slate-400 mt-1 max-w-xs mx-auto leading-relaxed">
+                Pilih mode ruang kerja privat terisolasi atau ruang kolaborasi bersama tim.
+            </p>
+        </div>
+
+        <!-- 2. Dual-Mode Switcher Tabs (Private vs Public) -->
+        <div class="grid grid-cols-2 gap-1.5 bg-black/60 p-1.5 rounded-2xl border border-white/10 my-4 sm:my-5 relative z-10 shrink-0">
+            <button type="button" onclick="switchAuthTab('private')" id="tabBtnPrivate" class="auth-tab-btn active-private">
+                <i class="fa-solid fa-lock text-xs"></i> <span>Mode Privat</span>
+            </button>
+            <button type="button" onclick="switchAuthTab('public')" id="tabBtnPublic" class="auth-tab-btn">
+                <i class="fa-solid fa-globe text-xs"></i> <span>Mode Publik</span>
+            </button>
+        </div>
+
+        <!-- 3. Dynamic Form Container (Scrollable jika layar HP pendek) -->
+        <div class="relative z-10 flex-grow overflow-y-auto custom-scrollbar pr-0.5">
             
-            <form onsubmit="handleLogin(event)" class="relative z-10 space-y-6">
-                <input type="text" id="pinInput" class="glass-input w-full px-6 py-4 text-center font-mono text-xl font-bold tracking-[0.3em] uppercase" placeholder="PIN-123" required autocomplete="off">
-                <button type="submit" class="w-full bg-gradient-to-r from-omni-cyan to-omni-indigo text-white py-4 rounded-xl font-bold tracking-widest shadow-[0_10px_20px_rgba(6,182,212,0.3)] hover:shadow-[0_10px_30px_rgba(6,182,212,0.5)] transition-all hover:-translate-y-1">
-                    UNLOCK WORKSPACE
+            <!-- PANEL A: MODE PRIVAT -->
+            <form id="panelPrivate" onsubmit="handlePrivateLogin(event)" class="space-y-4">
+                <div class="bg-black/30 p-4 rounded-2xl border border-white/10 backdrop-blur-md">
+                    <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 mb-2">
+                        <i class="fa-solid fa-key mr-1"></i> Masukkan PIN Rahasia Anda
+                    </label>
+                    <input type="text" 
+                           id="pinInput" 
+                           class="glass-input w-full px-4 py-3 sm:py-3.5 text-center font-mono text-lg sm:text-xl font-black tracking-[0.3em] uppercase placeholder:tracking-normal placeholder:font-sans placeholder:text-xs placeholder:text-slate-500" 
+                           placeholder="Contoh: PIN-8839 atau 83930" 
+                           autocomplete="off">
+                    <p class="text-[9px] text-slate-500 mt-2 text-center">Data tersimpan eksklusif untuk PIN ini (Tenant-Level Isolation).</p>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-omni-cyan via-blue-600 to-omni-indigo text-white py-3.5 sm:py-4 rounded-xl font-black text-xs sm:text-sm tracking-widest uppercase shadow-[0_10px_25px_rgba(6,182,212,0.35)] hover:shadow-[0_10px_35px_rgba(6,182,212,0.6)] transition-all duration-300 hover:-translate-y-0.5 border border-white/20">
+                    <i class="fa-solid fa-shield-halved mr-1.5"></i> UNLOCK PRIVATE WORKSPACE
                 </button>
             </form>
+
+            <!-- PANEL B: MODE PUBLIK (KOLABORASI BERSAMA) -->
+            <div id="panelPublic" class="hidden space-y-4">
+                <!-- Sub-Tab Pill: Buat Baru vs Gabung yang Ada -->
+                <div class="flex items-center justify-center gap-1.5 bg-black/40 p-1 rounded-xl border border-white/10 mb-3">
+                    <button type="button" onclick="switchPublicSubTab('create')" id="subTabCreate" class="sub-tab-btn active flex-1">
+                        <i class="fa-solid fa-sparkles mr-1"></i> Buat Ruang Baru
+                    </button>
+                    <button type="button" onclick="switchPublicSubTab('join')" id="subTabJoin" class="sub-tab-btn flex-1">
+                        <i class="fa-solid fa-right-to-bracket mr-1"></i> Sudah Ada Link / Kode
+                    </button>
+                </div>
+
+                <!-- SUB-VIEW 1: BUAT RUANG BARU -->
+                <div id="subViewCreate" class="space-y-3.5">
+                    <div class="room-code-badge p-4 rounded-2xl text-center relative group">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[9px] font-black uppercase tracking-widest text-emerald-400">Kode Ruang Publik Anda:</span>
+                            <button type="button" onclick="regeneratePublicRoomCode()" class="text-[10px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-arrows-rotate"></i> Acak Ulang
+                            </button>
+                        </div>
+                        <div id="generatedRoomCodeDisplay" class="font-mono text-2xl sm:text-3xl font-black tracking-[0.25em] text-white my-1 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">
+                            PUB-00000
+                        </div>
+                        <p class="text-[9px] text-slate-400">Kode di atas adalah kunci database bersama tim Anda.</p>
+                    </div>
+
+                    <!-- Kotak Link Siap Salin -->
+                    <div class="bg-black/30 p-3 rounded-xl border border-white/10">
+                        <div class="flex items-center justify-between gap-2 mb-1.5">
+                            <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">Tautan Undangan Tim:</span>
+                            <span id="copyFeedback" class="text-[9px] font-bold text-emerald-400 opacity-0 transition-opacity duration-300">✓ Berhasil Disalin</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="shareableLinkInput" readonly class="glass-input flex-grow px-3 py-2 text-[10px] sm:text-xs font-mono text-slate-300 select-all cursor-pointer bg-black/50" onclick="this.select()">
+                            <button type="button" onclick="copyShareableLink()" class="px-3.5 py-2 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-white border border-emerald-500/40 text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 shadow-md">
+                                <i class="fa-solid fa-copy"></i> <span class="hidden sm:inline">Salin</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="enterCreatedPublicWorkspace()" class="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white py-3.5 sm:py-4 rounded-xl font-black text-xs sm:text-sm tracking-widest uppercase shadow-[0_10px_25px_rgba(16,185,129,0.35)] hover:shadow-[0_10px_35px_rgba(16,185,129,0.6)] transition-all duration-300 hover:-translate-y-0.5 border border-white/20">
+                        <i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> LANJUT KE WORKSPACE
+                    </button>
+                </div>
+
+                <!-- SUB-VIEW 2: GABUNG RUANG (SUDAH ADA KODE / LINK) -->
+                <form id="subViewJoin" onsubmit="handlePublicJoin(event)" class="hidden space-y-4">
+                    <div class="bg-black/30 p-4 rounded-2xl border border-white/10 backdrop-blur-md">
+                        <label class="block text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
+                            <i class="fa-solid fa-link mr-1"></i> Tempelkan Link Undangan atau Kode Ruang
+                        </label>
+                        <input type="text" 
+                               id="publicJoinInput" 
+                               required 
+                               class="glass-input w-full px-4 py-3 sm:py-3.5 text-xs sm:text-sm font-mono placeholder:text-slate-500" 
+                               placeholder="Contoh: PUB-78219 atau tempel link lengkap" 
+                               autocomplete="off">
+                        <p class="text-[9px] text-slate-400 mt-2">Sistem otomatis mendeteksi kode walaupun Anda menempelkan URL lengkap.</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white py-3.5 sm:py-4 rounded-xl font-black text-xs sm:text-sm tracking-widest uppercase shadow-[0_10px_25px_rgba(16,185,129,0.35)] hover:shadow-[0_10px_35px_rgba(16,185,129,0.6)] transition-all duration-300 hover:-translate-y-0.5 border border-white/20">
+                        <i class="fa-solid fa-users mr-1.5"></i> GABUNG RUANG KOLABORASI
+                    </button>
+                </form>
+
+            </div>
+
         </div>
+
+        <!-- 4. Footer Mini Info -->
+        <div class="pt-3 border-t border-white/10 text-center text-[9px] text-slate-500 font-mono relative z-10 shrink-0 mt-3 flex items-center justify-between">
+            <span class="flex items-center gap-1"><i class="fa-solid fa-shield-cat text-omni-cyan"></i> 256-BIT ENCRYPTION</span>
+            <span class="text-slate-400">OMNIFLOW V3.5 CORE</span>
+        </div>
+
     </div>
+</div>
 
     <!-- SIDEBAR NAVIGASI -->
    <!-- SIDEBAR NAVIGASI (ULTRA PREMIUM) -->
@@ -605,22 +811,49 @@
         </div>
 
         <!-- User Badge Bottom Area -->
-        <div class="p-5 border-t border-white/5 bg-gradient-to-b from-transparent to-black/50 mt-auto relative z-10">
-            <div class="flex items-center justify-between bg-white/[0.03] hover:bg-white/[0.08] p-3.5 rounded-2xl border border-white/10 transition-all shadow-lg group">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-omni-cyan to-omni-indigo flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                        <i class="fa-solid fa-user-shield text-xs text-white"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-[8px] text-omni-cyan font-bold tracking-widest uppercase">ID PRIVAT</span>
-                        <span id="displayPin" class="text-xs font-mono font-bold text-white tracking-wider">GUEST</span>
-                    </div>
+        <!-- ==========================================
+     USER BADGE BOTTOM AREA (DYNAMIC PRIVATE / PUBLIC)
+     ========================================== -->
+<div class="p-4 sm:p-5 border-t border-white/5 bg-gradient-to-b from-transparent to-black/60 mt-auto relative z-10 shrink-0">
+    <div id="sidebarProfileCard" class="profile-private p-3 rounded-2xl transition-all duration-500 group relative">
+        <div class="flex items-center justify-between gap-2">
+            
+            <!-- Left Info Area -->
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div id="profileIconContainer" class="w-9 h-9 rounded-xl bg-gradient-to-br from-omni-cyan to-omni-indigo flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)] shrink-0 transition-all duration-500">
+                    <i id="profileIcon" class="fa-solid fa-user-shield text-xs text-white"></i>
                 </div>
-                <button onclick="logout()" class="text-slate-500 hover:text-omni-rose transition-colors p-2 rounded-lg hover:bg-omni-rose/10" title="Logout">
+                <div class="flex flex-col min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <span id="profileModeLabel" class="text-[8px] font-black text-omni-cyan tracking-widest uppercase truncate">ID PRIVAT</span>
+                        <span id="profileLivePulse" class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    </div>
+                    <span id="displayPin" class="text-xs font-mono font-bold text-white tracking-wider truncate">GUEST</span>
+                </div>
+            </div>
+
+            <!-- Right Action Buttons -->
+            <div class="flex items-center gap-1 shrink-0">
+                <!-- Tombol Share Cepat (Khusus Mode Public) -->
+                <button type="button" 
+                        id="btnQuickShareRoom" 
+                        onclick="quickShareCurrentRoom()" 
+                        class="hidden text-slate-400 hover:text-emerald-300 p-2 rounded-lg hover:bg-emerald-500/20 transition-all text-xs" 
+                        title="Salin Link Undangan Ruang Ini">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+
+                <!-- Tombol Ganti Akun / Logout -->
+                <button onclick="logout()" 
+                        class="text-slate-500 hover:text-omni-rose transition-colors p-2 rounded-lg hover:bg-omni-rose/10 text-xs" 
+                        title="Keluar / Ganti Ruang">
                     <i class="fa-solid fa-power-off"></i>
                 </button>
             </div>
+
         </div>
+    </div>
+</div>
     </aside>
 
     <!-- KANVAS UTAMA -->
@@ -3514,16 +3747,343 @@
         }
 
         // --- AUTHENTICATION ---
-        function checkAuth() {
-            if (!currentUserId) {
-                document.getElementById('authModal').style.display = 'flex';
-            } else {
-                document.getElementById('authModal').style.display = 'none';
-                document.getElementById('displayPin').innerText = currentUserId;
-                initSidebar();
-            }
-        }
+      // =========================================================================
+// STATE MANAGEMENT WORKSPACE ACCESS (PRIVATE VS PUBLIC)
+// =========================================================================
+let currentWorkspaceMode = localStorage.getItem('omniflow_mode') || 'private'; // 'private' | 'public'
+let currentGeneratedRoom = ''; // Menyimpan kode ruang acak sementara
 
+// --- HELPER GENERATOR KODE RUANG PUBLIK (Format: PUB-XXXXX) ---
+function generateRandomRoomCode() {
+    const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'; // Karakter tanpa ambigu (0/O, 1/I dihilangkan)
+    let result = '';
+    for (let i = 0; i < 5; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return 'PUB-' + result;
+}
+
+// --- HELPER MEMBUAT TAUTAN LENGKAP DARI KODE RUANG ---
+function getFullShareableUrl(roomCode) {
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    return `${origin}${pathname}?room=${encodeURIComponent(roomCode)}`;
+}
+
+// =========================================================================
+// 1. MODAL TAB CONTROLLER (PRIVATE VS PUBLIC)
+// =========================================================================
+function switchAuthTab(mode) {
+    const btnPriv = document.getElementById('tabBtnPrivate');
+    const btnPub = document.getElementById('tabBtnPublic');
+    const panelPriv = document.getElementById('panelPrivate');
+    const panelPub = document.getElementById('panelPublic');
+    const authIcon = document.getElementById('authIcon');
+    const authIconWrapper = document.getElementById('authIconWrapper');
+    const authTitle = document.getElementById('authTitle');
+    const authSubtitle = document.getElementById('authSubtitle');
+    const authOrb1 = document.getElementById('authOrb1');
+    const authOrb2 = document.getElementById('authOrb2');
+
+    if (mode === 'private') {
+        btnPriv.className = 'auth-tab-btn active-private';
+        btnPub.className = 'auth-tab-btn';
+        panelPriv.classList.remove('hidden');
+        panelPub.classList.add('hidden');
+
+        // Theme Cyan/Indigo
+        authIcon.className = 'fa-solid fa-fingerprint text-2xl sm:text-3xl text-omni-cyan transition-all';
+        authIconWrapper.className = 'w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-tr from-omni-cyan via-indigo-500 to-omni-fuchsia p-[2px] rounded-3xl mb-4 sm:mb-5 shadow-[0_0_35px_rgba(6,182,212,0.4)] transition-all';
+        authTitle.innerText = 'Private Secure Access';
+        authSubtitle.innerText = 'Papan kerja diisolasi secara mandiri dengan Enkripsi Tenant-Level.';
+        authOrb1.className = 'absolute -top-24 -left-24 w-56 h-56 glow-cyan blur-[70px] rounded-full pointer-events-none transition-all duration-700';
+        authOrb2.className = 'absolute -bottom-24 -right-24 w-56 h-56 glow-cyan blur-[70px] rounded-full pointer-events-none transition-all duration-700';
+    } else {
+        btnPriv.className = 'auth-tab-btn';
+        btnPub.className = 'auth-tab-btn active-public';
+        panelPriv.classList.add('hidden');
+        panelPub.classList.remove('hidden');
+
+        // Theme Emerald/Teal
+        authIcon.className = 'fa-solid fa-globe text-2xl sm:text-3xl text-emerald-400 transition-all';
+        authIconWrapper.className = 'w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-tr from-emerald-400 via-teal-500 to-cyan-400 p-[2px] rounded-3xl mb-4 sm:mb-5 shadow-[0_0_35px_rgba(16,185,129,0.5)] transition-all';
+        authTitle.innerText = 'Public Team Workspace';
+        authSubtitle.innerText = 'Bekerja bersama tim dalam satu ruang database tersinkronisasi otomatis.';
+        authOrb1.className = 'absolute -top-24 -left-24 w-56 h-56 glow-emerald blur-[70px] rounded-full pointer-events-none transition-all duration-700';
+        authOrb2.className = 'absolute -bottom-24 -right-24 w-56 h-56 glow-emerald blur-[70px] rounded-full pointer-events-none transition-all duration-700';
+
+        // Inisialisasi kode ruang baru jika belum ada
+        if (!currentGeneratedRoom) {
+            regeneratePublicRoomCode();
+        }
+    }
+}
+
+// Sub-Tab Switcher di Mode Publik: "Buat Ruang" vs "Gabung Ruang"
+function switchPublicSubTab(sub) {
+    const tabCreate = document.getElementById('subTabCreate');
+    const tabJoin = document.getElementById('subTabJoin');
+    const viewCreate = document.getElementById('subViewCreate');
+    const viewJoin = document.getElementById('subViewJoin');
+
+    if (sub === 'create') {
+        tabCreate.classList.add('active');
+        tabJoin.classList.remove('active');
+        viewCreate.classList.remove('hidden');
+        viewJoin.classList.add('hidden');
+    } else {
+        tabJoin.classList.add('active');
+        tabCreate.classList.remove('active');
+        viewJoin.classList.remove('hidden');
+        viewCreate.classList.add('hidden');
+        setTimeout(() => document.getElementById('publicJoinInput').focus(), 100);
+    }
+}
+
+// =========================================================================
+// 2. LOGIKA GENERATE & SALIN LINK PUBLIK
+// =========================================================================
+function regeneratePublicRoomCode() {
+    currentGeneratedRoom = generateRandomRoomCode();
+    document.getElementById('generatedRoomCodeDisplay').innerText = currentGeneratedRoom;
+    document.getElementById('shareableLinkInput').value = getFullShareableUrl(currentGeneratedRoom);
+}
+
+function copyShareableLink() {
+    const linkInput = document.getElementById('shareableLinkInput');
+    const feedback = document.getElementById('copyFeedback');
+
+    if (!linkInput.value) return;
+
+    navigator.clipboard.writeText(linkInput.value).then(() => {
+        feedback.style.opacity = '1';
+        setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        ui.notify("Tautan Berhasil Disalin!");
+    }).catch(() => {
+        linkInput.select();
+        document.execCommand('copy');
+        feedback.style.opacity = '1';
+        setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+    });
+}
+
+// Tombol Share Cepat di Sidebar
+function quickShareCurrentRoom() {
+    if (currentWorkspaceMode !== 'public') return;
+    const shareUrl = getFullShareableUrl(currentUserId);
+    
+    navigator.clipboard.writeText(shareUrl).then(() => {
+        Swal.fire({
+            title: 'Tautan Tim Disalin!',
+            html: `Bagikan tautan berikut agar rekan tim dapat langsung masuk ke ruang <b class="text-emerald-400">${currentUserId}</b>:<br><br><input type="text" readonly value="${shareUrl}" class="glass-input w-full p-2.5 text-center text-xs font-mono text-emerald-300">`,
+            icon: 'success',
+            background: '#0f172a',
+            color: '#fff',
+            confirmButtonColor: '#10b981'
+        });
+    });
+}
+
+// =========================================================================
+// 3. HANDLER LOGIN: PRIVATE, PUBLIC CREATE, PUBLIC JOIN
+// =========================================================================
+
+// A. Login Mode Privat
+function handlePrivateLogin(e) {
+    e.preventDefault();
+    const pin = document.getElementById('pinInput').value.trim().toUpperCase();
+    if (!pin) {
+        ui.error("Harap isi PIN rahasia Anda!");
+        return;
+    }
+
+    currentWorkspaceMode = 'private';
+    currentUserId = pin;
+    localStorage.setItem('omniflow_mode', 'private');
+    localStorage.setItem('omniflow_pin', currentUserId);
+
+    resetWorkspaceUI();
+    checkAuth();
+    ui.notify("Workspace Privat Terbuka!");
+}
+
+// B. Masuk Ruang Publik yang Baru Dibuat
+function enterCreatedPublicWorkspace() {
+    if (!currentGeneratedRoom) {
+        regeneratePublicRoomCode();
+    }
+
+    currentWorkspaceMode = 'public';
+    currentUserId = currentGeneratedRoom;
+    localStorage.setItem('omniflow_mode', 'public');
+    localStorage.setItem('omniflow_pin', currentUserId);
+
+    resetWorkspaceUI();
+    checkAuth();
+    ui.notify(`Bergabung ke Ruang ${currentUserId}`);
+}
+
+// C. Gabung Ruang Publik dari Kode / URL yang Ditempel
+function handlePublicJoin(e) {
+    e.preventDefault();
+    const rawVal = document.getElementById('publicJoinInput').value.trim();
+    if (!rawVal) {
+        ui.error("Silakan masukkan Kode Ruang atau Link!");
+        return;
+    }
+
+    let extractedCode = rawVal;
+    
+    // Smart Parser: Jika user mem-paste URL lengkap
+    if (rawVal.includes('room=')) {
+        try {
+            const urlObj = new URL(rawVal.startsWith('http') ? rawVal : 'http://' + rawVal);
+            extractedCode = urlObj.searchParams.get('room') || rawVal;
+        } catch (err) {
+            const match = rawVal.match(/room=([A-Za-z0-9_-]+)/);
+            if (match) extractedCode = match[1];
+        }
+    }
+
+    extractedCode = extractedCode.replace(/[^A-Za-z0-9_-]/g, '').toUpperCase();
+
+    if (!extractedCode || extractedCode.length < 3) {
+        ui.error("Kode ruang tidak valid!");
+        return;
+    }
+
+    currentWorkspaceMode = 'public';
+    currentUserId = extractedCode;
+    localStorage.setItem('omniflow_mode', 'public');
+    localStorage.setItem('omniflow_pin', currentUserId);
+
+    resetWorkspaceUI();
+    checkAuth();
+    ui.notify(`Terhubung ke Ruang ${currentUserId}`);
+}
+
+// =========================================================================
+// 4. PEMBARUAN VISUAL BADGE PROFIL DINAMIS (SIDEBAR)
+// =========================================================================
+function updateSidebarProfileUI() {
+    const card = document.getElementById('sidebarProfileCard');
+    const iconContainer = document.getElementById('profileIconContainer');
+    const icon = document.getElementById('profileIcon');
+    const modeLabel = document.getElementById('profileModeLabel');
+    const livePulse = document.getElementById('profileLivePulse');
+    const displayPin = document.getElementById('displayPin');
+    const btnQuickShare = document.getElementById('btnQuickShareRoom');
+
+    if (!card || !displayPin) return;
+
+    displayPin.innerText = currentUserId || 'GUEST';
+
+    if (currentWorkspaceMode === 'public') {
+        // TAMPILAN MODE PUBLIK (EMERALD / TEAL NEON)
+        card.className = 'profile-public p-3 rounded-2xl transition-all duration-500 group relative';
+        iconContainer.className = 'w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-[0_0_18px_rgba(16,185,129,0.5)] shrink-0 transition-all';
+        icon.className = 'fa-solid fa-users text-xs text-white';
+        modeLabel.className = 'text-[8px] font-black text-emerald-400 tracking-widest uppercase truncate';
+        modeLabel.innerText = 'ID PUBLIK';
+        livePulse.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
+        if (btnQuickShare) btnQuickShare.classList.remove('hidden');
+    } else {
+        // TAMPILAN MODE PRIVAT (CYAN / INDIGO CYBER)
+        card.className = 'profile-private p-3 rounded-2xl transition-all duration-500 group relative';
+        iconContainer.className = 'w-9 h-9 rounded-xl bg-gradient-to-br from-omni-cyan to-omni-indigo flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)] shrink-0 transition-all';
+        icon.className = 'fa-solid fa-user-shield text-xs text-white';
+        modeLabel.className = 'text-[8px] font-black text-omni-cyan tracking-widest uppercase truncate';
+        modeLabel.innerText = 'ID PRIVAT';
+        livePulse.className = 'w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse';
+        if (btnQuickShare) btnQuickShare.classList.add('hidden');
+    }
+}
+
+// =========================================================================
+// 5. FITUR MAGIC LINK AUTO-JOIN & REVISI CHECKAUTH
+// =========================================================================
+function checkAuth() {
+    // A. DETEKSI PARAMETER URL MAGIC LINK (?room=PUB-XXXXX)
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomParam = urlParams.get('room');
+
+    if (roomParam) {
+        const cleanedRoom = roomParam.trim().toUpperCase();
+        // Bersihkan parameter dari URL browser tanpa reload agar bersih
+        const cleanUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+
+        Swal.fire({
+            title: 'Undangan Kolaborasi!',
+            html: `Anda diundang untuk bergabung ke ruang kerja tim:<br><br><span class="font-mono text-xl font-black text-emerald-400 bg-emerald-500/10 px-4 py-2 rounded-xl border border-emerald-500/30">${cleanedRoom}</span>`,
+            icon: 'info',
+            background: '#0f172a',
+            color: '#fff',
+            showCancelButton: true,
+            confirmButtonColor: '#10b981',
+            cancelButtonColor: '#475569',
+            confirmButtonText: 'Masuk Ruang Sekarang',
+            cancelButtonText: 'Pilih Mode Lain'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                currentWorkspaceMode = 'public';
+                currentUserId = cleanedRoom;
+                localStorage.setItem('omniflow_mode', 'public');
+                localStorage.setItem('omniflow_pin', currentUserId);
+                
+                resetWorkspaceUI();
+                checkAuth();
+                ui.notify(`Terhubung ke Ruang ${cleanedRoom}`);
+            } else {
+                switchAuthTab('public');
+                switchPublicSubTab('join');
+                document.getElementById('publicJoinInput').value = cleanedRoom;
+                document.getElementById('authModal').style.display = 'flex';
+            }
+        });
+        return;
+    }
+
+    // B. JIKA TIDAK ADA SESI AKTIF -> TAMPILKAN MODAL
+    if (!currentUserId) {
+        document.getElementById('authModal').style.display = 'flex';
+        // Set tab default sesuai preference sebelumnya
+        switchAuthTab(currentWorkspaceMode || 'private');
+    } else {
+        document.getElementById('authModal').style.display = 'none';
+        updateSidebarProfileUI();
+        initSidebar();
+    }
+}
+
+// =========================================================================
+// 6. REVISI FUNGSI LOGOUT (MENDUKUNG GANTI MODE BERSIH)
+// =========================================================================
+function logout() {
+    const isPub = currentWorkspaceMode === 'public';
+    Swal.fire({
+        title: isPub ? 'Keluar Ruang Publik?' : 'Ganti PIN / Akun?',
+        text: isPub 
+            ? `Anda akan keluar dari ruang tim ${currentUserId}. Data tetap tersimpan di cloud.`
+            : 'Sesi kerja privat saat ini akan ditutup.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: isPub ? '#10b981' : '#d946ef',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Ganti Ruang',
+        cancelButtonText: 'Batal',
+        background: '#0f172a', 
+        color: '#fff'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('omniflow_pin');
+            currentUserId = '';
+            
+            resetWorkspaceUI();
+            checkAuth();
+        }
+    });
+}
       // ==========================================
         // REVISI: HELPER RESET WORKSPACE (GAMBAR 2)
         // ==========================================
@@ -3570,43 +4130,8 @@
         // ==========================================
         // REVISI FUNGSI HANDLELOGIN & LOGOUT
         // ==========================================
-        function handleLogin(e) {
-            e.preventDefault();
-            const pin = document.getElementById('pinInput').value.trim().toUpperCase();
-            if(!pin) return;
-            
-            currentUserId = pin;
-            localStorage.setItem('omniflow_pin', currentUserId);
-            
-            // Reset tampilan web bersih ke Gambar 2
-            resetWorkspaceUI();
-            
-            checkAuth();
-            ui.notify("Workspace Unlocked!");
-        }
-
-        function logout() {
-            Swal.fire({
-                title: 'Ganti PIN / Akun?',
-                text: 'Sesi kerja privat saat ini akan ditutup.',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#d946ef',
-                cancelButtonColor: '#475569',
-                confirmButtonText: 'Ya, Ganti',
-                background: '#0f172a', color: '#fff'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.removeItem('omniflow_pin');
-                    currentUserId = '';
-                    
-                    // Reset tampilan web bersih ke Gambar 2
-                    resetWorkspaceUI();
-                    
-                    checkAuth();
-                }
-            });
-        }
+     
+       
         // --- SIDEBAR RENDERER ---
       // --- SIDEBAR RENDERER (PREMIUM DESIGN) ---
         function initSidebar() {
