@@ -4225,14 +4225,7 @@ ${n.content}
 }
 
 // 12. HOOK OTOMATIS SAAT BERGANTI MODUL DI SIDEBAR
-const existingSwitchMod = window.switchModule;
-window.switchModule = async function(modKey) {
-    if (typeof existingSwitchMod === 'function') {
-        await existingSwitchMod(modKey);
-    }
-    // Muat catatan scratchpad sesuai modul yang baru dipilih
-    loadQuickNotes(modKey);
-};
+
 let activeAuditActionFilter = 'all';
 
 // 1. HELPER STORAGE LOKAL (ANTI-HILANG SAAT REFRESH)
@@ -6137,114 +6130,109 @@ function logout() {
      // =========================================================
         // REVISI FUNGSI SWITCH MODULE (CLEAN, SLEEK, SWR & WORKFLOW)
         // =========================================================
-        async function switchModule(modKey) {
-            // 1. Hapus status aktif pada menu navigasi sebelumnya
-            if (activeModule) {
-                const prevNav = document.getElementById(`nav-${activeModule}`);
-                if (prevNav) prevNav.classList.remove('active');
-            }
-            
-            // 2. Set modul aktif baru
-            activeModule = modKey;
-            const currentNav = document.getElementById(`nav-${modKey}`);
-            if (currentNav) currentNav.classList.add('active');
+        // =========================================================================
+// REVISI: SUPER-FAST 0ms MODULE SWITCHER ENGINE (ANTI-FREEZE & ANTI-ERROR)
+// =========================================================================
+let moduleSwitchAbortController = null; // Membatalkan antrean lama jika user klik modul cepat-cepat
 
-            // 3. Load Custom Workflow jika ada tersimpan di LocalStorage
-            if (MODUL_REGISTRY[modKey]) {
-                MODUL_REGISTRY[modKey].steps = getActiveWorkflow(modKey);
-            }
+async function switchModule(modKey) {
+    if (!modKey || !MODUL_REGISTRY[modKey]) return;
 
-            // 4. Ambil konfigurasi modul & tema
-            const conf = MODUL_REGISTRY[modKey];
-            if (!conf) {
-                console.error("Konfigurasi modul tidak ditemukan:", modKey);
-                return;
-            }
-            const theme = THEME[conf.color] || THEME['cyan'];
+    // 1. HIGHLIGHT MENU SIDEBAR INSTAN (0ms)
+    if (activeModule) {
+        const prevNav = document.getElementById(`nav-${activeModule}`);
+        if (prevNav) prevNav.classList.remove('active');
+    }
+    activeModule = modKey;
+    const currentNav = document.getElementById(`nav-${modKey}`);
+    if (currentNav) currentNav.classList.add('active');
 
-            // 5. Update UI Header Modul (Compact, Ringkas & Presisi)
-            const modTitle = document.getElementById('modTitle');
-            if (modTitle) modTitle.innerText = conf.name;
+    // 2. AMBIL WORKFLOW DAN KONFIGURASI TEMA
+    MODUL_REGISTRY[modKey].steps = getActiveWorkflow(modKey);
+    const conf = MODUL_REGISTRY[modKey];
+    const theme = THEME[conf.color] || THEME['cyan'];
 
-            const modCategory = document.getElementById('modCategory');
-            if (modCategory) modCategory.innerText = conf.cat;
-            
-            const modDot = document.getElementById('modDot');
-            if (modDot) modDot.className = `w-1.5 h-1.5 rounded-full animate-pulse shadow-[0_0_8px_${theme.hex}] ${theme.bg}`;
-            
-            const headerGlow = document.getElementById('headerGlow');
-            if (headerGlow) headerGlow.className = `absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-40 transition-colors duration-1000 ${theme.bg}`;
-            
-            // Ikon Modul Compact (w-10 h-10 md:w-11 md:h-11)
-            const iconEl = document.getElementById('modIcon');
-            if (iconEl) {
-                iconEl.className = `w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-[0_4px_15px_${theme.hex}40] transition-all duration-500 border border-white/30 p-[2px] bg-gradient-to-br ${theme.grad} shrink-0`;
-                iconEl.innerHTML = `<div class="w-full h-full bg-obsidian/40 rounded-[10px] flex items-center justify-center backdrop-blur-sm"><i class="fa-solid ${conf.icon} text-white text-base drop-shadow-md"></i></div>`;
-            }
-            
-            const moduleGlow = document.getElementById('moduleGlow');
-            if (moduleGlow) moduleGlow.className = `absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-[120px] pointer-events-none transition-colors duration-1000 z-0 ${theme.bg}/15`;
-            
-            // Tombol New Task Compact & Presisi
-            const btnCreate = document.getElementById('btnCreate');
-            if (btnCreate) {
-                btnCreate.classList.remove('hidden');
-                btnCreate.className = `hidden sm:flex bg-gradient-to-r ${theme.grad} text-white px-4 py-2 rounded-xl font-black text-[9.5px] tracking-[0.12em] uppercase shadow-[0_6px_18px_${theme.hex}40] hover:shadow-[0_10px_25px_${theme.hex}70] transition-all duration-300 hover:-translate-y-0.5 items-center gap-1.5 border border-white/20 relative overflow-hidden group shrink-0`;
-                btnCreate.innerHTML = `<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div><span class="relative z-10 flex items-center gap-1.5"><i class="fa-solid fa-plus text-[10px]"></i> NEW TASK</span>`;
-            }
-            
-            const labelPic = document.getElementById('labelPic');
-            if (labelPic) labelPic.innerText = conf.pdf.pic;
+    // 3. PERBARUI HEADER & AMBIENCE WARNA SECARA INSTAN (0ms)
+    const modTitle = document.getElementById('modTitle');
+    if (modTitle) modTitle.innerText = conf.name;
 
-            // 6. Update Style Modal Form & Custom Field (Safe Null Checks)
-            const modalPanel = document.getElementById('taskModalPanel');
-            if (modalPanel) {
-                modalPanel.style.background = `linear-gradient(135deg, rgba(15,23,42,0.92), ${theme.hex}25)`;
-                modalPanel.style.boxShadow = `0 25px 60px -15px ${theme.hex}50, inset 0 1px 1px rgba(255,255,255,0.2)`;
-                modalPanel.style.borderColor = `${theme.hex}50`;
-            }
+    const modCategory = document.getElementById('modCategory');
+    if (modCategory) modCategory.innerText = conf.cat;
 
-            const modalGlow1 = document.getElementById('modalGlow1');
-            if (modalGlow1) modalGlow1.className = `absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-50 transition-colors duration-700 ${theme.bg}`;
+    const modDot = document.getElementById('modDot');
+    if (modDot) modDot.className = `w-1.5 h-1.5 rounded-full animate-pulse shadow-[0_0_8px_${theme.hex}] ${theme.bg}`;
 
-            const modalGlow2 = document.getElementById('modalGlow2');
-            if (modalGlow2) modalGlow2.className = `absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-15 transition-colors duration-700 bg-white`;
+    const headerGlow = document.getElementById('headerGlow');
+    if (headerGlow) headerGlow.className = `absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-40 transition-colors duration-500 ${theme.bg}`;
 
-            const modalTitleText = document.getElementById('modalTitleText');
-            if (modalTitleText) {
-                const colorSuffix = theme.text ? theme.text.split('-')[1] : 'cyan';
-                modalTitleText.className = `font-heading text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-${colorSuffix}-200 tracking-wide drop-shadow-md`;
-            }
+    const iconEl = document.getElementById('modIcon');
+    if (iconEl) {
+        iconEl.className = `w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-[0_4px_15px_${theme.hex}40] transition-all duration-300 border border-white/30 p-[2px] bg-gradient-to-br ${theme.grad} shrink-0`;
+        iconEl.innerHTML = `<div class="w-full h-full bg-obsidian/40 rounded-[10px] flex items-center justify-center backdrop-blur-sm"><i class="fa-solid ${conf.icon} text-white text-base drop-shadow-md"></i></div>`;
+    }
 
-            // Update Label CustomField (Safe tanpa Error)
-            const customLabel = document.getElementById('labelCustom');
-            const customInput = document.getElementById('fCustom');
-            if (conf.cf) {
-                if (customLabel) customLabel.innerText = conf.cf.label;
-                if (customInput) customInput.placeholder = conf.cf.ph;
-            }
+    const btnCreate = document.getElementById('btnCreate');
+    if (btnCreate) {
+        btnCreate.classList.remove('hidden');
+        btnCreate.className = `hidden sm:flex bg-gradient-to-r ${theme.grad} text-white px-4 py-2 rounded-xl font-black text-[9.5px] tracking-[0.12em] uppercase shadow-[0_6px_18px_${theme.hex}40] hover:-translate-y-0.5 transition-all items-center gap-1.5 border border-white/20 shrink-0`;
+    }
 
-            const btnSubmit = document.getElementById('btnSubmitTask');
-            if (btnSubmit) {
-                btnSubmit.className = `bg-gradient-to-r ${theme.grad} text-white px-8 py-3.5 rounded-2xl font-black tracking-widest text-[11px] uppercase transition-all duration-300 hover:-translate-y-1 shadow-[0_10px_25px_${theme.hex}50] hover:shadow-[0_15px_35px_${theme.hex}80] flex items-center gap-2 border border-white/30`;
-            }
+    const labelPic = document.getElementById('labelPic');
+    if (labelPic) labelPic.innerText = conf.pdf.pic;
 
-            // 7. INSTANT VIEW RENDER (0ms SWR - Langsung tampilkan papan aktif tanpa tersangkut)
-            if (!appCache[modKey]) {
-                appCache[modKey] = []; // Inisialisasi cache awal jika belum ada
-            }
-            renderActiveView(); // Langsung render tampilan aktif yang sedang dibuka user (0ms)
-notifyDataChanged();
-            // 8. Sync Data Terbaru dari Server di Background
-            ui.showLoader("Syncing Workspace...");
-            const res = await fetchAPI('GET', null, modKey);
-            if (res && res.success) {
-                appCache[modKey] = res.data || [];
-                renderActiveView(); // Refresh dengan data paling gress
-            }
-            ui.hideLoader();
-            startRealtimeSync();
+    // 4. INSTANT RENDER (BACA DARI MEMORI / LOCALSTORAGE) -> TAMPIL DALAM 0.05 DETIK!
+    if (!appCache[modKey] || appCache[modKey].length === 0) {
+        try {
+            const localSaved = localStorage.getItem(`omniflow_tasks_${currentUserId}_${modKey}`);
+            appCache[modKey] = localSaved ? JSON.parse(localSaved) : [];
+        } catch (e) {
+            appCache[modKey] = [];
         }
+    }
+    
+    // TAMPILKAN LANGSUNG PAPAN KANBAN (TIDAK ADA LAGI LAYAR HITAM "SYNCING WORKSPACE")
+    renderActiveView();
+
+    // 5. UPDATE COUNTER BADGE DARI LOKAL (0ms, TANPA MEMBEBANI SERVER)
+    if (typeof getStoredVaultDocs === 'function') {
+        updateVaultBadgeCount(getStoredVaultDocs(modKey).length);
+    }
+    if (typeof getStoredAuditLogs === 'function') {
+        updateAuditBadgeCounter(getStoredAuditLogs(modKey).length);
+    }
+    if (typeof getStoredQuickNotes === 'function') {
+        updateNotesBadgeCounter(getStoredQuickNotes(modKey).length);
+    }
+
+    // 6. BATALKAN REQUEST LAMA JIKA USER KLIK MENU LAIN DENGAN CEPAT (ANTI-ERROR GAS)
+    if (moduleSwitchAbortController) {
+        moduleSwitchAbortController.abort();
+    }
+    moduleSwitchAbortController = new AbortController();
+
+    // 7. SINKRONISASI DATA SERVER DI LATAR BELAKANG (SILENT BACKGROUND FETCH)
+    try {
+        const url = `${API_URL}?userId=${encodeURIComponent(currentUserId)}&moduleKey=${encodeURIComponent(modKey)}`;
+        const res = await fetch(url, { signal: moduleSwitchAbortController.signal });
+        const json = await res.json();
+
+        if (json && json.success && Array.isArray(json.data)) {
+            appCache[modKey] = json.data;
+            // Simpan ke local storage agar saat dibuka lagi tetap 0ms
+            localStorage.setItem(`omniflow_tasks_${currentUserId}_${modKey}`, JSON.stringify(json.data));
+            renderActiveView(); // Refresh halus jika ada data baru dari cloud
+        }
+    } catch (err) {
+        if (err.name !== 'AbortError') {
+            console.warn("Silent sync notification:", err.message);
+        }
+    }
+
+    // 8. Jalankan sinkronisasi real-time (khusus mode publik)
+    if (typeof startRealtimeSync === 'function') {
+        startRealtimeSync();
+    }
+}
         function renderSkeleton() {
             document.getElementById('kanbanBoard').innerHTML = `<div class="w-full text-center mt-20 text-slate-500 animate-pulse font-mono text-sm">Menyiapkan Kanban Board...</div>`;
         }
