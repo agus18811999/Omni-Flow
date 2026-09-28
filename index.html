@@ -3255,6 +3255,7 @@
                         
                         // Render ulang tampilan aktif (Kanban/Calendar/Gantt)
                         renderActiveView();
+                        notifyDataChanged();
                         
                         ui.notify("Tugas Berhasil Dihapus!");
                     } else {
@@ -3745,7 +3746,116 @@
                 return { success: false };
             }
         }
+// =========================================================================
+// REAL-TIME AUTO-SYNC ENGINE (KHUSUS MODE PUBLIK)
+// =========================================================================
+let realtimeSyncTimer = null;
+let isSyncingActive = false;
+const FAST_SYNC_INTERVAL = 3000;  // 3 detik saat tab aktif (sangat cepat & aman untuk GAS)
+const IDLE_SYNC_INTERVAL = 12000; // 12 detik saat tab di latar belakang (hemat kuota)
 
+// BroadcastChannel untuk sinkronisasi instan <50ms antar-tab browser yang sama
+const realtimeBroadcast = (typeof BroadcastChannel !== 'undefined') 
+    ? new BroadcastChannel('omniflow_realtime_bus') 
+    : null;
+
+if (realtimeBroadcast) {
+    realtimeBroadcast.onmessage = (event) => {
+        // Jika ada tab lain yang melakukan perubahan di room & modul yang sama
+        if (event.data && event.data.room === currentUserId && event.data.modKey === activeModule) {
+            triggerSilentBackgroundSync();
+        }
+    };
+}
+
+// 1. FUNGSI UNTUK MEMULAI AUTO-SYNC REAL-TIME
+function startRealtimeSync() {
+    stopRealtimeSync(); // Hentikan timer sebelumnya jika ada
+    
+    // Hanya berjalan jika berada di MODE PUBLIK dan sudah memilih modul
+    if (currentWorkspaceMode !== 'public' || !activeModule || !currentUserId) return;
+
+    realtimeSyncTimer = setInterval(() => {
+        triggerSilentBackgroundSync();
+    }, FAST_SYNC_INTERVAL);
+}
+
+// 2. FUNGSI UNTUK MENGHENTIKAN AUTO-SYNC
+function stopRealtimeSync() {
+    if (realtimeSyncTimer) {
+        clearInterval(realtimeSyncTimer);
+        realtimeSyncTimer = null;
+    }
+}
+
+// 3. SILENT BACKGROUND SYNC ENGINE (TANPA LOADING SPINNER & ANTI-KEDIP)
+async function triggerSilentBackgroundSync() {
+    // Cegah penumpukan request jika server Google Apps Script sedang memproses
+    if (isSyncingActive || !activeModule || currentWorkspaceMode !== 'public' || !currentUserId) return;
+
+    isSyncingActive = true;
+    try {
+        const url = `${API_URL}?userId=${encodeURIComponent(currentUserId)}&moduleKey=${encodeURIComponent(activeModule)}`;
+        const res = await fetch(url);
+        const json = await res.json();
+
+        if (json && json.success && Array.isArray(json.data)) {
+            const currentCacheStr = JSON.stringify(appCache[activeModule] || []);
+            const newServerDataStr = JSON.stringify(json.data);
+
+            // Cek apakah data dari tim benar-benar berubah (Delta Check)
+            if (currentCacheStr !== newServerDataStr) {
+                // Update memori cache lokal
+                appCache[activeModule] = json.data;
+
+                // Render ulang tampilan aktif secara instan & mulus
+                renderActiveView();
+
+                // Berikan kedipan halus (micro-glow) pada dot profil hijau di sidebar sebagai tanda data tersinkron
+                const pulse = document.getElementById('profileLivePulse');
+                if (pulse) {
+                    pulse.classList.remove('animate-pulse');
+                    pulse.classList.add('scale-150', 'bg-emerald-300');
+                    setTimeout(() => {
+                        pulse.classList.remove('scale-150', 'bg-emerald-300');
+                        pulse.classList.add('animate-pulse');
+                    }, 400);
+                }
+            }
+        }
+    } catch (err) {
+        // Silent error: jangan tampilkan alert popup agar tidak mengganggu fokus pengguna
+        console.warn("Real-time sync silent retry:", err);
+    } finally {
+        isSyncingActive = false;
+    }
+}
+
+// 4. BROADCAST PERUBAHAN KE ANGGOTA LAIN SETELAH KITA BUAT/PINDAHKAN/HAPUS TASK
+function notifyDataChanged() {
+    if (currentWorkspaceMode === 'public' && realtimeBroadcast) {
+        realtimeBroadcast.postMessage({
+            room: currentUserId,
+            modKey: activeModule,
+            timestamp: Date.now()
+        });
+    }
+}
+
+// 5. ADAPTIVE LISTENER: PERCEPAT SINKRONISASI SAAT USER KEMBALI KE TAB
+document.addEventListener('visibilitychange', () => {
+    if (currentWorkspaceMode !== 'public') return;
+
+    if (!document.hidden) {
+        // Tab sedang dilihat: langsung tarik data terbaru detik itu juga
+        triggerSilentBackgroundSync();
+        startRealtimeSync();
+    } else {
+        // Tab di-minimize / di belakang: perlambat interval agar ramah kuota Google
+        stopRealtimeSync();
+        realtimeSyncTimer = setInterval(triggerSilentBackgroundSync, IDLE_SYNC_INTERVAL);
+    }
+});
         // --- AUTHENTICATION ---
       // =========================================================================
 // STATE MANAGEMENT WORKSPACE ACCESS (PRIVATE VS PUBLIC)
@@ -4080,6 +4190,7 @@ function logout() {
             currentUserId = '';
             
             resetWorkspaceUI();
+             stopRealtimeSync();
             checkAuth();
         }
     });
@@ -4271,7 +4382,7 @@ function logout() {
                 appCache[modKey] = []; // Inisialisasi cache awal jika belum ada
             }
             renderActiveView(); // Langsung render tampilan aktif yang sedang dibuka user (0ms)
-
+notifyDataChanged();
             // 8. Sync Data Terbaru dari Server di Background
             ui.showLoader("Syncing Workspace...");
             const res = await fetchAPI('GET', null, modKey);
@@ -4280,6 +4391,7 @@ function logout() {
                 renderActiveView(); // Refresh dengan data paling gress
             }
             ui.hideLoader();
+            startRealtimeSync();
         }
         function renderSkeleton() {
             document.getElementById('kanbanBoard').innerHTML = `<div class="w-full text-center mt-20 text-slate-500 animate-pulse font-mono text-sm">Menyiapkan Kanban Board...</div>`;
@@ -4719,9 +4831,11 @@ function logout() {
                 }
                 
                   renderActiveView();
+                  notifyDataChanged();
                 ui.notify(isEdit ? "Berhasil Diperbarui!" : "Berhasil Dibuat!");
                 document.getElementById('dynamicFieldsContainer').innerHTML = ''; 
             }
+            
             ui.hideLoader();
         }
         const closeTaskModal = () => taskModal.classList.add('hidden');
