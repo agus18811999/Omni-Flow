@@ -870,6 +870,22 @@
     box-shadow: 0 4px 15px rgba(244, 114, 182, 0.35);
     transform: translateY(-1px);
 }
+/* =========================================================
+   MOBILE SIDEBAR SLIDE-OVER ENHANCEMENTS
+   ========================================================= */
+@media (max-width: 767px) {
+    #appSidebar {
+        will-change: transform;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+    }
+    
+    /* Sentuhan menu di HP lebih nyaman (Tap Target 44px) */
+    .sidebar .nav-item {
+        margin: 0.2rem 0.6rem !important;
+        padding: 0.65rem 1rem !important;
+    }
+}
 
 /* Slide-over Drawer Notes Panel */
 .notes-drawer-panel {
@@ -1101,32 +1117,53 @@
 
     <!-- SIDEBAR NAVIGASI -->
    <!-- SIDEBAR NAVIGASI (ULTRA PREMIUM) -->
-    <aside class="sidebar hidden md:flex">
-        <!-- Logo Area -->
-       <!-- 1. LOGO AREA (ATAS) -->
-        <div class="px-6 pt-7 mb-4 flex items-center gap-3.5 relative z-10">
-            <div class="w-11 h-11 rounded-[14px] bg-gradient-to-tr from-omni-cyan via-omni-fuchsia to-omni-indigo flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] p-[1px] shrink-0">
-                <div class="w-full h-full bg-obsidian rounded-[13px] flex items-center justify-center">
-                    <i class="fa-brands fa-space-awesome text-transparent bg-clip-text bg-gradient-to-br from-omni-cyan to-white text-lg drop-shadow"></i>
+<!-- ==========================================
+         BACKDROP OVERLAY KHUSUS MODE HP
+         ========================================== -->
+    <div id="sidebarBackdrop" 
+         onclick="closeMobileSidebar()" 
+         class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-[115] hidden md:hidden opacity-0 transition-opacity duration-300">
+    </div>
+
+    <!-- ==========================================
+         SIDEBAR RESPONSIVE (DESKTOP FIXED + MOBILE SLIDE-OVER DRAWER)
+         ========================================== -->
+    <aside id="appSidebar" 
+           class="sidebar fixed md:relative inset-y-0 left-0 z-[120] md:z-40 w-[285px] sm:w-[300px] md:w-[280px] max-w-[85vw] h-screen h-[100dvh] -translate-x-full md:translate-x-0 flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[10px_0_40px_rgba(0,0,0,0.8)] md:shadow-none border-r border-white/10 md:border-white/5">
+        
+        <!-- 1. LOGO AREA (ATAS) + TOMBOL CLOSE KHUSUS HP -->
+        <div class="px-5 pt-6 pb-2 mb-2 flex items-center justify-between relative z-10 shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-[13px] bg-gradient-to-tr from-omni-cyan via-omni-fuchsia to-omni-indigo flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] p-[1px] shrink-0">
+                    <div class="w-full h-full bg-obsidian rounded-[12px] flex items-center justify-center">
+                        <i class="fa-brands fa-space-awesome text-transparent bg-clip-text bg-gradient-to-br from-omni-cyan to-white text-base drop-shadow"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="font-heading font-black text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 leading-none drop-shadow-md">OMNIFLOW</h1>
+                    <p class="text-[8px] text-omni-cyan tracking-[0.28em] font-extrabold mt-1 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">Super-App</p>
                 </div>
             </div>
-            <div>
-                <h1 class="font-heading font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 leading-none drop-shadow-md">OMNIFLOW</h1>
-                <p class="text-[8.5px] text-omni-cyan tracking-[0.3em] font-bold mt-1 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">Super-App</p>
-            </div>
+
+            <!-- Tombol Silang (X) Khusus Layar HP -->
+            <button type="button" 
+                    onclick="closeMobileSidebar()" 
+                    class="md:hidden w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 flex items-center justify-center transition-all shadow-sm active:scale-95" 
+                    title="Tutup Menu">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
         </div>
 
         <!-- 2. SEARCH BAR MODUL (BAWAH LOGO) -->
-        <div class="px-5 mb-5 relative z-10 shrink-0">
+        <div class="px-4 mb-3 relative z-10 shrink-0">
             <div class="relative flex items-center">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-xs text-slate-400 pointer-events-none"></i>
                 <input type="text" 
                        id="sidebarSearch" 
                        oninput="filterSidebarModules(this.value)" 
-                       placeholder="Cari modul (Cth: Tax, Bug, Sales)..." 
+                       placeholder="Cari modul (Tax, Bug, Sales)..." 
                        class="glass-input w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-white/10 bg-black/40 focus:bg-slate-900/90 focus:border-omni-cyan transition-all font-medium placeholder:text-slate-500"
                        autocomplete="off">
-                <!-- Tombol Hapus Search (X) -->
                 <button type="button" 
                         id="btnClearSidebarSearch" 
                         onclick="clearSidebarSearch()" 
@@ -1136,55 +1173,53 @@
             </div>
         </div>
         
-        <!-- Menu Navigasi Dinamis -->
-        <div class="sidebar-menu-container pb-4" id="sidebarMenu">
+        <!-- 3. MENU NAVIGASI DINAMIS (SCROLLABLE & TOUCH-FRIENDLY) -->
+        <div class="sidebar-menu-container flex-grow overflow-y-auto custom-scrollbar px-1 pb-4" id="sidebarMenu">
             <!-- Dirender dinamis oleh JS -->
         </div>
 
-        <!-- User Badge Bottom Area -->
-        <!-- ==========================================
-     USER BADGE BOTTOM AREA (DYNAMIC PRIVATE / PUBLIC)
-     ========================================== -->
-<div class="p-4 sm:p-5 border-t border-white/5 bg-gradient-to-b from-transparent to-black/60 mt-auto relative z-10 shrink-0">
-    <div id="sidebarProfileCard" class="profile-private p-3 rounded-2xl transition-all duration-500 group relative">
-        <div class="flex items-center justify-between gap-2">
-            
-            <!-- Left Info Area -->
-            <div class="flex items-center gap-2.5 min-w-0">
-                <div id="profileIconContainer" class="w-9 h-9 rounded-xl bg-gradient-to-br from-omni-cyan to-omni-indigo flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)] shrink-0 transition-all duration-500">
-                    <i id="profileIcon" class="fa-solid fa-user-shield text-xs text-white"></i>
-                </div>
-                <div class="flex flex-col min-w-0">
-                    <div class="flex items-center gap-1.5">
-                        <span id="profileModeLabel" class="text-[8px] font-black text-omni-cyan tracking-widest uppercase truncate">ID PRIVAT</span>
-                        <span id="profileLivePulse" class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        <!-- 4. USER BADGE BOTTOM AREA (DYNAMIC PRIVATE / PUBLIC - ANTI NYUNGSEP) -->
+        <div class="p-3 sm:p-4 pb-5 md:pb-4 border-t border-white/5 bg-gradient-to-b from-transparent to-black/70 mt-auto relative z-10 shrink-0">
+            <div id="sidebarProfileCard" class="profile-private p-2.5 sm:p-3 rounded-2xl transition-all duration-500 group relative">
+                <div class="flex items-center justify-between gap-2">
+                    
+                    <!-- Left Info Area -->
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <div id="profileIconContainer" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-omni-cyan to-omni-indigo flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)] shrink-0 transition-all duration-500">
+                            <i id="profileIcon" class="fa-solid fa-user-shield text-xs text-white"></i>
+                        </div>
+                        <div class="flex flex-col min-w-0">
+                            <div class="flex items-center gap-1.5">
+                                <span id="profileModeLabel" class="text-[8px] font-black text-omni-cyan tracking-widest uppercase truncate">ID PRIVAT</span>
+                                <span id="profileLivePulse" class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                            </div>
+                            <span id="displayPin" class="text-xs font-mono font-bold text-white tracking-wider truncate">GUEST</span>
+                        </div>
                     </div>
-                    <span id="displayPin" class="text-xs font-mono font-bold text-white tracking-wider truncate">GUEST</span>
+
+                    <!-- Right Action Buttons -->
+                    <div class="flex items-center gap-1 shrink-0">
+                        <!-- Tombol Share Cepat (Khusus Mode Public) -->
+                        <button type="button" 
+                                id="btnQuickShareRoom" 
+                                onclick="quickShareCurrentRoom()" 
+                                class="hidden text-slate-400 hover:text-emerald-300 p-1.5 sm:p-2 rounded-lg hover:bg-emerald-500/20 transition-all text-xs" 
+                                title="Salin Link Undangan Ruang Ini">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+
+                        <!-- Tombol Ganti Akun / Logout -->
+                        <button onclick="logout()" 
+                                class="text-slate-500 hover:text-omni-rose transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-omni-rose/10 text-xs" 
+                                title="Keluar / Ganti Ruang">
+                            <i class="fa-solid fa-power-off"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- Right Action Buttons -->
-            <div class="flex items-center gap-1 shrink-0">
-                <!-- Tombol Share Cepat (Khusus Mode Public) -->
-                <button type="button" 
-                        id="btnQuickShareRoom" 
-                        onclick="quickShareCurrentRoom()" 
-                        class="hidden text-slate-400 hover:text-emerald-300 p-2 rounded-lg hover:bg-emerald-500/20 transition-all text-xs" 
-                        title="Salin Link Undangan Ruang Ini">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-
-                <!-- Tombol Ganti Akun / Logout -->
-                <button onclick="logout()" 
-                        class="text-slate-500 hover:text-omni-rose transition-colors p-2 rounded-lg hover:bg-omni-rose/10 text-xs" 
-                        title="Keluar / Ganti Ruang">
-                    <i class="fa-solid fa-power-off"></i>
-                </button>
-            </div>
-
         </div>
-    </div>
-</div>
+
     </aside>
 
     <!-- KANVAS UTAMA -->
@@ -1213,6 +1248,12 @@
         <!-- 1. SISI KIRI: Ikon 3D Ringkas & Judul Modul -->
         <div class="flex items-center gap-3 relative z-10 w-full xl:w-auto justify-between xl:justify-start shrink-0">
             <div class="flex items-center gap-3">
+                <!-- 📱 TOMBOL BUKA SIDEBAR KHUSUS HP (Letakkan di Header Sisi Kiri) -->
+<button type="button" 
+        onclick="openMobileSidebar()" 
+        class="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white shrink-0 shadow-md transition-all active:scale-95 mr-2">
+    <i class="fa-solid fa-bars-staggered text-sm text-cyan-400"></i>
+</button>
                 <div id="modIcon" class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center shadow-lg transition-all duration-500 border border-white/20 bg-white/5 shrink-0 p-[2px]">
                     <i class="fa-solid fa-border-all text-base text-white"></i>
                 </div>
@@ -3841,7 +3882,38 @@ async function openNotesDrawer() {
     // Muat data catatan
     await loadQuickNotes(activeModule);
 }
+// =========================================================================
+// MOBILE SIDEBAR CONTROLLER (SMOOTH & AUTO-CLOSE ON SELECT)
+// =========================================================================
+function openMobileSidebar() {
+    const sidebar = document.getElementById('appSidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    if (!sidebar || !backdrop) return;
 
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        sidebar.classList.remove('-translate-x-full');
+    }, 10);
+}
+
+function closeMobileSidebar() {
+    const sidebar = document.getElementById('appSidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    if (!sidebar || !backdrop) return;
+
+    sidebar.classList.add('-translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+        backdrop.classList.add('hidden');
+    }, 300);
+}
+
+// 👉 Tambahkan hook ini di dalam fungsi switchModule agar di HP langsung otomatis tertutup:
+// (Letakkan baris ini di dalam switchModule tepat setelah renderActiveView())
+if (window.innerWidth < 768) {
+    closeMobileSidebar();
+}
 function closeNotesDrawer() {
     const drawer = document.getElementById('notesDrawer');
     const backdrop = document.getElementById('notesDrawerBackdrop');
