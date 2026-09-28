@@ -2087,7 +2087,7 @@
          ========================================================= -->
     <script>
         // ⚠️ GANTI URL INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA ⚠️
-        const API_URL = 'https://script.google.com/macros/s/AKfycbxGl26Uz9XIyXsO2bBmux6evXgPEyKNne1RAFJnvdMvkty0eAOVPiaXEwlyFewWc4Xx/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxx3OFC9svCG40eXw8AaAHz0fhCp_2d9xqhMjCo2GLYcyvR-0xGRpEBDtdFVPDPUext/exec';
 
         /** ========================================================
          *  REGISTRY 20 MODUL (DYNAMIC CONFIGURATION ENGINE)
@@ -4742,48 +4742,54 @@ async function clearAuditHistory() {
             setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
         }
 // --- FUNGSI HAPUS TUGAS DARI KARTU KANBAN ---
-        async function deleteTask(taskId, event = null) {
-            if (event) event.stopPropagation(); // Mencegah modal detail terbuka saat mengklik ikon sampah
-            if (!activeModule) return;
+       async function deleteTask(taskId, event = null) {
+    if (event) event.stopPropagation();
+    if (!activeModule) return;
 
-            const task = (appCache[activeModule] || []).find(t => t.id === taskId);
-            const taskName = task ? task.nm : 'tugas ini';
+    const task = (appCache[activeModule] || []).find(t => t.id === taskId);
+    const taskName = task ? task.nm : 'tugas ini';
+    const taskPic = task ? task.pc : null;
 
-            Swal.fire({
-                title: 'Hapus Tugas?',
-                html: `Tugas <b class="text-rose-400">"${taskName}"</b> akan dihapus secara permanen dari database.`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#e11d48',
-                cancelButtonColor: '#475569',
-                confirmButtonText: 'Ya, Hapus Permanen',
-                cancelButtonText: 'Batal',
-                background: '#0f172a',
-                color: '#fff'
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    ui.showLoader("Menghapus Tugas...");
-                    
-                    // Kirim aksi DELETE ke Google Apps Script
-                    const res = await fetchAPI('DELETE', { id: taskId });
-                    
-                    if (res && res.success) {
-                        // Hapus dari cache memori lokal
-                        appCache[activeModule] = appCache[activeModule].filter(t => t.id !== taskId);
-                        
-                        // Render ulang tampilan aktif (Kanban/Calendar/Gantt)
-                        renderActiveView();
-                        notifyDataChanged();
-                        logAuditActivity('DELETE', taskName, `Tugas dihapus permanen dari sistem`, task ? task.pc : null);
-                        
-                        ui.notify("Tugas Berhasil Dihapus!");
-                    } else {
-                        ui.error("Gagal menghapus tugas dari server.");
-                    }
-                    ui.hideLoader();
-                }
+    Swal.fire({
+        title: 'Hapus Tugas?',
+        html: `Tugas <b class="text-rose-400">"${taskName}"</b> akan dihapus permanen.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 🚀 HAPUS DARI TAMPILAN INSTAN 0ms (TIDAK ADA LAYAR LOADING)
+            appCache[activeModule] = (appCache[activeModule] || []).filter(t => t.id !== taskId);
+            
+            // Simpan perubahan ke storage lokal
+            localStorage.setItem(`omniflow_tasks_${currentUserId}_${activeModule}`, JSON.stringify(appCache[activeModule]));
+            
+            renderActiveView();
+            ui.notify("Tugas Berhasil Dihapus!");
+
+            // Catat ke Audit Trail
+            if (typeof logAuditActivity === 'function') {
+                logAuditActivity('DELETE', taskName, `Tugas dihapus permanen dari sistem`, taskPic);
+            }
+
+            // Broadcast ke tim
+            if (typeof notifyDataChanged === 'function') {
+                notifyDataChanged();
+            }
+
+            // 🚀 SINKRONISASI HAPUS KE GOOGLE SHEETS DI LATAR BELAKANG
+            fetchAPI('DELETE', { id: taskId }, activeModule).catch(err => {
+                console.warn("Background delete notice:", err);
             });
         }
+    });
+}
+
         // 7. Hapus Step Kolom
         function deleteWorkflowStepItem(index) {
             if (tempWorkflowSteps.length <= 2) {
@@ -4848,6 +4854,40 @@ async function clearAuditHistory() {
                 ui.notify("Workflow Cloud Tersimpan Permanen!");
             }
         }
+      
+      async function saveCustomWorkflow() {
+    if (!activeModule) return;
+
+    const hasEmpty = tempWorkflowSteps.some(s => !s || s.trim() === '');
+    if (hasEmpty) {
+        ui.error("Nama kolom tidak boleh kosong!");
+        return;
+    }
+
+    // 🚀 1. SIMPAN DAN TERAPKAN WORKFLOW LANGSUNG DI LAYAR (0ms)
+    localStorage.setItem(`workflow_${activeModule}`, JSON.stringify(tempWorkflowSteps));
+    MODUL_REGISTRY[activeModule].steps = [...tempWorkflowSteps];
+
+    closeWorkflowModal();
+    renderActiveView(); // Papan kolom langsung berubah seketika!
+    ui.notify("Workflow Berhasil Disimpan!");
+
+    // Catat ke Audit Trail
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('STATUS', 'Workflow Builder', `Memperbarui alur kolom: ${tempWorkflowSteps.join(' ➔ ')}`);
+    }
+
+    // Broadcast ke tim
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // 🚀 2. SINKRONISASI KE GOOGLE SHEETS DI LATAR BELAKANG (SILENT)
+    fetchAPI('SAVE_WORKFLOW', tempWorkflowSteps, activeModule).catch(err => {
+        console.warn("Workflow cloud sync notice:", err);
+    });
+}
+      
         // 9. Reset Workflow ke Default Bawaan Modul
         function resetWorkflowToDefault() {
             if (!activeModule) return;
@@ -5572,29 +5612,108 @@ window.switchModule = async function(modKey) {
         }, 1000);
 
         // --- API COMMUNICATION ---
-        async function fetchAPI(action, data = null, modKey = activeModule) {
-            if(!API_URL.startsWith('http')) { ui.error('API URL belum dikonfigurasi!'); return {success:false}; }
-            
-            let url = API_URL;
-            let config = undefined;
-
-            if (action === 'GET') {
-                url += `?userId=${encodeURIComponent(currentUserId)}&moduleKey=${encodeURIComponent(modKey)}`;
-            } else {
-                config = { method: 'POST', body: JSON.stringify({ action, userId: currentUserId, moduleKey: modKey, data }) };
-            }
-
-            try {
-                const res = await fetch(url, config);
-                const txt = await res.text();
-                return JSON.parse(txt);
-            } catch (e) {
-                console.error(e);
-                ui.error("Gagal terhubung ke Server. Cek Deployment GAS/URL.");
-                return { success: false };
-            }
-        }
 // =========================================================================
+// SAFE JSON PARSER & ROBUST FETCH API (ANTI-CRASH <!DOCTYPE HTML)
+// =========================================================================
+function safeJSONParse(text) {
+    if (!text || typeof text !== 'string') return null;
+    const trimmed = text.trim();
+    // Jika respons berupa HTML dari Google (redirect login / fatal error GAS)
+    if (trimmed.startsWith('<') || trimmed.toLowerCase().startsWith('<!doctype')) {
+        console.warn("GAS mengembalikan HTML (bukan JSON). Cek apakah Deployment sudah 'Anyone':", trimmed.substring(0, 120));
+        return null;
+    }
+    try {
+        return JSON.parse(trimmed);
+    } catch (e) {
+        console.warn("Gagal parse response JSON:", e);
+        return null;
+    }
+}
+
+async function fetchAPI(action, data = null, modKey = activeModule) {
+    if (!API_URL || !API_URL.startsWith('http')) { 
+        console.warn('API URL belum dikonfigurasi!'); 
+        return { success: false, message: 'API URL belum dikonfigurasi' }; 
+    }
+    
+    let url = API_URL;
+    let config = undefined;
+
+    if (action === 'GET') {
+        url += `?userId=${encodeURIComponent(currentUserId || 'GUEST')}&moduleKey=${encodeURIComponent(modKey || '')}`;
+    } else {
+        config = { 
+            method: 'POST', 
+            body: JSON.stringify({ 
+                action, 
+                userId: (currentUserId || 'GUEST').trim(), 
+                moduleKey: (modKey || '').trim(), 
+                data 
+            }) 
+        };
+    }
+
+    try {
+        const res = await fetch(url, config);
+        const txt = await res.text();
+        const parsedData = safeJSONParse(txt);
+
+        // Jika respons bukan JSON (misal HTML Google), cegah error dan fallback aman
+        if (!parsedData) {
+            return { 
+                success: false, 
+                isHtml: true, 
+                message: "Server mengembalikan HTML. Pastikan akses deployment GAS adalah 'Anyone'." 
+            };
+        }
+        return parsedData;
+    } catch (e) {
+        console.warn("Koneksi fetchAPI terhenti/silent:", e.message);
+        return { success: false, message: e.message };
+    }
+}
+// =========================================================================
+// ENGINE INJEKSI WARNA MODAL TASK BERDASARKAN WARNA MODUL AKTIF
+// =========================================================================
+function applyTaskModalTheme(modKey = activeModule) {
+    if (!modKey || !MODUL_REGISTRY[modKey]) return;
+    const conf = MODUL_REGISTRY[modKey];
+    const theme = THEME[conf.color] || THEME['cyan'];
+
+    // 1. Berikan Latar Belakang Gradasi Kaca Sesuai Warna Modul
+    const modalPanel = document.getElementById('taskModalPanel');
+    if (modalPanel) {
+        modalPanel.style.background = `linear-gradient(135deg, rgba(15, 23, 42, 0.94), ${theme.hex}25)`;
+        modalPanel.style.boxShadow = `0 25px 60px -15px ${theme.hex}60, inset 0 1px 1px rgba(255, 255, 255, 0.2)`;
+        modalPanel.style.borderColor = `${theme.hex}50`;
+    }
+
+    // 2. Hidupkan Kembali Cahaya Ambient Glow Orbs di Belakang Modal
+    const modalGlow1 = document.getElementById('modalGlow1');
+    if (modalGlow1) {
+        modalGlow1.className = `absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-50 transition-colors duration-700 ${theme.bg}`;
+    }
+
+    const modalGlow2 = document.getElementById('modalGlow2');
+    if (modalGlow2) {
+        modalGlow2.className = `absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-20 transition-colors duration-700 bg-white`;
+    }
+
+    // 3. Gradasi Teks Judul Modal Sesuai Warna Modul
+    const modalTitleText = document.getElementById('modalTitleText');
+    if (modalTitleText) {
+        const colorSuffix = theme.text ? theme.text.split('-')[1] : 'cyan';
+        modalTitleText.className = `font-heading text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-${colorSuffix}-200 tracking-wide drop-shadow-md`;
+    }
+
+    // 4. Tombol Submit Simpan Sesuai Gradasi Modul
+    const btnSubmit = document.getElementById('btnSubmitTask');
+    if (btnSubmit) {
+        btnSubmit.className = `bg-gradient-to-r ${theme.grad} text-white px-8 py-3.5 rounded-2xl font-black tracking-widest text-[11px] uppercase transition-all duration-300 hover:-translate-y-1 shadow-[0_10px_25px_${theme.hex}50] hover:shadow-[0_15px_35px_${theme.hex}80] flex items-center gap-2 border border-white/30`;
+    }
+}
+        // =========================================================================
 // REAL-TIME AUTO-SYNC ENGINE (KHUSUS MODE PUBLIK)
 // =========================================================================
 let realtimeSyncTimer = null;
@@ -6261,6 +6380,7 @@ async function switchModule(modKey) {
             appCache[modKey] = [];
         }
     }
+    applyTaskModalTheme(modKey);
     
     // TAMPILKAN LANGSUNG PAPAN KANBAN (TIDAK ADA LAGI LAYAR HITAM "SYNCING WORKSPACE")
     renderActiveView();
@@ -6526,28 +6646,47 @@ async function switchModule(modKey) {
                 </div>
             </div>`;
         }
-        async function optimisticMove(taskId, nextStatus) {
-            if(!activeModule) return;
-            const data = appCache[activeModule];
-            const taskIndex = data.findIndex(t => t.id === taskId);
-            if(taskIndex === -1) return;
-            logAuditActivity('STATUS', taskItem.nm, `Status dipindahkan ke: ${nextStatus}`, taskItem.pc);
+     async function optimisticMove(taskId, nextStatus) {
+    if (!activeModule) return;
+    const data = appCache[activeModule];
+    if (!data) return;
+    const taskIndex = data.findIndex(t => t.id === taskId);
+    if (taskIndex === -1) return;
 
-            // 1. Instant UI Update (0ms)
-            const oldStatus = data[taskIndex].st;
-            data[taskIndex].st = nextStatus;
-          renderActiveView(); 
+    const taskItem = data[taskIndex];
+    const oldStatus = taskItem.st;
 
-            // 2. Background API Call
-            const res = await fetchAPI('UPDATE_STATUS', { id: taskId, status: nextStatus });
-            
-            // 3. Fallback on Error
-            if(!res.success) {
-                data[taskIndex].st = oldStatus; // Revert
-               renderActiveView(); 
-                ui.error("Gagal memindahkan kartu. Koneksi terputus.");
-            }
+    // 🚀 1. PINDAHKAN KARTU SECARA INSTAN DI LAYAR (0ms)
+    taskItem.st = nextStatus;
+    
+    // Simpan posisi baru ke storage lokal agar saat refresh tidak kembali ke kolom lama
+    localStorage.setItem(`omniflow_tasks_${currentUserId}_${activeModule}`, JSON.stringify(data));
+    
+    renderActiveView();
+
+    // Catat ke Audit Trail
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('STATUS', taskItem.nm, `Status dipindahkan ke: ${nextStatus}`, taskItem.pc);
+    }
+
+    // Broadcast ke tim
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // 🚀 2. SINKRONISASI KE GOOGLE SHEETS DI LATAR BELAKANG (SILENT)
+    fetchAPI('UPDATE_STATUS', { id: taskId, status: nextStatus }, activeModule).then(res => {
+        if (!res || !res.success) {
+            // Jika benar-benar gagal koneksi, kembalikan ke kolom semula
+            taskItem.st = oldStatus;
+            localStorage.setItem(`omniflow_tasks_${currentUserId}_${activeModule}`, JSON.stringify(data));
+            renderActiveView();
+            console.warn("Gagal update status di server, posisi dikembalikan.");
         }
+    }).catch(err => {
+        console.warn("Background status sync notice:", err);
+    });
+}
 
         // --- CREATE TASK ---
         const taskModal = document.getElementById('taskModal');
@@ -6649,6 +6788,7 @@ async function switchModule(modKey) {
             
             document.getElementById('dynamicFieldsContainer').innerHTML = ''; 
             taskModal.classList.remove('hidden');
+            applyTaskModalTheme(activeModule);
         }
 
         // Buka Modal Mode DETAIL / EDIT
@@ -6680,82 +6820,91 @@ async function switchModule(modKey) {
                     });
                 } catch(e) { console.error(e); }
             }
-
+applyTaskModalTheme(activeModule);
             taskModal.classList.remove('hidden');
         }
 
         // --- SIMPAN DATA (CREATE ATAU UPDATE API) ---
     // --- SIMPAN DATA (CLEANING NOMINAL BER-TITIK SEBELUM SIMPAN) ---
-        async function saveTask(e) {
-            e.preventDefault();
-            if(!activeModule) return;
-            
-            // Tangkap semua field dinamis & bersihkan format titik pada currency
-            const dynamicFieldsData = [];
-            document.querySelectorAll('.dynamic-field-row').forEach(row => {
-                const label = row.querySelector('.df-label').value.trim();
-                const type = row.querySelector('.df-type').value;
-                let value = row.querySelector('.df-value').value.trim();
-                
-                // Jika tipe Nominal, bersihkan titik agar tersimpan sebagai angka murni (misal "70.000" -> "70000")
-                if (type === 'currency') {
-                    value = value.replace(/\D/g, '');
-                }
+      async function saveTask(e) {
+    e.preventDefault();
+    if (!activeModule) return;
+    
+    // 1. Kumpulkan data custom fields & bersihkan format nominal
+    const dynamicFieldsData = [];
+    document.querySelectorAll('.dynamic-field-row').forEach(row => {
+        const label = row.querySelector('.df-label').value.trim();
+        const type = row.querySelector('.df-type').value;
+        let value = row.querySelector('.df-value').value.trim();
+        if (type === 'currency') value = value.replace(/\D/g, '');
+        if (label && value) dynamicFieldsData.push({ label, type, value });
+    });
+    const customFieldJSON = JSON.stringify(dynamicFieldsData);
 
-                if(label && value) dynamicFieldsData.push({ label, type, value });
-            });
-            const customFieldJSON = JSON.stringify(dynamicFieldsData);
+    const conf = MODUL_REGISTRY[activeModule];
+    const editId = document.getElementById('fTaskId').value;
+    const isEdit = !!editId;
 
-            const conf = MODUL_REGISTRY[activeModule];
-            const editId = document.getElementById('fTaskId').value;
-            const isEdit = !!editId;
+    let currentStatus = conf.steps[0];
+    if (isEdit) {
+        const existingTask = (appCache[activeModule] || []).find(t => t.id === editId);
+        if (existingTask) currentStatus = existingTask.st;
+    }
 
-            let currentStatus = conf.steps[0];
-            if (isEdit) {
-                const existingTask = appCache[activeModule].find(t => t.id === editId);
-                if(existingTask) currentStatus = existingTask.st;
-            }
+    const taskData = {
+        id: isEdit ? editId : ('TSK-' + Math.floor(100000 + Math.random() * 900000)),
+        nm: document.getElementById('fTitle').value.trim(),
+        pr: document.getElementById('fPrio').value || '1',
+        ds: document.getElementById('fDesc').value.trim(),
+        sd: document.getElementById('fStart').value,
+        ed: document.getElementById('fEnd').value,
+        lk: document.getElementById('fLink').value.trim(),
+        pc: document.getElementById('fPic').value.trim(),
+        st: currentStatus, 
+        cf: customFieldJSON
+    };
 
-            const taskData = {
-                id: isEdit ? editId : 'TSK-' + Math.floor(Math.random() * 900000),
-                nm: document.getElementById('fTitle').value,
-                pr: document.getElementById('fPrio').value,
-                ds: document.getElementById('fDesc').value,
-                sd: document.getElementById('fStart').value,
-                ed: document.getElementById('fEnd').value,
-                lk: document.getElementById('fLink').value,
-                pc: document.getElementById('fPic').value,
-                st: currentStatus, 
-                cf: customFieldJSON
-            };
+    // 🚀 LANGSUNG TUTUP MODAL & UPDATE TAMPILAN INSTAN (0ms)
+    closeTaskModal();
 
-            closeTaskModal();
-            ui.showLoader(isEdit ? "Memperbarui Data..." : "Menyimpan Data...");
-            
-            const actionAPI = isEdit ? 'EDIT' : 'ADD';
-            const res = await fetchAPI(actionAPI, taskData);
-            
-            if(res.success) {
-                if (isEdit) {
-                    const idx = appCache[activeModule].findIndex(t => t.id === editId);
-                    if(idx > -1) appCache[activeModule][idx] = taskData;
-                } else {
-                    appCache[activeModule].push(taskData);
-                }
-                
-                  renderActiveView();
-                  notifyDataChanged();
-                ui.notify(isEdit ? "Berhasil Diperbarui!" : "Berhasil Dibuat!");
-                document.getElementById('dynamicFieldsContainer').innerHTML = ''; 
-            }// 👉 Di dalam saveTask, sebelum ui.hideLoader():
-if (isEdit) {
-    logAuditActivity('EDIT', taskData.nm, `Memperbarui rincian tugas & prioritas P-${taskData.pr}`, taskData.pc);
-} else {
-    logAuditActivity('CREATE', taskData.nm, `Membuat tugas baru pada kolom: ${currentStatus}`, taskData.pc);
-}
-            
-            ui.hideLoader();
+    if (!appCache[activeModule]) appCache[activeModule] = [];
+    if (isEdit) {
+        const idx = appCache[activeModule].findIndex(t => t.id === editId);
+        if (idx > -1) appCache[activeModule][idx] = taskData;
+    } else {
+        appCache[activeModule].push(taskData);
+    }
+
+    // Simpan ke local storage agar aman saat refresh (0ms)
+    localStorage.setItem(`omniflow_tasks_${currentUserId}_${activeModule}`, JSON.stringify(appCache[activeModule]));
+
+    // Render kartu seketika
+    renderActiveView();
+    ui.notify(isEdit ? "Berhasil Diperbarui!" : "Berhasil Dibuat!");
+    document.getElementById('dynamicFieldsContainer').innerHTML = '';
+
+    // Catat ke Audit Trail
+    if (typeof logAuditActivity === 'function') {
+        if (isEdit) {
+            logAuditActivity('EDIT', taskData.nm, `Memperbarui rincian tugas & prioritas P-${taskData.pr}`, taskData.pc);
+        } else {
+            logAuditActivity('CREATE', taskData.nm, `Membuat tugas baru pada kolom: ${currentStatus}`, taskData.pc);
         }
+    }
+
+    // Broadcast ke tim jika di mode publik
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // 🚀 SINKRONISASI KE GOOGLE SHEETS DI LATAR BELAKANG (NON-BLOCKING)
+    const actionAPI = isEdit ? 'EDIT' : 'ADD';
+    fetchAPI(actionAPI, taskData, activeModule).catch(err => {
+        console.warn("Background task save notice:", err);
+    });
+}
+
+
         const closeTaskModal = () => taskModal.classList.add('hidden');
         // --- DYNAMIC FORM BUILDER ENGINE ---
       
