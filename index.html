@@ -896,7 +896,34 @@
     -webkit-backdrop-filter: blur(28px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+/* =========================================================
+   SCROLLBAR VERTIKAL PRESISI KHUSUS DAFTAR DOKUMEN VAULT
+   ========================================================= */
+#vaultDocListGrid {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain; /* Mencegah halaman utama di belakang ikut goyang */
+}
 
+/* Scrollbar Elegan & Mewah */
+#vaultDocListGrid::-webkit-scrollbar {
+    width: 6px;
+}
+#vaultDocListGrid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 9999px;
+    margin: 4px 0;
+}
+#vaultDocListGrid::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.4), rgba(245, 158, 11, 0.2));
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s;
+}
+#vaultDocListGrid::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 158, 11, 0.7);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
 /* Card Catatan / Memo */
 .note-item-card {
     background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.75));
@@ -1557,8 +1584,7 @@
          MODAL BRANKAS DOKUMEN & ASSET VAULT (ULTRA LUXURY)
          ========================================== -->
     <div id="vaultModal" class="fixed inset-0 z-[160] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
-        <div class="glass-panel w-full max-w-4xl max-h-[92vh] p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col" id="vaultModalPanel">
-            
+       <div class="glass-panel w-full max-w-4xl max-h-[88vh] p-5 sm:p-7 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col" id="vaultModalPanel">     
             <!-- Atmospheric Orbs Amber & Cyan -->
             <div class="absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-40 bg-amber-500"></div>
             <div class="absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-25 bg-omni-cyan"></div>
@@ -1659,7 +1685,9 @@
           
 
             <!-- 4. Daftar Dokumen (Grid Cards Scrollable) -->
-            <div id="vaultDocListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 overflow-y-auto custom-scrollbar flex-grow pr-1 relative z-10 min-h-[220px]">
+            <!-- 4. Daftar Dokumen (TERKUNCI BATAS TINGGI + SCROLL VERTIKAL MULUS) -->
+            <div id="vaultDocListGrid" 
+                 class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 flex-1 min-h-0 max-h-[48vh] sm:max-h-[52vh] overflow-y-auto custom-scrollbar pr-2 relative z-10">
                 <!-- Item dokumen dirender dinamis via JS -->
             </div>
 
