@@ -904,10 +904,290 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain; /* Mencegah halaman utama di belakang ikut goyang */
 }
+/* =========================================================
+   CUSTOM MODULE BUILDER STUDIO STYLES (ULTRA LUXURY)
+   ========================================================= */
 
+/* Tombol Buat Modul di Sidebar */
+.btn-create-custom-mod {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(217, 70, 239, 0.15));
+    border: 1px dashed rgba(6, 182, 212, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-create-custom-mod:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.28), rgba(217, 70, 239, 0.28));
+    border-color: rgba(6, 182, 212, 0.8);
+    box-shadow: 0 8px 25px -4px rgba(6, 182, 212, 0.4), 0 0 15px rgba(217, 70, 239, 0.2);
+    transform: translateY(-2px);
+}
+/* =========================================================
+   WHITEBOARD & MINDMAP BRAINSTORMING CANVAS STYLES
+   ========================================================= */
+
+/* Tombol Whiteboard di Bar Switcher Header */
+.whiteboard-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0 !important;
+}
+.whiteboard-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Panel Drawer Kanvas */
+.whiteboard-drawer-panel {
+    background: linear-gradient(165deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 0.99) 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -25px 0 70px rgba(0, 0, 0, 0.9), inset 1px 0 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Latar Belakang Kotak Kisi-Kisi / Dotted Blueprint Arsitektur */
+.whiteboard-canvas-surface {
+    background-color: #030712;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    touch-action: none; /* Mencegah layar HP scroll saat jari menggambar sketsa */
+    cursor: crosshair;
+}
+
+/* Floating Glass Pill Toolbar Alat Gambar */
+.wb-floating-toolbar {
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.15);
+    border-radius: 1.25rem;
+}
+
+/* Tombol Tool Alat Aktif */
+.wb-tool-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.wb-tool-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+.wb-tool-btn.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.3));
+    border-color: rgba(52, 211, 153, 0.6);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    transform: scale(1.05);
+}
+
+/* Palet Warna Kuas */
+.wb-color-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+.wb-color-dot:hover {
+    transform: scale(1.2);
+}
+.wb-color-dot.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 10px currentColor;
+    transform: scale(1.25);
+}
+/* Icon Picker Item Card */
+.icon-picker-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 0.85rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+}
+.icon-picker-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+.icon-picker-btn.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(217, 70, 239, 0.3));
+    border-color: #06b6d4;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+    transform: scale(1.1);
+}
+
+/* Color Swatch Selector */
+.color-swatch-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    flex-shrink: 0;
+}
+.color-swatch-btn:hover {
+    transform: scale(1.15);
+}
+.color-swatch-btn.active {
+    transform: scale(1.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px var(--swatch-glow, #06b6d4);
+}
+.color-swatch-btn.active::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Step Builder Item */
+.builder-step-pill {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.9rem;
+    padding: 0.5rem 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    backdrop-filter: blur(8px);
+}
 /* Scrollbar Elegan & Mewah */
 #vaultDocListGrid::-webkit-scrollbar {
     width: 6px;
+}
+/* =========================================================
+   SPECTRUM COLOR WHEEL & 1000+ ICON PICKER STYLES
+   ========================================================= */
+.btn-create-custom-mod {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(217, 70, 239, 0.15));
+    border: 1px dashed rgba(6, 182, 212, 0.5);
+    color: #ffffff !important; /* Memastikan teks selalu putih */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-create-custom-mod:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.28), rgba(217, 70, 239, 0.28));
+    border-color: rgba(6, 182, 212, 0.9);
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px -4px rgba(6, 182, 212, 0.4), 0 0 15px rgba(217, 70, 239, 0.2);
+    transform: translateY(-2px);
+}
+/* Roda Spektrum Diagram Warna Bergradasi 360 Derajat */
+.color-wheel-disc {
+    background: conic-gradient(
+        from 0deg,
+        #ff0000 0deg,
+        #ff8800 45deg,
+        #ffff00 90deg,
+        #00ff00 135deg,
+        #00ffff 180deg,
+        #0066ff 225deg,
+        #9900ff 270deg,
+        #ff0099 315deg,
+        #ff0000 360deg
+    );
+    cursor: pointer;
+}
+
+/* Category Filter Pill Ikon */
+.icon-cat-btn {
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.icon-cat-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
+.icon-cat-btn.active {
+    color: #ffffff;
+    background: rgba(6, 182, 212, 0.25);
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+
+/* Mini Item Ikon Grid */
+.icon-cell-btn {
+    height: 36px;
+    border-radius: 0.65rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.icon-cell-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: scale(1.1);
+    border-color: rgba(6, 182, 212, 0.4);
+}
+.icon-cell-btn.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(217, 70, 239, 0.35));
+    border-color: #06b6d4;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
+    transform: scale(1.12);
 }
 #vaultDocListGrid::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.25);
@@ -1199,7 +1479,24 @@
                 </button>
             </div>
         </div>
-        
+        <!-- 🚀 TOMBOL BUAT MODUL KUSTOM SENDIRI (SIDEBAR) -->
+        <!-- 🚀 TOMBOL BUAT MODUL KUSTOM (TAMPIL JELAS & MENYALA) -->
+        <div class="px-4 mb-3 relative z-10 shrink-0">
+            <button type="button" 
+                    onclick="openCustomModuleModal()" 
+                    class="btn-create-custom-mod w-full py-2.5 px-3.5 rounded-xl text-left flex items-center justify-between text-xs font-black uppercase tracking-wider text-white hover:text-cyan-200 group">
+                <span class="flex items-center gap-2 min-w-0">
+                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-400 group-hover:rotate-12 transition-transform shrink-0"></i>
+                    <!-- Teks dibuat putih terang dengan efek hover bersinar -->
+                    <span class="font-extrabold tracking-wide text-white group-hover:text-cyan-200 transition-colors drop-shadow-sm truncate">
+                        Buat Modul Sendiri
+                    </span>
+                </span>
+                <span class="w-5 h-5 rounded-lg bg-white/10 flex items-center justify-center text-white text-[10px] border border-white/15 group-hover:scale-110 group-hover:bg-cyan-500/30 group-hover:text-cyan-300 transition-all shrink-0">
+                    <i class="fa-solid fa-plus"></i>
+                </span>
+            </button>
+        </div>
         <!-- 3. MENU NAVIGASI DINAMIS (SCROLLABLE & TOUCH-FRIENDLY) -->
         <div class="sidebar-menu-container flex-grow overflow-y-auto custom-scrollbar px-1 pb-4" id="sidebarMenu">
             <!-- Dirender dinamis oleh JS -->
@@ -1338,6 +1635,10 @@
         <i class="fa-solid fa-note-sticky text-fuchsia-400 text-[10px]"></i>
         <span class="hidden sm:inline">Notes</span>
         <span id="notesBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-fuchsia-500/30 text-fuchsia-200 font-mono font-black">0</span>
+    </button>
+    <button type="button" onclick="openWhiteboardDrawer()" id="btnOpenWhiteboard" class="whiteboard-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Papan Sketsa, Diagram Alur & Mindmap">
+        <i class="fa-solid fa-paintbrush text-emerald-400 text-[10px]"></i>
+        <span class="hidden sm:inline">Canvas</span>
     </button>
 </div>
 
@@ -1960,6 +2261,330 @@
             <div class="pt-4 border-t border-white/10 flex justify-between items-center text-[10px] text-slate-500 relative z-20 shrink-0 mt-3 font-mono">
                 <span>Klik tiket untuk langsung berpindah ke tugas terkait</span>
                 <span class="text-omni-amber font-bold">AUTOMATED ALERT ENGINE</span>
+            </div>
+
+        </div>
+    </div>
+    <!-- ==========================================
+         DRAWER SLIDE-OVER: WHITEBOARD & BRAINSTORMING CANVAS
+         ========================================== -->
+    <!-- Backdrop Overlay -->
+    <div id="whiteboardBackdrop" onclick="closeWhiteboardDrawer()" class="fixed inset-0 z-[165] bg-black/60 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+
+    <!-- Drawer Panel (Luas & Nyaman untuk Menggambar) -->
+    <div id="whiteboardDrawer" class="fixed inset-y-0 right-0 z-[170] w-full sm:w-[620px] md:w-[780px] lg:w-[940px] xl:w-[1050px] max-w-full whiteboard-drawer-panel translate-x-full flex flex-col shadow-2xl overflow-hidden">
+        
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute -top-28 -right-28 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-25 bg-emerald-500"></div>
+        <div class="absolute -bottom-28 -left-28 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-20 bg-cyan-500"></div>
+
+        <!-- 1. Header Kanvas -->
+        <div class="p-3.5 sm:p-4 border-b border-white/10 relative z-20 shrink-0 flex items-center justify-between bg-slate-950/60 backdrop-blur-md">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-400 via-teal-500 to-cyan-500 p-[1.5px] shadow-[0_0_20px_rgba(16,185,129,0.4)] shrink-0">
+                    <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-brain text-base text-emerald-400"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-heading text-sm sm:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-100 to-teal-200">
+                            Whiteboard & Mindmap Studio
+                        </h3>
+                        <span id="wbModuleTag" class="text-[8px] font-mono font-bold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30 uppercase truncate max-w-[140px]">MODUL</span>
+                    </div>
+                    <p class="text-[9.5px] text-slate-400 font-medium">Kanvas sketsa alur kerja, arsitektur ide & wireframe interaktif</p>
+                </div>
+            </div>
+
+            <!-- Tombol Aksi Header -->
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="exportWhiteboardPNG()" class="bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-white px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all flex items-center gap-1.5 border border-emerald-500/40 shadow-sm" title="Unduh Gambar Sketsa HD">
+                    <i class="fa-solid fa-download text-xs"></i> <span class="hidden sm:inline">Ekspor PNG</span>
+                </button>
+                
+                <button type="button" onclick="closeWhiteboardDrawer()" class="group w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900/90 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 flex items-center justify-center transition-all duration-300 shadow-md shrink-0 active:scale-95" title="Tutup Kanvas">
+                    <i class="fa-solid fa-xmark text-xs transition-transform duration-300 group-hover:rotate-90"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. Area Kanvas Gambar Utama (HTML5 Canvas dengan Grid Arsitektur) -->
+        <div class="flex-grow relative overflow-hidden flex flex-col" id="wbCanvasContainer">
+            
+            <!-- Floating Glass Toolbar Pengontrol Gambar -->
+            <div class="wb-floating-toolbar absolute top-4 left-1/2 -translate-x-1/2 z-30 p-1.5 sm:p-2 flex items-center gap-1.5 sm:gap-2 max-w-[94%] overflow-x-auto whitespace-nowrap custom-scrollbar">
+                
+                <!-- Tool Selector -->
+                <div class="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/5">
+                    <button type="button" onclick="setWbTool('pen')" id="wbToolPen" class="wb-tool-btn active" title="Kuas Bebas (Freehand Pen)"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" onclick="setWbTool('arrow')" id="wbToolArrow" class="wb-tool-btn" title="Panah Alur (Flowchart Arrow)"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button type="button" onclick="setWbTool('rect')" id="wbToolRect" class="wb-tool-btn" title="Kotak Wireframe (Rectangle)"><i class="fa-solid fa-vector-square"></i></button>
+                    <button type="button" onclick="setWbTool('text')" id="wbToolText" class="wb-tool-btn" title="Tulis Teks Ide"><i class="fa-solid fa-font"></i></button>
+                    <button type="button" onclick="setWbTool('eraser')" id="wbToolEraser" class="wb-tool-btn" title="Penghapus"><i class="fa-solid fa-eraser"></i></button>
+                </div>
+
+                <div class="h-5 w-[1px] bg-white/15"></div>
+
+                <!-- Palet Warna Neon -->
+                <div class="flex items-center gap-1.5 px-1" id="wbColorPaletteContainer">
+                    <button type="button" onclick="setWbColor('#34d399')" class="wb-color-dot active" style="background: #34d399;" title="Emerald"></button>
+                    <button type="button" onclick="setWbColor('#22d3ee')" class="wb-color-dot" style="background: #22d3ee;" title="Cyan"></button>
+                    <button type="button" onclick="setWbColor('#f59e0b')" class="wb-color-dot" style="background: #f59e0b;" title="Amber"></button>
+                    <button type="button" onclick="setWbColor('#f472b6')" class="wb-color-dot" style="background: #f472b6;" title="Fuchsia"></button>
+                    <button type="button" onclick="setWbColor('#ffffff')" class="wb-color-dot" style="background: #ffffff;" title="White"></button>
+                    <button type="button" onclick="setWbColor('#fb7185')" class="wb-color-dot" style="background: #fb7185;" title="Rose"></button>
+                </div>
+
+                <div class="h-5 w-[1px] bg-white/15"></div>
+
+                <!-- Ketebalan Kuas -->
+                <div class="flex items-center gap-1">
+                    <button type="button" onclick="setWbSize(2)" id="wbSize2" class="px-2 py-1 rounded-lg text-[9px] font-bold text-white bg-white/10" title="Garis Tipis (2px)">2px</button>
+                    <button type="button" onclick="setWbSize(4)" id="wbSize4" class="px-2 py-1 rounded-lg text-[9px] font-bold text-slate-400 hover:text-white" title="Garis Sedang (4px)">4px</button>
+                    <button type="button" onclick="setWbSize(8)" id="wbSize8" class="px-2 py-1 rounded-lg text-[9px] font-bold text-slate-400 hover:text-white" title="Garis Tebal (8px)">8px</button>
+                </div>
+
+                <div class="h-5 w-[1px] bg-white/15"></div>
+
+                <!-- Aksi Riwayat: Undo & Reset -->
+                <!-- Aksi Riwayat: Undo, Redo & Reset Kanvas -->
+                <div class="flex items-center gap-1">
+                    <!-- Tombol Undo (Batalkan) -->
+                    <button type="button" 
+                            onclick="undoWhiteboardStroke()" 
+                            id="wbBtnUndo" 
+                            class="wb-tool-btn opacity-40 cursor-not-allowed" 
+                            title="Undo / Batalkan (Ctrl+Z)">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+
+                    <!-- Tombol Redo (Ulangi) -->
+                    <button type="button" 
+                            onclick="redoWhiteboardStroke()" 
+                            id="wbBtnRedo" 
+                            class="wb-tool-btn opacity-40 cursor-not-allowed" 
+                            title="Redo / Majukan Kembali (Ctrl+Y)">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+
+                    <!-- Tombol Bersihkan Kanvas -->
+                    <button type="button" 
+                            onclick="clearWhiteboardCanvas()" 
+                            class="wb-tool-btn hover:!bg-rose-500/20 hover:!text-rose-400" 
+                            title="Bersihkan Seluruh Kanvas">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Kanvas Gambar Interaktif -->
+            <canvas id="whiteboardCanvas" class="whiteboard-canvas-surface w-full h-full flex-grow block"></canvas>
+        </div>
+
+        <!-- 3. Footer Kanvas Info -->
+        <div class="p-3 sm:p-3.5 border-t border-white/10 bg-black/50 relative z-20 shrink-0 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+            <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                <span id="wbSaveStatus">Auto-Saved Lokal (0ms)</span>
+            </span>
+            <span class="text-[9px] text-slate-500 uppercase tracking-widest hidden sm:inline">DUKUNGAN TOUCH SCREEN & DESKTOP</span>
+        </div>
+
+    </div>
+    <!-- ==========================================
+         MODAL STUDIO: CUSTOM MODULE BUILDER (ULTRA LUXURY)
+         ========================================== -->
+    <!-- ==========================================
+         MODAL STUDIO: CUSTOM MODULE BUILDER (SPECTRUM COLOR & 1000+ ICONS)
+         ========================================== -->
+    <div id="customModuleModal" class="fixed inset-0 z-[160] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-2xl max-h-[92vh] p-5 sm:p-7 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col" id="customModuleModalPanel">
+            
+            <!-- Atmospheric Neon Glow Orbs -->
+            <div id="cmModalGlow1" class="absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-40 bg-omni-cyan transition-colors duration-500"></div>
+            <div id="cmModalGlow2" class="absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-30 bg-omni-fuchsia transition-colors duration-500"></div>
+
+            <!-- 1. Header Studio -->
+            <div class="flex justify-between items-center mb-4 pb-3.5 border-b border-white/10 relative z-20 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-omni-cyan via-omni-fuchsia to-omni-indigo flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] p-[1px] shrink-0">
+                        <div class="w-full h-full bg-obsidian rounded-[14px] flex items-center justify-center">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg text-omni-cyan"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-fuchsia-200 tracking-wide">
+                            Custom Module Studio
+                        </h3>
+                        <p class="text-[10px] text-slate-400 font-medium mt-0.5">Rancang alur kerja, kolom Kanban, ikon, dan tema warna modul Anda sendiri</p>
+                    </div>
+                </div>
+
+                <button type="button" onclick="closeCustomModuleModal()" class="group w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900/90 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 flex items-center justify-center transition-all shadow-md shrink-0 active:scale-95" title="Tutup">
+                    <i class="fa-solid fa-xmark text-xs transition-transform duration-300 group-hover:rotate-90"></i>
+                </button>
+            </div>
+
+            <!-- 2. Form Body (Scrollable dengan Safe-Padding Bawah) -->
+            <form id="formCustomModule" onsubmit="saveNewCustomModule(event)" class="space-y-4 overflow-y-auto pr-1.5 flex-grow custom-scrollbar relative z-10 pb-6">
+                
+                <!-- ROW 1: NAMA MODUL & KATEGORI -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-cyan-400 mb-1.5">Nama Modul</label>
+                        <input type="text" id="cmModName" required oninput="updateCustomModulePreview()" class="glass-input w-full px-3.5 py-2.5 text-xs font-bold" placeholder="Contoh: Renovasi Rumah">
+                    </div>
+
+                    <!-- Kategori dengan Segmented Switch Yang Jelas -->
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-[9.5px] font-black uppercase tracking-wider text-cyan-400">Kategori Modul</label>
+                            <div class="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10">
+                                <button type="button" onclick="switchCategoryMode('select')" id="btnCatModeSelect" class="px-2 py-0.5 rounded text-[8px] font-bold text-white bg-white/10 transition-all">Pilih Ada</button>
+                                <button type="button" onclick="switchCategoryMode('new')" id="btnCatModeNew" class="px-2 py-0.5 rounded text-[8px] font-bold text-slate-400 hover:text-white transition-all">+ Kategori Baru</button>
+                            </div>
+                        </div>
+
+                        <!-- Opsi 1: Dropdown Kategori Yang Sudah Ada -->
+                        <div id="catSelectWrapper">
+                            <select id="cmModCategorySelect" onchange="updateCustomModulePreview()" class="glass-input w-full px-3.5 py-2.5 text-xs bg-slate-900 text-white font-medium">
+                                <!-- Diisi dinamis via JS -->
+                            </select>
+                        </div>
+
+                        <!-- Opsi 2: Input Ketik Kategori Baru -->
+                        <div id="catNewWrapper" class="hidden">
+                            <input type="text" id="cmModCategoryNew" oninput="updateCustomModulePreview()" class="glass-input w-full px-3.5 py-2.5 text-xs font-bold border-fuchsia-500/50 bg-fuchsia-500/5" placeholder="Ketik nama kategori baru Anda...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2: PEMILIH 1.000+ IKON DENGAN SEARCH ENGINE INSTAN -->
+                <div class="bg-black/30 p-3.5 rounded-2xl border border-white/10 space-y-2.5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-cyan-400">
+                            Pilih Ikon (Tersedia 1.000+ Ikon FontAwesome)
+                        </label>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[9px] text-slate-400 font-mono">Terpilih:</span>
+                            <span id="cmSelectedIconBadge" class="text-[9px] font-mono font-bold bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-md border border-cyan-500/30 flex items-center gap-1.5">
+                                <i id="cmSelectedIconPreview" class="fa-solid fa-rocket"></i>
+                                <span id="cmSelectedIconLabel">fa-rocket</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Search Bar Ikon & Kategori Filter Ikon -->
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <div class="relative flex-grow">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                            <input type="text" id="cmIconSearchInput" oninput="filterIconGallery(this.value)" placeholder="Cari nama ikon (Cth: car, money, code, coffee, chart, heart, pet, camera)..." class="glass-input w-full pl-8 pr-3 py-1.5 text-xs bg-black/50 rounded-xl">
+                        </div>
+                        <div class="flex items-center gap-1 overflow-x-auto whitespace-nowrap custom-scrollbar shrink-0 pb-1">
+                            <button type="button" onclick="filterIconCategory('all')" data-icat="all" class="icon-cat-btn active">Semua</button>
+                            <button type="button" onclick="filterIconCategory('bisnis')" data-icat="bisnis" class="icon-cat-btn">Bisnis</button>
+                            <button type="button" onclick="filterIconCategory('tech')" data-icat="tech" class="icon-cat-btn">Tech</button>
+                            <button type="button" onclick="filterIconCategory('kreatif')" data-icat="kreatif" class="icon-cat-btn">Kreatif</button>
+                            <button type="button" onclick="filterIconCategory('lifestyle')" data-icat="lifestyle" class="icon-cat-btn">Lifestyle</button>
+                            <button type="button" onclick="filterIconCategory('operasional')" data-icat="operasional" class="icon-cat-btn">Operasional</button>
+                        </div>
+                    </div>
+
+                    <!-- Galeri Ikon Grid (Scrollable) -->
+                    <div id="cmIconGrid" class="grid grid-cols-8 sm:grid-cols-12 gap-1.5 max-h-32 overflow-y-auto custom-scrollbar p-1 rounded-xl bg-black/40 border border-white/5">
+                        <!-- Ratusan ikon dirender dinamis via JS -->
+                    </div>
+                </div>
+
+                <!-- ROW 3: SPEKTRUM DIAGRAM WARNA (COLOR WHEEL PICKER) -->
+                <div class="bg-black/30 p-3.5 rounded-2xl border border-white/10 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="block text-[9.5px] font-black uppercase tracking-wider text-cyan-400">Spektrum Diagram Warna (Color Wheel)</label>
+                            <p class="text-[9px] text-slate-400">Klik diagram roda spektrum warna untuk memilih jutaan warna tanpa batas</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[9px] text-slate-400 font-mono">Kode HEX:</span>
+                            <span id="cmColorHexDisplay" class="text-xs font-mono font-black text-cyan-300 bg-black/50 px-2.5 py-1 rounded-lg border border-white/10">#06B6D4</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3 bg-black/40 p-2.5 rounded-xl border border-white/5">
+                        <!-- 🎨 TOMBOL DIAGRAM SPEKTRUM WARNA (COLOR WHEEL) -->
+                        <div class="relative flex items-center gap-2 cursor-pointer group" title="Buka Diagram Roda Warna Lengkap">
+                            <div class="color-wheel-disc relative w-10 h-10 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.2)] border-2 border-white/40 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110 active:scale-95">
+                                <input type="color" id="cmNativeColorPicker" value="#06b6d4" oninput="handleColorWheelInput(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <i class="fa-solid fa-palette text-white text-xs drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] pointer-events-none"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-white group-hover:text-cyan-300 transition-colors pointer-events-none">Buka Spektrum</span>
+                        </div>
+
+                        <div class="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
+
+                        <!-- Palet Preset Cepat -->
+                        <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar flex-grow pb-1" id="cmPresetColorsContainer">
+                            <!-- Preset bulatan cepat dirender via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 4: BUILDER TAHAPAN ALUR KERJA (KOLOM KANBAN) -->
+                <div class="bg-black/30 p-3.5 sm:p-4 rounded-2xl border border-white/10 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="block text-[9.5px] font-black uppercase tracking-wider text-fuchsia-300">Tahapan Alur Kerja (Kolom Kanban)</label>
+                            <p class="text-[9px] text-slate-400">Kolom 1 = Mulai (Start), kolom terakhir = Selesai (Final PDF)</p>
+                        </div>
+                        <button type="button" onclick="addCustomModuleStep()" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[9px] font-black uppercase tracking-wider flex items-center gap-1 transition-all shadow-sm">
+                            <i class="fa-solid fa-plus text-cyan-400"></i> Tambah Kolom
+                        </button>
+                    </div>
+
+                    <div id="cmStepListContainer" class="space-y-2 max-h-36 overflow-y-auto custom-scrollbar pr-1">
+                        <!-- Step items dirender via JS -->
+                    </div>
+                </div>
+
+                <!-- ROW 5: PENGATURAN PIC & JUDUL PDF -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1.5">Label Penanggung Jawab (PIC)</label>
+                        <input type="text" id="cmPicLabel" required class="glass-input w-full px-3.5 py-2.5 text-xs font-bold" placeholder="Contoh: Nama Mandor / Arsitek">
+                    </div>
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1.5">Judul Laporan Dokumen PDF</label>
+                        <input type="text" id="cmPdfTitle" required class="glass-input w-full px-3.5 py-2.5 text-xs font-bold" placeholder="Contoh: BERITA ACARA SERAH TERIMA">
+                    </div>
+                </div>
+
+                <!-- ROW 6: LIVE PREVIEW CARD (MINI HUD) -->
+                <div class="bg-gradient-to-r from-white/[0.03] to-white/[0.06] p-3 rounded-2xl border border-white/10 flex items-center justify-between gap-3 shadow-inner">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div id="cmPreviewIconBox" class="w-10 h-10 rounded-xl bg-cyan-500 flex items-center justify-center text-white text-base shadow-lg shrink-0 transition-all duration-300">
+                            <i id="cmPreviewIcon" class="fa-solid fa-rocket"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <span class="text-[8px] font-black text-cyan-400 uppercase tracking-widest block truncate" id="cmPreviewCategory">KATEGORI</span>
+                            <h4 class="font-extrabold text-sm text-white truncate" id="cmPreviewTitle">Nama Modul Anda</h4>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-mono font-bold bg-white/10 px-2.5 py-1 rounded-lg border border-white/10 text-slate-300 shrink-0">
+                        <span id="cmPreviewStepsCount">4</span> Kolom
+                    </span>
+                </div>
+
+                <!-- Spacer Tambahan Agar Tidak Ada Bagian Bawah Yang Tertutup Tombol Sticky -->
+                <div class="h-10"></div>
+            </form>
+
+            <!-- 3. Sticky Footer Action (Terisolasi Bersih di Bawah) -->
+            <div class="pt-3 border-t border-white/10 flex justify-end items-center gap-3 relative z-20 shrink-0 bg-slate-950/95 -mx-5 -mb-5 sm:-mx-7 sm:-mb-7 p-4 sm:px-7 rounded-b-[2rem] sm:rounded-b-[2.5rem]">
+                <button type="button" onclick="closeCustomModuleModal()" class="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-bold transition-all">Batal</button>
+                <button type="button" onclick="document.getElementById('formCustomModule').requestSubmit()" id="btnSubmitCustomMod" class="bg-gradient-to-r from-omni-cyan via-omni-indigo to-omni-fuchsia text-white px-7 py-2.5 rounded-xl font-black tracking-widest text-xs uppercase shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_35px_rgba(6,182,212,0.7)] hover:-translate-y-0.5 transition-all border border-white/20 flex items-center gap-2">
+                    <i class="fa-solid fa-sparkles text-xs"></i> <span>Terbitkan & Buka Modul</span>
+                </button>
             </div>
 
         </div>
@@ -3621,6 +4246,410 @@
                 ui.hideLoader();
             }, 300);
         }
+        // =========================================================================
+// WHITEBOARD & BRAINSTORMING CANVAS ENGINE (RETINA 60FPS & HYBRID SYNC)
+// =========================================================================
+let wbCanvas = null;
+let wbCtx = null;
+let isDrawingWb = false;
+let currentWbTool = 'pen'; // 'pen' | 'arrow' | 'rect' | 'text' | 'eraser'
+let currentWbColor = '#34d399';
+let currentWbSize = 2;
+let wbStartX = 0;
+let wbStartY = 0;
+let wbSnapshot = null;
+
+let wbUndoStack = [];
+let wbRedoStack = [];
+let wbDebounceTimer = null;
+
+// 1. HELPER LOCALSTORAGE (ANTI-HILANG SAAT REFRESH)
+function getWbStorageKey() {
+    return `omniflow_wb_${currentUserId || 'GUEST'}_${activeModule || 'GENERAL'}`;
+}
+
+// 2. BUKA & INISIALISASI KANVAS
+async function openWhiteboardDrawer() {
+    if (!activeModule) {
+        ui.error("Silakan pilih modul di sidebar terlebih dahulu!");
+        return;
+    }
+
+    const conf = MODUL_REGISTRY[activeModule];
+    const tagEl = document.getElementById('wbModuleTag');
+    if (tagEl) tagEl.innerText = conf ? conf.name : activeModule;
+
+    const drawer = document.getElementById('whiteboardDrawer');
+    const backdrop = document.getElementById('whiteboardBackdrop');
+    
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+        setupWhiteboardCanvas();
+    }, 10);
+}
+
+function closeWhiteboardDrawer() {
+    const drawer = document.getElementById('whiteboardDrawer');
+    const backdrop = document.getElementById('whiteboardBackdrop');
+    
+    drawer.classList.add('translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+        backdrop.classList.add('hidden');
+    }, 300);
+}
+
+// 3. SETUP RETINA CANVAS RESOLUTION & EVENT LISTENERS
+function setupWhiteboardCanvas() {
+    wbCanvas = document.getElementById('whiteboardCanvas');
+    const container = document.getElementById('wbCanvasContainer');
+    if (!wbCanvas || !container) return;
+
+    wbCtx = wbCanvas.getContext('2d', { willReadFrequently: true });
+    const dpr = window.devicePixelRatio || 1;
+    const rect = container.getBoundingClientRect();
+
+    // Atur resolusi piksel nyata (Retina Scaling agar gambar tidak buram di Mac/HP)
+    wbCanvas.width = rect.width * dpr;
+    wbCanvas.height = rect.height * dpr;
+    wbCtx.scale(dpr, dpr);
+
+    wbCtx.lineCap = 'round';
+    wbCtx.lineJoin = 'round';
+
+    // Bersihkan listener lama
+    wbCanvas.onmousedown = startDrawingWb;
+    wbCanvas.onmousemove = drawWb;
+    wbCanvas.onmouseup = stopDrawingWb;
+    wbCanvas.onmouseleave = stopDrawingWb;
+
+    // Pasang Touch Event untuk HP / Tablet (Anti-Scroll Saat Menggambar)
+    wbCanvas.ontouchstart = (e) => { e.preventDefault(); startDrawingWb(e.touches[0]); };
+    wbCanvas.ontouchmove = (e) => { e.preventDefault(); drawWb(e.touches[0]); };
+    wbCanvas.ontouchend = (e) => { e.preventDefault(); stopDrawingWb(); };
+
+    // Muat sketsa yang tersimpan
+    loadWhiteboardDrawing();
+}
+
+// 4. LOGIKA EVENT MENGGAMBAR
+function getCanvasCoords(e) {
+    const rect = wbCanvas.getBoundingClientRect();
+    return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+    };
+}
+
+function startDrawingWb(e) {
+    if (!wbCtx) return;
+    isDrawingWb = true;
+    const coords = getCanvasCoords(e);
+    wbStartX = coords.x;
+    wbStartY = coords.y;
+
+    // Simpan snapshot untuk fitur Undo dan live preview (Kotak/Panah)
+    saveWbUndoState();
+    wbSnapshot = wbCtx.getImageData(0, 0, wbCanvas.width, wbCanvas.height);
+
+    if (currentWbTool === 'pen') {
+        wbCtx.beginPath();
+        wbCtx.moveTo(wbStartX, wbStartY);
+    } else if (currentWbTool === 'text') {
+        promptTextPlacement(wbStartX, wbStartY);
+        isDrawingWb = false;
+    }
+}
+
+function drawWb(e) {
+    if (!isDrawingWb || !wbCtx) return;
+    const coords = getCanvasCoords(e);
+
+    wbCtx.lineWidth = currentWbSize;
+    wbCtx.strokeStyle = currentWbTool === 'eraser' ? '#030712' : currentWbColor;
+
+    if (currentWbTool === 'pen' || currentWbTool === 'eraser') {
+        wbCtx.lineTo(coords.x, coords.y);
+        wbCtx.stroke();
+    } else if (currentWbTool === 'rect') {
+        // Kembalikan ke snapshot sebelum drag kotak agar tidak meninggalkan jejak bayangan
+        wbCtx.putImageData(wbSnapshot, 0, 0);
+        wbCtx.beginPath();
+        wbCtx.rect(wbStartX, wbStartY, coords.x - wbStartX, coords.y - wbStartY);
+        wbCtx.stroke();
+    } else if (currentWbTool === 'arrow') {
+        // Kembalikan ke snapshot sebelum drag panah
+        wbCtx.putImageData(wbSnapshot, 0, 0);
+        drawArrow(wbStartX, wbStartY, coords.x, coords.y);
+    }
+}
+
+function stopDrawingWb() {
+    if (!isDrawingWb) return;
+    isDrawingWb = false;
+    if (wbCtx) wbCtx.beginPath();
+
+    // Auto-Save otomatis setiap selesai menggoreskan kuas
+    persistWhiteboardLocally();
+}
+
+// 5. MENGGAMBAR PANAH ALUR (FLOWCHART ARROW)
+function drawArrow(fromx, fromy, tox, toy) {
+    const headlen = 12; // Panjang mata panah
+    const angle = Math.atan2(toy - fromy, tox - fromx);
+
+    wbCtx.beginPath();
+    wbCtx.moveTo(fromx, fromy);
+    wbCtx.lineTo(tox, toy);
+    wbCtx.stroke();
+
+    // Gambar ujung segitiga panah
+    wbCtx.beginPath();
+    wbCtx.moveTo(tox, toy);
+    wbCtx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+    wbCtx.moveTo(tox, toy);
+    wbCtx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+    wbCtx.stroke();
+}
+
+// 6. PENEMPATAN TEKS KE DALAM KANVAS
+function promptTextPlacement(x, y) {
+    Swal.fire({
+        title: 'Tulis Teks Ide / Catatan',
+        input: 'text',
+        inputPlaceholder: 'Ketik teks untuk ditaruh di kanvas...',
+        background: '#0f172a',
+        color: '#fff',
+        confirmButtonColor: '#10b981',
+        showCancelButton: true,
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.value && result.value.trim() !== '') {
+            wbCtx.font = `bold ${Math.max(14, currentWbSize * 5)}px 'Outfit', sans-serif`;
+            wbCtx.fillStyle = currentWbColor;
+            wbCtx.fillText(result.value.trim(), x, y);
+            persistWhiteboardLocally();
+        }
+    });
+}
+
+// 7. KONTROL TOOL, WARNA & UKURAN
+function setWbTool(toolName) {
+    currentWbTool = toolName;
+    ['pen', 'arrow', 'rect', 'text', 'eraser'].forEach(t => {
+        const btn = document.getElementById(`wbTool${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        if (btn) btn.classList.toggle('active', t === toolName);
+    });
+}
+
+function setWbColor(hexColor) {
+    currentWbColor = hexColor;
+    document.querySelectorAll('#wbColorPaletteContainer .wb-color-dot').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('title').toLowerCase() === hexColor.toLowerCase() || btn.style.background === hexColor);
+    });
+}
+
+function setWbSize(sizeNum) {
+    currentWbSize = sizeNum;
+    [2, 4, 8].forEach(s => {
+        const btn = document.getElementById(`wbSize${s}`);
+        if (btn) {
+            btn.className = s === sizeNum 
+                ? 'px-2 py-1 rounded-lg text-[9px] font-bold text-white bg-white/20' 
+                : 'px-2 py-1 rounded-lg text-[9px] font-bold text-slate-400 hover:text-white';
+        }
+    });
+}
+
+// 8. FITUR UNDO & CLEAR KANVAS
+function updateWbHistoryButtons() {
+    const btnUndo = document.getElementById('wbBtnUndo');
+    const btnRedo = document.getElementById('wbBtnRedo');
+
+    if (btnUndo) {
+        if (wbUndoStack.length > 0) {
+            btnUndo.classList.remove('opacity-40', 'cursor-not-allowed');
+        } else {
+            btnUndo.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+    }
+
+    if (btnRedo) {
+        if (wbRedoStack.length > 0) {
+            btnRedo.classList.remove('opacity-40', 'cursor-not-allowed');
+        } else {
+            btnRedo.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+    }
+}
+
+// 2. SIMPAN STATE SAAT AKSI BARU DIMULAI
+function saveWbUndoState() {
+    if (!wbCtx || !wbCanvas) return;
+    
+    // Setiap kali pengguna membuat goresan baru, riwayat REDO di-reset
+    wbRedoStack = [];
+
+    // Maksimal simpan 25 langkah riwayat agar memori tetap ringan
+    if (wbUndoStack.length >= 25) {
+        wbUndoStack.shift();
+    }
+    wbUndoStack.push(wbCtx.getImageData(0, 0, wbCanvas.width, wbCanvas.height));
+    updateWbHistoryButtons();
+}
+
+// 3. FUNGSI UNDO (MUNDUR SATU LANGKAH)
+function undoWhiteboardStroke() {
+    if (!wbCtx || !wbCanvas || wbUndoStack.length === 0) return;
+
+    // Simpan gambar saat ini ke tumpukan REDO sebelum dimundurkan
+    wbRedoStack.push(wbCtx.getImageData(0, 0, wbCanvas.width, wbCanvas.height));
+    
+    // Ambil gambar sebelumnya dari UNDO
+    const previousState = wbUndoStack.pop();
+    wbCtx.putImageData(previousState, 0, 0);
+    
+    persistWhiteboardLocally();
+    updateWbHistoryButtons();
+}
+
+// 4. FUNGSI REDO (MAJU KEMBALI SATU LANGKAH)
+function redoWhiteboardStroke() {
+    if (!wbCtx || !wbCanvas || wbRedoStack.length === 0) return;
+
+    // Simpan gambar saat ini ke tumpukan UNDO sebelum dimajukan
+    wbUndoStack.push(wbCtx.getImageData(0, 0, wbCanvas.width, wbCanvas.height));
+    
+    // Ambil gambar berikutnya dari REDO
+    const nextState = wbRedoStack.pop();
+    wbCtx.putImageData(nextState, 0, 0);
+
+    persistWhiteboardLocally();
+    updateWbHistoryButtons();
+}
+
+// 5. BERSIHKAN KANVAS (DILENGKAPI SAFETY NET: BISA DI-UNDO KEMBALI)
+
+// 6. SHORTCUT KEYBOARD OTOMATIS (CTRL+Z / CTRL+Y / CMD+Z)
+window.addEventListener('keydown', (e) => {
+    const drawer = document.getElementById('whiteboardDrawer');
+    // Hanya aktif jika Drawer Whiteboard sedang terbuka
+    if (!drawer || drawer.classList.contains('translate-x-full')) return;
+
+    const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+
+    // Undo: Ctrl+Z atau Cmd+Z (tanpa Shift)
+    if (isCtrlOrCmd && e.key.toLowerCase() === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undoWhiteboardStroke();
+    }
+    // Redo: Ctrl+Y atau Cmd+Y atau Ctrl+Shift+Z / Cmd+Shift+Z
+    else if (isCtrlOrCmd && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z'))) {
+        e.preventDefault();
+        redoWhiteboardStroke();
+    }
+});
+
+function clearWhiteboardCanvas() {
+    Swal.fire({
+        title: 'Bersihkan Kanvas?',
+        text: 'Seluruh goresan sketsa pada modul ini akan dihapus.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Bersihkan',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            // Simpan gambar saat ini ke UNDO agar jika user salah hapus, BISA DI-UNDO!
+            saveWbUndoState();
+            
+            wbCtx.clearRect(0, 0, wbCanvas.width, wbCanvas.height);
+            localStorage.removeItem(getWbStorageKey());
+            document.getElementById('wbSaveStatus').innerText = "Kanvas Kosong";
+            ui.notify("Kanvas Dibersihkan");
+            updateWbHistoryButtons();
+
+            await fetchAPI('CLEAR_WHITEBOARD', null, activeModule);
+        }
+    });
+}
+
+// 9. PERSISTENCE HYBRID: AUTO-SAVE LOCALSTORAGE (0ms) + CLOUD SYNC
+function persistWhiteboardLocally() {
+    if (!wbCanvas) return;
+    try {
+        const dataUrl = wbCanvas.toDataURL('image/png', 0.85);
+        localStorage.setItem(getWbStorageKey(), dataUrl);
+        document.getElementById('wbSaveStatus').innerText = `Auto-Saved Lokal (0ms)`;
+
+        // Debounce sync ke Google Sheets Cloud (2 detik setelah selesai menggambar)
+        clearTimeout(wbDebounceTimer);
+        wbDebounceTimer = setTimeout(async () => {
+            document.getElementById('wbSaveStatus').innerText = `Menyinkronkan Cloud...`;
+            const payload = {
+                id: 'WB-' + activeModule,
+                title: `Mindmap ${activeModule}`,
+                canvasData: dataUrl,
+                pic: currentUserId || 'Team'
+            };
+            await fetchAPI('SAVE_WHITEBOARD', payload, activeModule);
+            document.getElementById('wbSaveStatus').innerText = `Tersinkron Cloud: ${new Date().toLocaleTimeString('id-ID')}`;
+        }, 2000);
+    } catch (e) {
+        console.warn("Gagal simpan gambar kanvas:", e);
+    }
+}
+
+function loadWhiteboardDrawing() {
+    if (!wbCanvas || !wbCtx) return;
+
+    // 1. Muat instan dari LocalStorage (0ms - anti hilang saat refresh)
+    const localData = localStorage.getItem(getWbStorageKey());
+    if (localData) {
+        const img = new Image();
+        img.onload = () => {
+            const dpr = window.devicePixelRatio || 1;
+            wbCtx.clearRect(0, 0, wbCanvas.width, wbCanvas.height);
+            wbCtx.drawImage(img, 0, 0, wbCanvas.width / dpr, wbCanvas.height / dpr);
+        };
+        img.src = localData;
+    }
+
+    // 2. Sinkronkan dari Cloud Google Sheets
+    fetchAPI('GET_WHITEBOARDS', null, activeModule).then(res => {
+        if (res && res.success && res.data && res.data.canvasData) {
+            const cloudImg = new Image();
+            cloudImg.onload = () => {
+                const dpr = window.devicePixelRatio || 1;
+                wbCtx.clearRect(0, 0, wbCanvas.width, wbCanvas.height);
+                wbCtx.drawImage(cloudImg, 0, 0, wbCanvas.width / dpr, wbCanvas.height / dpr);
+                localStorage.setItem(getWbStorageKey(), res.data.canvasData);
+                document.getElementById('wbSaveStatus').innerText = `Cloud Sinkron: ${res.data.timestamp || 'Tersimpan'}`;
+            };
+            cloudImg.src = res.data.canvasData;
+        }
+    }).catch(() => {});
+}
+
+// 10. EKSPOR SKETSA MENJADI GAMBAR HD PNG
+function exportWhiteboardPNG() {
+    if (!wbCanvas) return;
+    try {
+        const link = document.createElement('a');
+        link.download = `OmniFlow_Brainstorm_${activeModule || 'Sketch'}_${new Date().toISOString().split('T')[0]}.png`;
+        link.href = wbCanvas.toDataURL('image/png', 1.0);
+        link.click();
+        ui.notify("Sketsa Berhasil Diunduh!");
+    } catch (e) {
+        ui.error("Gagal mengekspor sketsa gambar.");
+    }
+}
         // Penampung instance chart agar bisa di-destroy dan dirender ulang dengan lancar
         
         let activeChartInstances = {
@@ -3854,6 +4883,525 @@
 // =========================================================================
 // QUICK NOTES & SCRATCHPAD ENGINE (HYBRID STORAGE & KANBAN CONVERTER)
 // =========================================================================
+// =========================================================================
+// CUSTOM MODULE BUILDER ENGINE (REGISTRY, STORAGE & UI CONTROLLER)
+// =========================================================================
+
+// Galeri 18 Ikon Pilihan FontAwesome untuk Modul Kustom
+
+// =========================================================================
+// CUSTOM MODULE BUILDER ENGINE (SPECTRUM COLOR & 1000+ ICONS REGISTRY)
+// =========================================================================
+
+// Katalog Kurasi 120+ Ikon Terpopuler dari FontAwesome 6 (Tersedia Ribuan via Search & Free Input)
+const ICON_DATABASE = [
+    // Bisnis & Finansial
+    { icon: "fa-briefcase", cat: "bisnis", tags: "kerja kantor tas kerja job" },
+    { icon: "fa-chart-line", cat: "bisnis", tags: "grafik finance saham profit" },
+    { icon: "fa-chart-pie", cat: "bisnis", tags: "diagram rasio persentase" },
+    { icon: "fa-money-bill-wave", cat: "bisnis", tags: "uang cash gaji rupiah dollar" },
+    { icon: "fa-wallet", cat: "bisnis", tags: "dompet kas saldo payment" },
+    { icon: "fa-credit-card", cat: "bisnis", tags: "kartu debit visa mastercard" },
+    { icon: "fa-receipt", cat: "bisnis", tags: "nota struk invoice kuitansi" },
+    { icon: "fa-handshake", cat: "bisnis", tags: "mou deal kesepakatan mitra" },
+    { icon: "fa-building", cat: "bisnis", tags: "gedung kantor perusahaan" },
+    { icon: "fa-scale-balanced", cat: "bisnis", tags: "hukum legal notaris timbangan" },
+    { icon: "fa-coins", cat: "bisnis", tags: "koin kas kecil modal dividen" },
+    { icon: "fa-piggy-bank", cat: "bisnis", tags: "tabungan budget hemat" },
+
+    // Tech & IT
+    { icon: "fa-code", cat: "tech", tags: "koding programmer html css script" },
+    { icon: "fa-laptop-code", cat: "tech", tags: "komputer laptop software web" },
+    { icon: "fa-server", cat: "tech", tags: "hosting database cloud server" },
+    { icon: "fa-database", cat: "tech", tags: "sql data storage tabel migration" },
+    { icon: "fa-bug", cat: "tech", tags: "error kutu tester debug issue" },
+    { icon: "fa-robot", cat: "tech", tags: "ai bot automasi machine learning" },
+    { icon: "fa-microchip", cat: "tech", tags: "processor cpu hardware iot" },
+    { icon: "fa-network-wired", cat: "tech", tags: "jaringan ethernet lan kabel" },
+    { icon: "fa-shield-halved", cat: "tech", tags: "cyber security keamanan firewall" },
+    { icon: "fa-terminal", cat: "tech", tags: "bash cli command prompt linux" },
+    { icon: "fa-cloud-arrow-up", cat: "tech", tags: "upload cloud drive backup" },
+    { icon: "fa-satellite-dish", cat: "tech", tags: "sinyal antena telekomunikasi" },
+
+    // Kreatif & Media
+    { icon: "fa-palette", cat: "kreatif", tags: "desain warna seni lukis ui ux" },
+    { icon: "fa-camera", cat: "kreatif", tags: "foto fotografi lensa potret" },
+    { icon: "fa-film", cat: "kreatif", tags: "video syuting bioskop film movie" },
+    { icon: "fa-clapperboard", cat: "kreatif", tags: "sutradara take adegan sinema" },
+    { icon: "fa-video", cat: "kreatif", tags: "livestream broadcast rekaman" },
+    { icon: "fa-music", cat: "kreatif", tags: "lagu audio melodi musisi nada" },
+    { icon: "fa-headphones", cat: "kreatif", tags: "headset dengar musik audio" },
+    { icon: "fa-podcast", cat: "kreatif", tags: "siaran rekaman mic radio voice" },
+    { icon: "fa-pen-nib", cat: "kreatif", tags: "vektor kaligrafi pena naskah" },
+    { icon: "fa-brush", cat: "kreatif", tags: "kuas lukisan gambar finishing" },
+    { icon: "fa-cube", cat: "kreatif", tags: "3d kubus blok blender animasi" },
+    { icon: "fa-wand-magic-sparkles", cat: "kreatif", tags: "sihir efek render sulap filter" },
+
+    // Lifestyle, Food & Health
+    { icon: "fa-mug-hot", cat: "lifestyle", tags: "kopi teh cafe cafein hangat" },
+    { icon: "fa-utensils", cat: "lifestyle", tags: "makanan resto restoran sendok garpu" },
+    { icon: "fa-burger", cat: "lifestyle", tags: "burger fastfood roti snack" },
+    { icon: "fa-pizza-slice", cat: "lifestyle", tags: "pizza keju italia makanan" },
+    { icon: "fa-dumbbell", cat: "lifestyle", tags: "gym fitness angkat beban otot" },
+    { icon: "fa-heart-pulse", cat: "lifestyle", tags: "medis detak jantung klinik dokter" },
+    { icon: "fa-hospital", cat: "lifestyle", tags: "rumah sakit ugd darurat" },
+    { icon: "fa-shirt", cat: "lifestyle", tags: "baju pakaian distro garmen jahit" },
+    { icon: "fa-spa", cat: "lifestyle", tags: "relaksasi pijat terapi herbal" },
+    { icon: "fa-plane-departure", cat: "lifestyle", tags: "liburan pesawat travel tiket bandara" },
+    { icon: "fa-bed", cat: "lifestyle", tags: "hotel kamar tidur menginap villa" },
+    { icon: "fa-scissors", cat: "lifestyle", tags: "gunting tailor potong rambut salon" },
+
+    // Operasional, Industri & Logistik
+    { icon: "fa-rocket", cat: "operasional", tags: "roket start cepat peluncuran target" },
+    { icon: "fa-trophy", cat: "operasional", tags: "juara piala menang peringkat lomba" },
+    { icon: "fa-house", cat: "operasional", tags: "rumah properti residensial kpr" },
+    { icon: "fa-helmet-safety", cat: "operasional", tags: "konstruksi proyek k3 safety helm" },
+    { icon: "fa-trowel-bricks", cat: "operasional", tags: "semen bata bangunan tukang renovasi" },
+    { icon: "fa-truck-fast", cat: "operasional", tags: "kirim kurir logistik ekspedisi armada" },
+    { icon: "fa-boxes-packing", cat: "operasional", tags: "gudang inventaris stok kemas kardus" },
+    { icon: "fa-dolly", cat: "operasional", tags: "troli barang gudang angkut" },
+    { icon: "fa-gears", cat: "operasional", tags: "mesin gerigi teknis maintenance setting" },
+    { icon: "fa-car", cat: "operasional", tags: "mobil kendaraan otomotif bengkel rental" },
+    { icon: "fa-ship", cat: "operasional", tags: "kapal pelabuhan kontainer maritim laut" },
+    { icon: "fa-bolt", cat: "operasional", tags: "listrik pln daya volt tenaga petir" },
+    // Di dalam ICON_DATABASE bagian lifestyle/operasional:
+    { icon: "fa-calendar-days", cat: "lifestyle", tags: "event acara tanggal jadwal kalender agenda kegiatan" },
+    { icon: "fa-champagne-glasses", cat: "lifestyle", tags: "event pesta party banquet pernikahan perayaan" },
+    { icon: "fa-ticket", cat: "lifestyle", tags: "event tiket konser karcis pass festival" }
+];
+
+// Preset Warna Cepat (Bisa Tetap Dipilih Cepat di Samping Roda Warna)
+const QUICK_PALETTES = [
+    "#06b6d4", // Cyan
+    "#10b981", // Emerald
+    "#d946ef", // Fuchsia
+    "#f59e0b", // Amber
+    "#6366f1", // Indigo
+    "#e11d48", // Rose
+    "#8b5cf6", // Purple
+    "#3b82f6", // Blue
+    "#14b8a6", // Teal
+    "#84cc16", // Lime
+    "#ec4899", // Pink
+    "#f97316"  // Orange
+];
+
+let selectedCmIcon = "fa-rocket";
+let selectedCmHexColor = "#06b6d4";
+let cmBuilderSteps = ["Pengajuan", "Pengerjaan", "Review Kontrol", "Selesai Sempurna"];
+let currentIconFilterCategory = "all";
+
+// 1. HELPER GENERATOR TEMA DARI APAPUN KODE HEX (SPECTRUM SUPPORT)
+function generateDynamicTheme(hexCode) {
+    const cleanHex = (hexCode && hexCode.startsWith('#')) ? hexCode : '#06b6d4';
+    return {
+        hex: cleanHex,
+        bg: 'bg-white/10',
+        text: 'text-white',
+        border: 'border-white/20',
+        grad: `from-[${cleanHex}] to-blue-900`,
+        customHex: cleanHex
+    };
+}
+
+// 2. BUKA MODAL CUSTOM MODULE STUDIO
+function openCustomModuleModal() {
+    document.getElementById('formCustomModule').reset();
+    selectedCmIcon = "fa-rocket";
+    selectedCmHexColor = "#06b6d4";
+    cmBuilderSteps = ["Pengajuan", "Pengerjaan", "Review Kontrol", "Selesai Sempurna"];
+    currentIconFilterCategory = "all";
+
+    // Set default category mode ke 'select'
+    switchCategoryMode('select');
+    populateExistingCategories();
+
+    // Render Ikon, Spektrum Preset & Langkah Kolom
+    renderIconGallery();
+    renderColorPresets();
+    renderStepInputs();
+
+    // Default PIC & PDF
+    document.getElementById('cmPicLabel').value = "Nama PIC";
+    document.getElementById('cmPdfTitle').value = "BERITA ACARA PENYELESAIAN";
+
+    // Set Color Wheel native input
+    document.getElementById('cmNativeColorPicker').value = selectedCmHexColor;
+    handleColorWheelInput(selectedCmHexColor);
+
+    document.getElementById('customModuleModal').classList.remove('hidden');
+}
+
+function closeCustomModuleModal() {
+    document.getElementById('customModuleModal').classList.add('hidden');
+}
+
+// 3. SAKELAR KATEGORI (PILIH ADA vs KETIK BARU)
+function switchCategoryMode(mode) {
+    const btnSelect = document.getElementById('btnCatModeSelect');
+    const btnNew = document.getElementById('btnCatModeNew');
+    const selectWrap = document.getElementById('catSelectWrapper');
+    const newWrap = document.getElementById('catNewWrapper');
+
+    if (mode === 'select') {
+        btnSelect.className = 'px-2 py-0.5 rounded text-[8px] font-bold text-white bg-white/20 transition-all';
+        btnNew.className = 'px-2 py-0.5 rounded text-[8px] font-bold text-slate-400 hover:text-white transition-all';
+        selectWrap.classList.remove('hidden');
+        newWrap.classList.add('hidden');
+        document.getElementById('cmModCategoryNew').value = '';
+    } else {
+        btnNew.className = 'px-2 py-0.5 rounded text-[8px] font-bold text-white bg-fuchsia-500/40 transition-all';
+        btnSelect.className = 'px-2 py-0.5 rounded text-[8px] font-bold text-slate-400 hover:text-white transition-all';
+        selectWrap.classList.add('hidden');
+        newWrap.classList.remove('hidden');
+        document.getElementById('cmModCategoryNew').focus();
+    }
+    updateCustomModulePreview();
+}
+
+function populateExistingCategories() {
+    const select = document.getElementById('cmModCategorySelect');
+    if (!select) return;
+
+    const categories = new Set();
+    Object.values(MODUL_REGISTRY).forEach(m => {
+        if (m.cat) categories.add(m.cat);
+    });
+
+    select.innerHTML = Array.from(categories).sort().map(c => 
+        `<option value="${c}">${c}</option>`
+    ).join('');
+}
+
+// 4. SPEKTRUM DIAGRAM WARNA (COLOR WHEEL) ENGINE
+function handleColorWheelInput(hex) {
+    selectedCmHexColor = hex.toUpperCase();
+    document.getElementById('cmColorHexDisplay').innerText = selectedCmHexColor;
+    document.getElementById('cmNativeColorPicker').value = hex;
+
+    // Update glow ambience di modal
+    const glow1 = document.getElementById('cmModalGlow1');
+    if (glow1) {
+        glow1.style.background = selectedCmHexColor;
+        glow1.style.opacity = '0.35';
+    }
+
+    renderColorPresets();
+    updateCustomModulePreview();
+}
+
+function renderColorPresets() {
+    const container = document.getElementById('cmPresetColorsContainer');
+    if (!container) return;
+
+    container.innerHTML = QUICK_PALETTES.map(hex => `
+        <button type="button" 
+                onclick="handleColorWheelInput('${hex}')" 
+                class="w-6 h-6 rounded-full border border-white/20 shrink-0 transition-transform hover:scale-125 ${selectedCmHexColor.toLowerCase() === hex.toLowerCase() ? 'ring-2 ring-white scale-110 shadow-lg' : ''}" 
+                style="background: ${hex};" 
+                title="${hex}">
+        </button>
+    `).join('');
+}
+
+// 5. SEARCH & GALERI 1000+ IKON ENGINE
+function filterIconCategory(cat) {
+    currentIconFilterCategory = cat;
+    document.querySelectorAll('#customModuleModal .icon-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-icat') === cat);
+    });
+    renderIconGallery();
+}
+
+function filterIconGallery(query) {
+    renderIconGallery(query);
+}
+
+function renderIconGallery(query = '') {
+    const grid = document.getElementById('cmIconGrid');
+    if (!grid) return;
+
+    const q = (query || document.getElementById('cmIconSearchInput').value || '').toLowerCase().trim();
+
+    // Filter dari database kurasi
+    let filtered = ICON_DATABASE.filter(item => {
+        const matchCategory = (currentIconFilterCategory === 'all') || (item.cat === currentIconFilterCategory);
+        const matchQuery = !q || item.icon.toLowerCase().includes(q) || item.tags.toLowerCase().includes(q);
+        return matchCategory && matchQuery;
+    });
+
+    let html = '';
+
+    // Jika user mengetikkan nama ikon khusus (misal "fa-gem" atau "rocket") yang tidak ada di daftar kurasi,
+    // sediakan tombol custom injection instan agar user bisa memanggil SEMUA 2000+ ikon FontAwesome!
+    if (q && !filtered.some(i => i.icon.includes(q))) {
+        const customFAClass = q.startsWith('fa-') ? q : `fa-${q}`;
+        html += `
+        <button type="button" onclick="selectCustomIcon('${customFAClass}')" class="icon-cell-btn col-span-4 bg-cyan-500/20 border-cyan-500/40 text-cyan-300 font-mono text-[9px] px-2 flex items-center justify-start gap-2 truncate" title="Pakai Ikon Custom '${customFAClass}'">
+            <i class="fa-solid ${customFAClass}"></i> <span class="truncate">Pakai: ${customFAClass}</span>
+        </button>`;
+    }
+
+    html += filtered.map(item => `
+        <button type="button" 
+                onclick="selectCustomIcon('${item.icon}')" 
+                class="icon-cell-btn ${selectedCmIcon === item.icon ? 'active' : ''}" 
+                title="${item.icon}">
+            <i class="fa-solid ${item.icon}"></i>
+        </button>
+    `).join('');
+
+    if (!html) {
+        html = `<div class="col-span-full py-4 text-center text-[10px] text-slate-500">Ikon tidak ditemukan. Ketik nama class FontAwesome (Cth: fa-gem).</div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+function selectCustomIcon(iconClass) {
+    selectedCmIcon = iconClass;
+    document.getElementById('cmSelectedIconLabel').innerText = iconClass;
+    document.getElementById('cmSelectedIconPreview').className = `fa-solid ${iconClass}`;
+    renderIconGallery();
+    updateCustomModulePreview();
+}
+
+// 6. BUILDER TAHAPAN ALUR KERJA (KOLOM KANBAN)
+function renderStepInputs() {
+    const container = document.getElementById('cmStepListContainer');
+    if (!container) return;
+
+    container.innerHTML = cmBuilderSteps.map((step, idx) => `
+        <div class="flex items-center gap-2">
+            <span class="text-[9px] font-mono font-bold text-slate-500 w-5">${idx + 1}.</span>
+            <input type="text" 
+                   value="${step.replace(/"/g, '&quot;')}" 
+                   oninput="updateStepValue(${idx}, this.value)" 
+                   required 
+                   class="glass-input flex-grow px-3 py-1.5 text-xs font-semibold" 
+                   placeholder="Nama Kolom...">
+            <button type="button" onclick="removeCustomModuleStep(${idx})" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all text-xs" title="Hapus Kolom">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    `).join('');
+
+    const countEl = document.getElementById('cmPreviewStepsCount');
+    if (countEl) countEl.innerText = cmBuilderSteps.length;
+}
+
+function updateStepValue(idx, val) {
+    if (idx >= 0 && idx < cmBuilderSteps.length) {
+        cmBuilderSteps[idx] = val.trim();
+    }
+}
+
+function addCustomModuleStep() {
+    cmBuilderSteps.push(`Tahap ${cmBuilderSteps.length + 1}`);
+    renderStepInputs();
+}
+
+function removeCustomModuleStep(idx) {
+    if (cmBuilderSteps.length <= 2) {
+        ui.error("Modul minimal harus memiliki 2 kolom alur kerja!");
+        return;
+    }
+    cmBuilderSteps.splice(idx, 1);
+    renderStepInputs();
+}
+
+// 7. LIVE PREVIEW UPDATE
+function updateCustomModulePreview() {
+    const nameVal = document.getElementById('cmModName').value.trim() || "Nama Modul Anda";
+    const isNew = !document.getElementById('catNewWrapper').classList.contains('hidden');
+    let catVal = isNew 
+        ? document.getElementById('cmModCategoryNew').value.trim() 
+        : document.getElementById('cmModCategorySelect').value;
+    catVal = catVal || "KATEGORI";
+
+    document.getElementById('cmPreviewTitle').innerText = nameVal;
+    document.getElementById('cmPreviewCategory').innerText = catVal;
+    document.getElementById('cmPreviewCategory').style.color = selectedCmHexColor;
+    
+    const iconEl = document.getElementById('cmPreviewIcon');
+    iconEl.className = `fa-solid ${selectedCmIcon}`;
+
+    const iconBox = document.getElementById('cmPreviewIconBox');
+    iconBox.style.background = selectedCmHexColor;
+    iconBox.style.boxShadow = `0 0 15px ${selectedCmHexColor}80`;
+}
+// =========================================================================
+// HELPER PENYIMPANAN MODUL KUSTOM (ANTI-ERROR GETSTOREDCUSTOMMODULES)
+// =========================================================================
+function getCustomModulesStorageKey() {
+    return `omniflow_custom_mods_${currentUserId || 'GUEST'}`;
+}
+
+function getStoredCustomModules() {
+    try {
+        const raw = localStorage.getItem(getCustomModulesStorageKey());
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveStoredCustomModules(modsList) {
+    try {
+        localStorage.setItem(getCustomModulesStorageKey(), JSON.stringify(modsList));
+    } catch (e) {
+        console.error("Gagal simpan modul kustom:", e);
+    }
+}
+// 8. SIMPAN DAN TERBITKAN MODUL KUSTOM
+async function saveNewCustomModule(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('cmModName').value.trim();
+    const isNew = !document.getElementById('catNewWrapper').classList.contains('hidden');
+    let category = isNew 
+        ? document.getElementById('cmModCategoryNew').value.trim() 
+        : document.getElementById('cmModCategorySelect').value;
+
+    if (!category) {
+        ui.error("Kategori modul tidak boleh kosong!");
+        return;
+    }
+
+    if (cmBuilderSteps.length < 2 || cmBuilderSteps.some(s => !s.trim())) {
+        ui.error("Setiap kolom alur kerja harus memiliki nama!");
+        return;
+    }
+
+    const sanitizedName = name.replace(/[^A-Za-z0-9]/g, '');
+    const moduleKey = `Cust_${sanitizedName}_${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const picLabel = document.getElementById('cmPicLabel').value.trim() || "Penanggung Jawab";
+    const pdfTitle = document.getElementById('cmPdfTitle').value.trim().toUpperCase() || "LAPORAN PEKERJAAN RESMI";
+
+    // Konfigurasi Modul Kustom Lengkap
+    const newModuleConfig = {
+        key: moduleKey,
+        cat: category,
+        name: name,
+        icon: selectedCmIcon,
+        color: selectedCmHexColor, // Menyimpan HEX warna spektrum murni
+        steps: [...cmBuilderSteps],
+        pdf: { title: pdfTitle, pic: picLabel },
+        cf: { label: "Data Spesifik", ph: "Keterangan tambahan modul..." },
+        isCustom: true
+    };
+
+    // 1. Simpan ke Registry Memori
+    MODUL_REGISTRY[moduleKey] = newModuleConfig;
+
+    // 2. Simpan ke LocalStorage
+    const storedList = getStoredCustomModules();
+    storedList.unshift(newModuleConfig);
+    saveStoredCustomModules(storedList);
+
+    // 3. Render Ulang Sidebar
+    initSidebar();
+
+    // 4. Tutup Modal
+    closeCustomModuleModal();
+    ui.notify(`Modul "${name}" Berhasil Diterbitkan!`);
+
+    // 5. Pindah ke modul baru tersebut seketika
+    await switchModule(moduleKey);
+
+    // 6. Catat Audit Log
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('CREATE', name, `Menerbitkan Modul Kustom [${category}] dengan warna ${selectedCmHexColor}.`);
+    }
+
+    // 7. Sync ke Cloud Google Sheets
+    fetchAPI('SAVE_CUSTOM_MODULE', newModuleConfig, moduleKey).catch(err => {
+        console.warn("Gagal simpan modul ke cloud:", err);
+    });
+}
+// 1. HELPER STORAGE LOKAL (ANTI-HILANG SAAT REFRESH)
+
+// =========================================================================
+// HELPER PENERJEMAH TEMA DINAMIS DARI KODE HEX SPEKTRUM
+// =========================================================================
+function getModuleTheme(conf) {
+    if (!conf) return THEME['cyan'];
+    
+    // Jika menggunakan nama tema bawaan (cyan, emerald, dll)
+    if (THEME[conf.color]) return THEME[conf.color];
+
+    // Jika menggunakan kode HEX murni dari Roda Spektrum (misal: #D50760)
+    const hex = (typeof conf.color === 'string' && conf.color.startsWith('#')) ? conf.color : '#06b6d4';
+    return {
+        hex: hex,
+        bg: 'bg-white/10',
+        text: 'text-white',
+        border: 'border-white/20',
+        grad: `from-[${hex}] to-slate-900`,
+        isCustomHex: true
+    };
+}
+// 5. STEP BUILDER CONTROLLER (TAMBAH/HAPUS KOLOM KANBAN)
+
+
+
+// 6. LIVE PREVIEW UPDATE
+
+// 8. LOAD SEMUA MODUL KUSTOM SAAT APLIKASI PERTAMA KALI DIBUKA
+// =========================================================================
+// REVISI: LOAD CUSTOM MODULES DENGAN PEMBERSIH IKON OTOMATIS
+// =========================================================================
+async function loadCustomModules() {
+    // 1. Muat dari LocalStorage (0ms)
+    let localMods = getStoredCustomModules();
+    let hasCleaned = false;
+
+    localMods.forEach(m => {
+        if (m.key) {
+            // Perbaiki data ikon lama yang tidak valid
+            if (m.icon === 'fa-event' || !m.icon) {
+                m.icon = 'fa-calendar-days';
+                hasCleaned = true;
+            }
+            MODUL_REGISTRY[m.key] = m;
+        }
+    });
+
+    // Simpan kembali data yang sudah diperbaiki ke storage
+    if (hasCleaned) {
+        saveStoredCustomModules(localMods);
+    }
+
+    if (localMods.length > 0) {
+        initSidebar();
+    }
+
+    // 2. Sinkronkan dari Cloud Google Sheets (jika di mode publik)
+    if (currentUserId) {
+        try {
+            const res = await fetchAPI('GET_CUSTOM_MODULES');
+            if (res && res.success && Array.isArray(res.data)) {
+                let hasNew = false;
+                res.data.forEach(m => {
+                    if (m.key) {
+                        if (m.icon === 'fa-event' || !m.icon) m.icon = 'fa-calendar-days';
+                        if (!MODUL_REGISTRY[m.key]) {
+                            MODUL_REGISTRY[m.key] = m;
+                            hasNew = true;
+                        }
+                    }
+                });
+                if (hasNew) {
+                    saveStoredCustomModules(res.data);
+                    initSidebar();
+                }
+            }
+        } catch (e) {}
+    }
+}
+// 👉 Panggil fungsi pemuatan modul kustom saat autentikasi aktif:
+// (Di dalam checkAuth() saat user sudah login, panggil: loadCustomModules();)
 let activeNotesCategoryFilter = 'all';
 
 // 1. HELPER LOCALSTORAGE (ANTI-HILANG SAAT REFRESH)
@@ -4012,6 +5560,7 @@ async function loadQuickNotes(modKey = activeModule) {
         document.getElementById('notesFooterStatus').innerText = "Tersimpan di local browser";
     }
 }
+
 
 function updateNotesBadgeCounter(count) {
     const badge = document.getElementById('notesBadgeCount');
@@ -6226,6 +7775,7 @@ function checkAuth() {
     } else {
         document.getElementById('authModal').style.display = 'none';
         updateSidebarProfileUI();
+        loadCustomModules();
         initSidebar();
     }
 }
@@ -6309,36 +7859,50 @@ function logout() {
        
         // --- SIDEBAR RENDERER ---
       // --- SIDEBAR RENDERER (PREMIUM DESIGN) ---
-        function initSidebar() {
-            const sb = document.getElementById('sidebarMenu');
-            let html = '';
-            
-            // Group by category
-            const grouped = {};
-            for(const [key, conf] of Object.entries(MODUL_REGISTRY)) {
-                if(!grouped[conf.cat]) grouped[conf.cat] = [];
-                grouped[conf.cat].push({key, ...conf});
-            }
+       // =========================================================================
+// REVISI: SIDEBAR RENDERER DENGAN AUTO-FALLBACK ICON KUSTOM
+// =========================================================================
+function initSidebar() {
+    const sb = document.getElementById('sidebarMenu');
+    if (!sb) return;
+    let html = '';
+    
+    // Group by category
+    const grouped = {};
+    for (const [key, conf] of Object.entries(MODUL_REGISTRY)) {
+        if (!grouped[conf.cat]) grouped[conf.cat] = [];
+        grouped[conf.cat].push({ key, ...conf });
+    }
 
-            for(const [cat, mods] of Object.entries(grouped)) {
-                html += `
-                <div class="mb-6">
-                    <h3 class="nav-category text-[9px] text-slate-500 font-bold uppercase tracking-[0.25em] mb-3 px-8 flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        <span class="group-hover:text-slate-300 transition-colors">${cat}</span> 
-                        <i class="fa-solid fa-chevron-down text-[8px] opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                    </h3>
-                    <div class="space-y-1">
-                        ${mods.map(m => `
-                            <div onclick="switchModule('${m.key}')" id="nav-${m.key}" class="nav-item group">
-                                <i class="fa-solid ${m.icon} nav-icon"></i> 
-                                <span class="text-[11px] font-semibold tracking-wide">${m.name}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>`;
-            }
-            sb.innerHTML = html;
-        }
+    for (const [cat, mods] of Object.entries(grouped)) {
+        html += `
+        <div class="mb-6">
+            <h3 class="nav-category text-[9px] text-slate-500 font-bold uppercase tracking-[0.25em] mb-3 px-8 flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                <span class="group-hover:text-slate-300 transition-colors">${cat}</span> 
+                <i class="fa-solid fa-chevron-down text-[8px] opacity-50 group-hover:opacity-100 transition-opacity"></i>
+            </h3>
+            <div class="space-y-1">
+                ${mods.map(m => {
+                    // 👉 AUTO-FIX IKON: Jika ikon "fa-event" atau kosong, otomatis ganti ke fa-calendar-days
+                    let safeIcon = m.icon || 'fa-cube';
+                    if (safeIcon === 'fa-event' || !safeIcon.startsWith('fa-')) {
+                        const nameLower = (m.name + ' ' + m.cat).toLowerCase();
+                        safeIcon = (nameLower.includes('event') || nameLower.includes('acara')) 
+                            ? 'fa-calendar-days' 
+                            : 'fa-cube';
+                    }
+
+                    return `
+                    <div onclick="switchModule('${m.key}')" id="nav-${m.key}" class="nav-item group">
+                        <i class="fa-solid ${safeIcon} nav-icon"></i> 
+                        <span class="text-[11px] font-semibold tracking-wide">${m.name}</span>
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>`;
+    }
+    sb.innerHTML = html;
+}
         // --- MODULE SWITCHER & SWR CACHING ---
 // --- MODULE SWITCHER & SWR CACHING (PREMIUM DESIGN INJECTOR) ---
        // =========================================================
@@ -6369,7 +7933,7 @@ async function switchModule(modKey) {
     // 2. AMBIL WORKFLOW DAN KONFIGURASI TEMA
     MODUL_REGISTRY[modKey].steps = getActiveWorkflow(modKey);
     const conf = MODUL_REGISTRY[modKey];
-    const theme = THEME[conf.color] || THEME['cyan'];
+    const theme = getModuleTheme(conf);
 
     // 3. PERBARUI HEADER & AMBIENCE WARNA SECARA INSTAN (0ms)
     const modTitle = document.getElementById('modTitle');
@@ -6379,16 +7943,28 @@ async function switchModule(modKey) {
     if (modCategory) modCategory.innerText = conf.cat;
 
     const modDot = document.getElementById('modDot');
-    if (modDot) modDot.className = `w-1.5 h-1.5 rounded-full animate-pulse shadow-[0_0_8px_${theme.hex}] ${theme.bg}`;
+    if (modDot) {
+        modDot.className = "w-1.5 h-1.5 rounded-full animate-pulse";
+        modDot.style.background = theme.hex;
+        modDot.style.boxShadow = `0 0 8px ${theme.hex}`;
+    }
 
     const headerGlow = document.getElementById('headerGlow');
-    if (headerGlow) headerGlow.className = `absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-40 transition-colors duration-500 ${theme.bg}`;
-
-    const iconEl = document.getElementById('modIcon');
-    if (iconEl) {
-        iconEl.className = `w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-[0_4px_15px_${theme.hex}40] transition-all duration-300 border border-white/30 p-[2px] bg-gradient-to-br ${theme.grad} shrink-0`;
-        iconEl.innerHTML = `<div class="w-full h-full bg-obsidian/40 rounded-[10px] flex items-center justify-center backdrop-blur-sm"><i class="fa-solid ${conf.icon} text-white text-base drop-shadow-md"></i></div>`;
+    if (headerGlow) {
+        headerGlow.className = "absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-40 transition-colors duration-500";
+        headerGlow.style.background = theme.hex;
     }
+    const iconEl = document.getElementById('modIcon');
+   // Ganti baris iconEl.className & innerHTML menjadi:
+if (iconEl) {
+    // Pengaman: jika user terlanjur memilih "fa-event", otomatis alihkan ke "fa-calendar-days"
+    const safeIcon = (conf.icon === 'fa-event' || !conf.icon) ? 'fa-calendar-days' : conf.icon;
+    
+    iconEl.className = `w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-lg transition-all duration-300 border border-white/30 p-[2px] shrink-0`;
+    iconEl.style.background = `linear-gradient(135deg, ${theme.hex}, #0f172a)`;
+    iconEl.style.boxShadow = `0 4px 15px ${theme.hex}50`;
+    iconEl.innerHTML = `<div class="w-full h-full bg-obsidian/40 rounded-[10px] flex items-center justify-center backdrop-blur-sm"><i class="fa-solid ${safeIcon} text-white text-base drop-shadow-md"></i></div>`;
+}
 
     const btnCreate = document.getElementById('btnCreate');
     if (btnCreate) {
@@ -7008,73 +8584,119 @@ applyTaskModalTheme(activeModule);
             }
         }
    // --- LAZY LOAD PDF ENGINE (SILUMAN / TANPA POP-UP DI LAYAR) ---
-        function executePDF(taskId) {
-            const task = appCache[activeModule].find(t => t.id === taskId);
-            const conf = MODUL_REGISTRY[activeModule];
-            const theme = THEME[conf.color];
+        // =========================================================================
+// REVISI: EXECUTE PDF DENGAN DUKUNGAN WARNA HEX SPEKTRUM & MODUL KUSTOM
+// =========================================================================
+function executePDF(taskId) {
+    if (!activeModule || !appCache[activeModule]) return;
+    const task = appCache[activeModule].find(t => t.id === taskId);
+    if (!task) return;
 
-            Swal.fire({ title: 'Merender Laporan HD...', html: 'Mengaplikasikan Template Modul.', background: '#0f172a', color: '#fff', didOpen: () => Swal.showLoading() });
+    const conf = MODUL_REGISTRY[activeModule];
+    if (!conf) return;
 
-            // Suntik Data Dinamis Sesuai Modul
-            document.getElementById('pdfHeaderBg').style.background = theme.hex;
-            document.getElementById('pdfTitle').innerText = conf.pdf.title;
-            document.getElementById('pdfPicLabel').innerText = conf.pdf.pic;
-            
-            document.getElementById('pdfTaskName').innerText = task.nm;
-            document.getElementById('pdfPicVal').innerText = task.pc;
-            document.getElementById('pdfPeriod').innerText = `${task.sd} s/d ${task.ed}`;
-            document.getElementById('pdfStatus').innerText = conf.steps[conf.steps.length - 1] + " (FINAL)";
-            document.getElementById('pdfDesc').innerText = task.ds || '-';
-            // Tambahkan baris ini di executePDF:
-    const pdfCustomRow = document.getElementById('pdfCustomVal');
-    if (pdfCustomRow) pdfCustomRow.innerText = task.cf || '-';
-            
-            const linkEl = document.getElementById('pdfLink');
-            if(task.lk) { linkEl.innerText = task.lk; linkEl.href = task.lk; } 
-            else { linkEl.innerText = "Tidak ada lampiran."; linkEl.removeAttribute('href'); }
-            // --- RENDER DYNAMIC FIELDS KE TABEL PDF ---
-            // Cari tabel utama di PDF
-            const pdfTable = document.querySelector('#pdfContent table');
-            // Hapus baris dinamis sebelumnya (jika ada) dari render tugas lain
-            document.querySelectorAll('.dynamic-pdf-row').forEach(r => r.remove());
+    // 👉 AMBIL TEMA MENGGUNAKAN HELPER getModuleTheme (MENDUKUNG KODE HEX SPEKTRUM):
+    const theme = (typeof getModuleTheme === 'function') 
+        ? getModuleTheme(conf) 
+        : (THEME[conf.color] || THEME['cyan']);
+    
+    // Fallback warna aman agar tidak pernah undefined
+    const headerHex = theme.hex || (typeof conf.color === 'string' && conf.color.startsWith('#') ? conf.color : '#06b6d4');
 
-            if (task.cf && task.cf.startsWith('[')) {
-                try {
-                    const parsedFields = JSON.parse(task.cf);
-                    parsedFields.forEach(f => {
-                        let displayValue = f.value;
-                        if(f.type === 'currency') displayValue = 'Rp ' + Number(f.value).toLocaleString('id-ID');
-                        else if(f.type === 'percent') displayValue = f.value + '%';
+    Swal.fire({ 
+        title: 'Merender Laporan HD...', 
+        html: 'Mengaplikasikan Template Modul.', 
+        background: '#0f172a', 
+        color: '#fff', 
+        didOpen: () => Swal.showLoading() 
+    });
 
-                        const tr = document.createElement('tr');
-                        tr.className = 'dynamic-pdf-row';
-                        tr.innerHTML = `
-                            <td style="padding: 10px; background: #f8fafc; border: 1px solid #cbd5e1; font-weight: bold; text-transform: uppercase;">${f.label}</td>
-                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-family: monospace; color: #0f172a; font-weight: bold;">${displayValue}</td>
-                        `;
-                        pdfTable.appendChild(tr);
-                    });
-                } catch (e) { console.log(e); }
-            }
-            
-            document.getElementById('pdfTimestamp').innerText = `Generated at: ${new Date().toLocaleString('id-ID')} | OMNIFLOW OS`;
+    // 1. Suntik Data Dinamis Sesuai Modul
+    const headerBg = document.getElementById('pdfHeaderBg');
+    if (headerBg) headerBg.style.background = headerHex;
 
-            // Render PDF langsung di posisi off-screen (left: -9999px) tanpa memindahkannya ke layar
-            const element = document.getElementById('pdfContent');
-            
-            const opt = {
-                margin:       20, // Presisi 20mm margin (Atas, Bawah, Kiri, Kanan)
-                filename:     `OmniFlow_${conf.name.replace(/\s+/g,'_')}_${task.id}.pdf`,
-                image:        { type: 'jpeg', quality: 1 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+    const pdfTitle = document.getElementById('pdfTitle');
+    if (pdfTitle) pdfTitle.innerText = (conf.pdf && conf.pdf.title) ? conf.pdf.title : 'LAPORAN RESMI PEKERJAAN';
 
-            // Process Save
-            html2pdf().set(opt).from(element).save().then(() => {
-                ui.notify("Laporan Berhasil Diunduh!");
-            });
+    const pdfPicLabel = document.getElementById('pdfPicLabel');
+    if (pdfPicLabel) pdfPicLabel.innerText = (conf.pdf && conf.pdf.pic) ? conf.pdf.pic : 'PENANGGUNG JAWAB';
+    
+    const taskNameEl = document.getElementById('pdfTaskName');
+    if (taskNameEl) taskNameEl.innerText = task.nm || '-';
+
+    const picValEl = document.getElementById('pdfPicVal');
+    if (picValEl) picValEl.innerText = task.pc || '-';
+
+    const periodEl = document.getElementById('pdfPeriod');
+    if (periodEl) periodEl.innerText = `${task.sd || '-'} s/d ${task.ed || '-'}`;
+
+    const statusEl = document.getElementById('pdfStatus');
+    const finalStep = (conf.steps && conf.steps.length > 0) ? conf.steps[conf.steps.length - 1] : 'FINAL';
+    if (statusEl) statusEl.innerText = finalStep + " (FINAL)";
+
+    const descEl = document.getElementById('pdfDesc');
+    if (descEl) descEl.innerText = task.ds || '-';
+    
+    const linkEl = document.getElementById('pdfLink');
+    if (linkEl) {
+        if (task.lk) { 
+            linkEl.innerText = task.lk; 
+            linkEl.href = task.lk; 
+        } else { 
+            linkEl.innerText = "Tidak ada lampiran."; 
+            linkEl.removeAttribute('href'); 
         }
+    }
+
+    // 2. Render Dynamic Fields ke Tabel PDF
+    const pdfTable = document.querySelector('#pdfContent table');
+    document.querySelectorAll('.dynamic-pdf-row').forEach(r => r.remove());
+
+    if (pdfTable && task.cf && String(task.cf).startsWith('[')) {
+        try {
+            const parsedFields = JSON.parse(task.cf);
+            parsedFields.forEach(f => {
+                let displayValue = f.value;
+                if (f.type === 'currency') displayValue = 'Rp ' + Number(f.value).toLocaleString('id-ID');
+                else if (f.type === 'percent') displayValue = f.value + '%';
+
+                const tr = document.createElement('tr');
+                tr.className = 'dynamic-pdf-row';
+                tr.innerHTML = `
+                    <td style="padding: 10px; background: #f8fafc; border: 1px solid #cbd5e1; font-weight: bold; text-transform: uppercase;">${f.label}</td>
+                    <td style="padding: 10px; border: 1px solid #cbd5e1; font-family: monospace; color: #0f172a; font-weight: bold;">${displayValue}</td>
+                `;
+                pdfTable.appendChild(tr);
+            });
+        } catch (e) {
+            console.error("Gagal parse custom fields PDF:", e);
+        }
+    }
+    
+    const timestampEl = document.getElementById('pdfTimestamp');
+    if (timestampEl) {
+        timestampEl.innerText = `Generated at: ${new Date().toLocaleString('id-ID')} | OMNIFLOW OS`;
+    }
+
+    // 3. Render dan Unduh File PDF
+    const element = document.getElementById('pdfContent');
+    const safeModuleName = (conf.name || 'Dokumen').replace(/\s+/g, '_');
+    
+    const opt = {
+        margin:       20, // Margin presisi 20mm
+        filename:     `OmniFlow_${safeModuleName}_${task.id}.pdf`,
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        ui.notify("Laporan Berhasil Diunduh!");
+    }).catch(err => {
+        console.error("Gagal cetak PDF:", err);
+        ui.error("Gagal merender file PDF.");
+    });
+}
         // Init Aplikasi
         checkAuth();
     </script>
