@@ -1139,7 +1139,156 @@
     );
     cursor: pointer;
 }
+/* =========================================================
+   PRIORITY MATRIX & COMMAND TOWER STYLES (ULTRA LUXURY)
+   ========================================================= */
 
+/* Tombol Matrix di Header Switcher */
+.matrix-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0 !important;
+}
+.matrix-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+    transform: translateY(-1px);
+}
+.matrix-nav-btn.active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.35), rgba(225, 29, 72, 0.35));
+    color: #ffffff;
+    border-color: rgba(245, 158, 11, 0.8);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Kuadran Matriks 4-Zone */
+/* =========================================================
+   REVISI: KUADRAN TERKUNCI TINGGINYA + SCROLL VERTIKAL MULUS
+   ========================================================= */
+.matrix-quadrant {
+    border-radius: 1.5rem;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    height: 270px !important;     /* KUNCI TINGGI KOTAK AGAR TIDAK MELUBER */
+    max-height: 280px !important;
+}
+
+/* Scrollbar Vertikal di Dalam Kotak Kuadran */
+.matrix-quadrant-list {
+    flex-grow: 1;
+    overflow-y: auto !important;
+    max-height: 180px !important; /* Batas area scroll kartu modul */
+    min-height: 0 !important;
+    scroll-behavior: smooth;
+    padding-right: 4px;
+}
+.matrix-quadrant-list::-webkit-scrollbar {
+    width: 4px;
+}
+.matrix-quadrant-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+}
+.matrix-quadrant-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 158, 11, 0.5);
+}
+/* Kuadran 1: Critical (Rose Neon) */
+.quadrant-q1 {
+    background: linear-gradient(160deg, rgba(225, 29, 72, 0.12) 0%, rgba(15, 23, 42, 0.75) 60%, rgba(2, 6, 23, 0.9) 100%);
+    border: 1px solid rgba(225, 29, 72, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(225, 29, 72, 0.25);
+}
+.quadrant-q1.drag-over {
+    border-color: #f43f5e;
+    background: linear-gradient(160deg, rgba(225, 29, 72, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+    box-shadow: 0 0 30px rgba(225, 29, 72, 0.4);
+    transform: scale(1.01);
+}
+
+/* Kuadran 2: Strategic (Fuchsia / Indigo Neon) */
+.quadrant-q2 {
+    background: linear-gradient(160deg, rgba(217, 70, 239, 0.12) 0%, rgba(15, 23, 42, 0.75) 60%, rgba(2, 6, 23, 0.9) 100%);
+    border: 1px solid rgba(217, 70, 239, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.25);
+}
+.quadrant-q2.drag-over {
+    border-color: #d946ef;
+    background: linear-gradient(160deg, rgba(217, 70, 239, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.4);
+    transform: scale(1.01);
+}
+
+/* Kuadran 3: Operational (Amber Neon) */
+.quadrant-q3 {
+    background: linear-gradient(160deg, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.75) 60%, rgba(2, 6, 23, 0.9) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.25);
+}
+.quadrant-q3.drag-over {
+    border-color: #f59e0b;
+    background: linear-gradient(160deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+    transform: scale(1.01);
+}
+
+/* Kuadran 4: Watchlist (Emerald / Slate Neon) */
+.quadrant-q4 {
+    background: linear-gradient(160deg, rgba(16, 185, 129, 0.1) 0%, rgba(15, 23, 42, 0.75) 60%, rgba(2, 6, 23, 0.9) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.25);
+}
+.quadrant-q4.drag-over {
+    border-color: #10b981;
+    background: linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.9) 100%);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+    transform: scale(1.01);
+}
+
+/* Kartu Modul di dalam Matriks (Live Telemetry Card) */
+.matrix-module-card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.15rem;
+    padding: 0.9rem 1rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: grab;
+}
+.matrix-module-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+.matrix-module-card:active {
+    cursor: grabbing;
+}
+
+/* Sidebar Pinned Group Indicator */
+.sidebar-pinned-header {
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), transparent);
+    border-left: 3px solid #f59e0b;
+    padding-left: 0.75rem !important;
+}
 /* Category Filter Pill Ikon */
 .icon-cat-btn {
     padding: 0.25rem 0.6rem;
@@ -1267,6 +1416,159 @@
 .md-tool-btn:hover {
     background: rgba(255, 255, 255, 0.18);
     color: #ffffff;
+}
+/* =========================================================
+   GLOBAL MASTER TASK & EXECUTION SCHEDULER STYLES
+   ========================================================= */
+
+/* Tombol Master List di Header Switcher */
+.masterlist-nav-btn {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0 !important;
+}
+.masterlist-nav-btn:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+    transform: translateY(-1px);
+}
+.masterlist-nav-btn.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(99, 102, 241, 0.35));
+    color: #ffffff;
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Master Data Grid Table Styles */
+.master-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 1.5rem;
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+}
+.master-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.75rem;
+    text-align: left;
+}
+.master-table th {
+    background: rgba(15, 23, 42, 0.85);
+    color: #94a3b8;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+/* =========================================================
+   SCROLL VERTIKAL KALENDER (ANTI-NYUNGSEP TANGGAL 30/31)
+   ========================================================= */
+#calendarView {
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+#calendarView::-webkit-scrollbar {
+    width: 6px;
+}
+#calendarView::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 9999px;
+}
+#calendarView::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.4);
+    border-radius: 9999px;
+}
+#calendarView::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.7);
+}
+
+/* Ketinggian Kotak Tanggal Responsif */
+.calendar-day-cell {
+    min-height: 95px !important;
+    max-height: 140px;
+    overflow-y: auto;
+}
+.master-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #f1f5f9;
+    vertical-align: middle;
+}
+.master-table tr:hover td {
+    background: rgba(255, 255, 255, 0.03);
+}
+/* Filter Pill Papan Jadwal */
+.sch-filter-btn {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.sch-filter-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
+.sch-filter-btn.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(225, 29, 72, 0.3));
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+/* Card Jadwal Mandiri */
+.sch-item-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.55), rgba(15, 23, 42, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.15rem;
+    padding: 1rem 1.25rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sch-item-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+}
+/* Agenda View Buckets */
+.agenda-bucket {
+    background: linear-gradient(160deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: blur(16px);
 }
         .btn-icon-step:disabled { opacity: 0.25; cursor: not-allowed; }
         /* Optimistic UI Spinner */
@@ -1640,6 +1942,17 @@
         <i class="fa-solid fa-paintbrush text-emerald-400 text-[10px]"></i>
         <span class="hidden sm:inline">Canvas</span>
     </button>
+    <!-- 🎯 FITUR BARU: PRIORITY MATRIX VIEW BUTTON -->
+    <button type="button" onclick="setModeView('matrix')" id="btnViewMatrix" class="matrix-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Pusat Kendali Prioritas Lintas Modul">
+        <i class="fa-solid fa-crosshairs text-amber-400 text-[10px]"></i>
+        <span class="hidden sm:inline">Matrix</span>
+    </button>
+    <!-- ⚡ TOMBOL ENTRI CEPAT JADWAL TUGAS LINTAS MODUL -->
+     <!-- Ubah onclick menjadi openScheduleBoard() -->
+<button type="button" onclick="openScheduleBoard()" class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white px-3.5 py-2 rounded-xl font-black text-[9.5px] tracking-wider uppercase shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:-translate-y-0.5 transition-all flex items-center gap-1.5 border border-white/20 whitespace-nowrap shrink-0">
+    <i class="fa-solid fa-calendar-check text-amber-200 text-[10px]"></i>
+    <span class="hidden sm:inline">Jadwal</span>
+</button>
 </div>
 
             <!-- FITUR INBOX LONCENG NOTIFIKASI DEADLINE -->
@@ -2076,7 +2389,10 @@
             </button>
         </div>
     </div>
-
+<!-- ==========================================
+             GLOBAL MASTER TASK & EXECUTION SCHEDULER VIEW
+             ========================================== -->
+    
 
     <!-- =========================================================
          2. DRAWER KHUSUS: QUICK NOTES HUB (#notesDrawer)
@@ -2394,12 +2710,139 @@
 
     </div>
     <!-- ==========================================
+             PRIORITY MATRIX & COMMAND TOWER CANVAS VIEW
+             ========================================== -->
+        <div id="matrixView" class="hidden flex-col h-full relative z-10 glass-panel rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-6 md:p-7 border border-white/10 shadow-2xl overflow-y-auto custom-scrollbar">
+            
+            <!-- 1. HEADS-UP DISPLAY (HUD) EXECUTIVE RADAR -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-5 pb-4 border-b border-white/10 relative z-10 shrink-0">
+                <div>
+                    <h3 class="font-heading text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-rose-200 tracking-wide flex items-center gap-2.5">
+                        <i class="fa-solid fa-crosshairs text-amber-400"></i> Priority Matrix Command Tower
+                    </h3>
+                    <p class="text-[10px] sm:text-xs text-slate-400 mt-0.5 font-medium">
+                        Kendali fokus strategis lintas modul dengan telemetri progres dan mitigasi tenggat waktu
+                    </p>
+                </div>
+
+                <!-- Live Metrics Ticker Bar -->
+                <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
+                    <div class="bg-rose-500/10 border border-rose-500/25 px-3 py-1.5 rounded-xl flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                        <div class="text-[9px] font-bold text-slate-300">Tugas Terlambat: <span id="mtxUrgentTasksCount" class="font-mono text-rose-300 font-black">0</span></div>
+                    </div>
+                    <div class="bg-amber-500/10 border border-amber-500/25 px-3 py-1.5 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-coins text-amber-400 text-xs"></i>
+                        <div class="text-[9px] font-bold text-slate-300">Nilai Berisiko: <span id="mtxCapitalAtRisk" class="font-mono text-amber-300 font-black">Rp 0</span></div>
+                    </div>
+                    <div class="bg-cyan-500/10 border border-cyan-500/25 px-3 py-1.5 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-cyan-400 text-xs"></i>
+                        <div class="text-[9px] font-bold text-slate-300">Modul Prioritas: <span id="mtxTotalPriorityCount" class="font-mono text-cyan-300 font-black">0 Modul</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. DUAL-ZONE SPLIT VIEW CANVAS (REPOSITORY POOL vs 4-QUADRANTS) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-grow min-h-0 relative z-10">
+                
+                <!-- ZONE A (30%): ACTIVE MODULES REPOSITORY (KATALOG MODUL SIAP TARIK) -->
+                <div class="lg:col-span-4 flex flex-col bg-slate-950/45 p-4 rounded-2xl border border-white/10 shadow-inner max-h-[680px]">
+                    <div class="flex items-center justify-between mb-3 shrink-0">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-boxes-stacked text-amber-400 text-xs"></i>
+                            <h4 class="text-xs font-black text-white uppercase tracking-wider">Katalog Modul Aktif</h4>
+                        </div>
+                        <span id="mtxPoolCountBadge" class="text-[9px] font-mono font-bold bg-white/10 px-2 py-0.5 rounded-md text-slate-300">0</span>
+                    </div>
+
+                    <!-- Search & Filter Katalog -->
+                    <div class="space-y-2 mb-3 shrink-0">
+                        <div class="relative">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 pointer-events-none"></i>
+                            <input type="text" id="mtxPoolSearchInput" oninput="filterMatrixPoolDisplay()" placeholder="Cari modul..." class="glass-input w-full pl-8 pr-3 py-1.5 text-xs bg-black/40 rounded-xl">
+                        </div>
+                    </div>
+
+                    <!-- Pool List Container (Draggable Cards) -->
+                    <div id="mtxModulesPoolContainer" class="flex-grow overflow-y-auto custom-scrollbar space-y-2.5 pr-1">
+                        <!-- Kartu modul siap tarik dirender via JS -->
+                    </div>
+                </div>
+
+                <!-- ZONE B (70%): THE 4-QUADRANT PRIORITY MATRIX (EISENHOWER GRID) -->
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <!-- KUADRAN 1: CRITICAL & IMMEDIATE (Q1 - ROSE) -->
+               <!-- KUADRAN 1: CRITICAL (Q1) -->
+                    <div id="quadrant-Q1" class="matrix-quadrant quadrant-q1 p-3.5 sm:p-4" 
+                         ondragover="handleMatrixDragOver(event)" ondragleave="handleMatrixDragLeave(event)" ondrop="handleMatrixDrop(event, 'Q1')">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-rose-500/25 shrink-0">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e] animate-pulse"></span>
+                                <h4 class="text-xs font-black text-rose-300 uppercase tracking-wider">Q1: Critical (P1)</h4>
+                            </div>
+                            <span id="mtxCount-Q1" class="text-[9px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-md border border-rose-500/30">0</span>
+                        </div>
+                        <p class="text-[9px] text-rose-200/60 mb-2 font-medium shrink-0">Tenggat darurat hari ini & blocker kritis operasional</p>
+                        <!-- 👉 Class matrix-quadrant-list mengaktifkan scroll vertikal di dalam kotak -->
+                        <div id="mtxList-Q1" class="matrix-quadrant-list custom-scrollbar space-y-2"></div>
+                    </div>
+
+                    <!-- KUADRAN 2: STRATEGIC (Q2) -->
+                    <div id="quadrant-Q2" class="matrix-quadrant quadrant-q2 p-3.5 sm:p-4" 
+                         ondragover="handleMatrixDragOver(event)" ondragleave="handleMatrixDragLeave(event)" ondrop="handleMatrixDrop(event, 'Q2')">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-fuchsia-500/25 shrink-0">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-500 shadow-[0_0_8px_#d946ef]"></span>
+                                <h4 class="text-xs font-black text-fuchsia-300 uppercase tracking-wider">Q2: Strategic (P2)</h4>
+                            </div>
+                            <span id="mtxCount-Q2" class="text-[9px] font-mono font-black bg-fuchsia-500/20 text-fuchsia-300 px-2 py-0.5 rounded-md border border-fuchsia-500/30">0</span>
+                        </div>
+                        <p class="text-[9px] text-fuchsia-200/60 mb-2 font-medium shrink-0">Inisiatif strategis, rencana jangka panjang & target nilai</p>
+                        <div id="mtxList-Q2" class="matrix-quadrant-list custom-scrollbar space-y-2"></div>
+                    </div>
+
+                    <!-- KUADRAN 3: OPERATIONAL (Q3) -->
+                    <div id="quadrant-Q3" class="matrix-quadrant quadrant-q3 p-3.5 sm:p-4" 
+                         ondragover="handleMatrixDragOver(event)" ondragleave="handleMatrixDragLeave(event)" ondrop="handleMatrixDrop(event, 'Q3')">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-amber-500/25 shrink-0">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></span>
+                                <h4 class="text-xs font-black text-amber-300 uppercase tracking-wider">Q3: Operational (P3)</h4>
+                            </div>
+                            <span id="mtxCount-Q3" class="text-[9px] font-mono font-black bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-md border border-amber-500/30">0</span>
+                        </div>
+                        <p class="text-[9px] text-amber-200/60 mb-2 font-medium shrink-0">Pekerjaan rutin harian, follow-up klien & administrasi</p>
+                        <div id="mtxList-Q3" class="matrix-quadrant-list custom-scrollbar space-y-2"></div>
+                    </div>
+
+                    <!-- KUADRAN 4: WATCHLIST (Q4) -->
+                    <div id="quadrant-Q4" class="matrix-quadrant quadrant-q4 p-3.5 sm:p-4" 
+                         ondragover="handleMatrixDragOver(event)" ondragleave="handleMatrixDragLeave(event)" ondrop="handleMatrixDrop(event, 'Q4')">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-emerald-500/25 shrink-0">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                <h4 class="text-xs font-black text-emerald-300 uppercase tracking-wider">Q4: Watchlist (P4)</h4>
+                            </div>
+                            <span id="mtxCount-Q4" class="text-[9px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-500/30">0</span>
+                        </div>
+                        <p class="text-[9px] text-emerald-200/60 mb-2 font-medium shrink-0">Ide cadangan, pemantauan berkala & tugas tanpa batas waktu</p>
+                        <div id="mtxList-Q4" class="matrix-quadrant-list custom-scrollbar space-y-2"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    <!-- ==========================================
          MODAL STUDIO: CUSTOM MODULE BUILDER (ULTRA LUXURY)
          ========================================== -->
     <!-- ==========================================
          MODAL STUDIO: CUSTOM MODULE BUILDER (SPECTRUM COLOR & 1000+ ICONS)
          ========================================== -->
-    <div id="customModuleModal" class="fixed inset-0 z-[160] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
+   <!-- Ganti z-[160] menjadi z-[180] agar berada di atas popup Jadwalkan (z-[165]) -->
+<div id="customModuleModal" class="fixed inset-0 z-[180] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
         <div class="glass-panel w-full max-w-2xl max-h-[92vh] p-5 sm:p-7 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col" id="customModuleModalPanel">
             
             <!-- Atmospheric Neon Glow Orbs -->
@@ -2584,6 +3027,170 @@
                 <button type="button" onclick="closeCustomModuleModal()" class="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-bold transition-all">Batal</button>
                 <button type="button" onclick="document.getElementById('formCustomModule').requestSubmit()" id="btnSubmitCustomMod" class="bg-gradient-to-r from-omni-cyan via-omni-indigo to-omni-fuchsia text-white px-7 py-2.5 rounded-xl font-black tracking-widest text-xs uppercase shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_35px_rgba(6,182,212,0.7)] hover:-translate-y-0.5 transition-all border border-white/20 flex items-center gap-2">
                     <i class="fa-solid fa-sparkles text-xs"></i> <span>Terbitkan & Buka Modul</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+        <!-- ==========================================
+             PAPAN JADWAL GLOBAL (TERPISAH DARI KANBAN)
+             ========================================== -->
+        <div id="masterListView" class="hidden flex-col h-full relative z-10 glass-panel rounded-[2rem] p-4 sm:p-6 md:p-7 border border-white/10 shadow-2xl overflow-hidden">
+            
+            <!-- 1. Header Papan Jadwal -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3.5 border-b border-white/10 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-white text-base shadow-lg shrink-0">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-rose-200">
+                            Papan Jadwal & Agenda Global
+                        </h3>
+                        <p class="text-[10px] text-slate-400 font-medium">Seluruh rencana eksekusi tugas lintas modul diurutkan kronologis berdasarkan waktu</p>
+                    </div>
+                </div>
+
+                <!-- Tombol Buat Jadwal Baru -->
+                <button type="button" onclick="openMasterTaskModal()" class="bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white px-4 py-2 rounded-xl font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center gap-1.5 shrink-0">
+                    <i class="fa-solid fa-plus text-xs"></i> <span>Buat Jadwal Baru</span>
+                </button>
+            </div>
+
+            <!-- 2. Search Bar & Filter Waktu -->
+            <div class="flex flex-col sm:flex-row gap-2.5 mb-4 shrink-0">
+                <div class="relative flex-grow">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-500"></i>
+                    <input type="text" id="schSearchInput" oninput="renderScheduleBoard()" placeholder="Cari nama agenda, PIC, modul, atau catatan..." class="glass-input w-full pl-9 pr-4 py-2 text-xs bg-black/40 rounded-xl">
+                </div>
+                
+                <div class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap custom-scrollbar pb-1 sm:pb-0">
+                    <button type="button" onclick="setScheduleTimeFilter('all')" data-sfilter="all" class="sch-filter-btn active">Semua (<span id="sCount-all">0</span>)</button>
+                    <button type="button" onclick="setScheduleTimeFilter('today')" data-sfilter="today" class="sch-filter-btn">Hari Ini (<span id="sCount-today">0</span>)</button>
+                    <button type="button" onclick="setScheduleTimeFilter('upcoming')" data-sfilter="upcoming" class="sch-filter-btn">Mendatang (<span id="sCount-upcoming">0</span>)</button>
+                    <button type="button" onclick="setScheduleTimeFilter('overdue')" data-sfilter="overdue" class="sch-filter-btn text-rose-400">Terlambat (<span id="sCount-overdue">0</span>)</button>
+                </div>
+            </div>
+
+            <!-- 3. Daftar Card Jadwal (Scroll Vertikal Mulus) -->
+            <div id="schBoardList" class="flex-grow overflow-y-auto custom-scrollbar space-y-2.5 pr-1 min-h-[220px]">
+                <!-- Kartu jadwal di-render via JS -->
+            </div>
+
+            <!-- 4. Footer Status -->
+            <div class="pt-3 border-t border-white/10 flex justify-between items-center text-[10px] text-slate-400 font-mono shrink-0 mt-3">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-amber-400"></i> Diurutkan dari waktu eksekusi terdekat</span>
+                <span id="schStatusText">Tersinkron Database</span>
+            </div>
+
+        </div>
+        <!-- ==========================================
+         MODAL FORM: MASTER TASK DISPATCHER (INLINE RESOLVER)
+         ========================================== -->
+    <div id="masterTaskModal" class="fixed inset-0 z-[165] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-2xl hidden transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-2xl max-h-[92vh] p-5 sm:p-7 rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.85)] flex flex-col">
+            
+            <!-- Orbs Ambient -->
+            <div class="absolute -top-32 -left-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-30 bg-sky-500"></div>
+            <div class="absolute -bottom-32 -right-32 w-72 h-72 rounded-full blur-[90px] pointer-events-none opacity-20 bg-amber-500"></div>
+
+            <!-- Header Modal -->
+            <div class="flex justify-between items-center mb-4 pb-3.5 border-b border-white/10 relative z-20 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-base shadow-md shrink-0">
+                        <i class="fa-solid fa-calendar-plus"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-100 to-slate-200">
+                            Penjadwalan Tugas Lintas Modul
+                        </h3>
+                        <p class="text-[10px] text-slate-400 font-medium">Petakan tugas langsung ke modul terkait atau buat modul baru seketika</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeMasterTaskModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Form Body -->
+            <form id="formMasterTask" onsubmit="saveMasterTask(event)" class="space-y-4 overflow-y-auto pr-1.5 flex-grow custom-scrollbar relative z-10 pb-6">
+                
+                <!-- Judul & Prioritas -->
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <div class="sm:col-span-3">
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-sky-400 mb-1.5">Judul Tugas / Aktivitas</label>
+                        <input type="text" id="mtfTitle" required class="glass-input w-full px-3.5 py-2.5 text-xs font-bold" placeholder="Contoh: Audit Pembayaran Vendor Q3">
+                    </div>
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-sky-400 mb-1.5">Prioritas (1-10)</label>
+                        <input type="number" id="mtfPrio" required min="1" max="10" value="5" class="glass-input w-full px-3.5 py-2.5 text-xs text-center font-bold font-mono">
+                    </div>
+                </div>
+
+                <!-- 🚀 INLINE SMART MODULE RESOLVER -->
+                <div class="bg-black/30 p-3.5 rounded-2xl border border-white/10 space-y-2">
+                    <label class="block text-[9.5px] font-black uppercase tracking-wider text-amber-400">Pilih Modul Tempat Tugas Bernaung</label>
+                    <div class="relative">
+                        <input type="text" id="mtfModuleSearch" oninput="handleModulePickerSearch(this.value)" class="glass-input w-full px-3.5 py-2 text-xs font-bold text-white bg-slate-900/90" placeholder="Ketik nama modul (Cth: Vendor Invoice, SEO, Katering)..." autocomplete="off" required>
+                        <input type="hidden" id="mtfSelectedModKey" value="">
+                        
+                        <!-- Dropdown Sugesti Modul & Tombol Buat Modul Kustom Cepat -->
+                        <div id="mtfModuleDropdown" class="hidden absolute top-full left-0 right-0 mt-1 max-h-48 overflow-y-auto custom-scrollbar bg-slate-900 border border-white/15 rounded-xl shadow-2xl z-50 p-1 space-y-1">
+                            <!-- Opsi modul di-render via JS -->
+                        </div>
+                    </div>
+                    <div id="mtfModuleSelectedBadge" class="hidden flex items-center justify-between bg-white/5 p-2 rounded-xl border border-white/10 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full" id="mtfBadgeDot"></span>
+                            <span id="mtfBadgeText" class="font-bold text-white">Nama Modul</span>
+                        </div>
+                        <span id="mtfBadgeCat" class="text-[9px] uppercase tracking-wider text-slate-400">Kategori</span>
+                    </div>
+                </div>
+
+                <!-- Waktu Eksekusi: Start DateTime & End DateTime -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-black/20 p-3.5 rounded-2xl border border-white/5">
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1 flex items-center gap-1.5">
+                            <i class="fa-regular fa-calendar-plus text-sky-400"></i> Waktu Mulai Eksekusi
+                        </label>
+                        <input type="datetime-local" id="mtfStartDateTime" required class="glass-input w-full px-3 py-2 text-xs font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1 flex items-center gap-1.5">
+                            <i class="fa-regular fa-calendar-check text-rose-400"></i> Waktu Selesai (Target Deadline)
+                        </label>
+                        <input type="datetime-local" id="mtfEndDateTime" required class="glass-input w-full px-3 py-2 text-xs font-mono">
+                    </div>
+                </div>
+
+                <!-- PIC & Link -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1.5">Pihak Pelaksana (PIC)</label>
+                        <input type="text" id="mtfPic" required class="glass-input w-full px-3.5 py-2 text-xs font-bold" placeholder="Nama PIC / Eksekutor">
+                    </div>
+                    <div>
+                        <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1.5">Tautan Dokumen / Referensi</label>
+                        <input type="url" id="mtfLink" class="glass-input w-full px-3.5 py-2 text-xs font-mono" placeholder="https://...">
+                    </div>
+                </div>
+
+                <!-- Deskripsi Sasaran -->
+                <div>
+                    <label class="block text-[9.5px] font-black uppercase tracking-wider text-slate-300 mb-1.5">Deskripsi Detail & Sasaran Output</label>
+                    <textarea id="mtfDesc" rows="3" class="glass-input w-full px-3.5 py-2 text-xs leading-relaxed" placeholder="Instruksi pengerjaan, deliverables, atau kriteria tugas selesai..."></textarea>
+                </div>
+
+                <!-- Spacer -->
+                <div class="h-6"></div>
+            </form>
+
+            <!-- Sticky Footer Action -->
+            <div class="pt-3 border-t border-white/10 flex justify-end gap-3 relative z-20 shrink-0 bg-slate-950/95 -mx-5 -mb-5 sm:-mx-7 sm:-mb-7 p-4 sm:px-7 rounded-b-[2rem] sm:rounded-b-[2.5rem]">
+                <button type="button" onclick="closeMasterTaskModal()" class="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-bold transition-all">Batal</button>
+                <button type="button" onclick="document.getElementById('formMasterTask').requestSubmit()" class="bg-gradient-to-r from-sky-500 via-indigo-600 to-fuchsia-600 text-white px-7 py-2.5 rounded-xl font-black tracking-widest text-xs uppercase shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:shadow-[0_0_30px_rgba(56,189,248,0.7)] hover:-translate-y-0.5 transition-all border border-white/20 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> <span>Jadwalkan Tugas</span>
                 </button>
             </div>
 
@@ -4249,6 +4856,922 @@
         // =========================================================================
 // WHITEBOARD & BRAINSTORMING CANVAS ENGINE (RETINA 60FPS & HYBRID SYNC)
 // =========================================================================
+// PRIORITY MATRIX ENGINE (DRAG & DROP, TELEMETRY & AUTO PIN SIDEBAR)
+// =========================================================================
+// =========================================================================
+// REVISI TOTAL: PRIORITY MATRIX & SIDEBAR PERSISTENCE (ANTI-HILANG REFRESH)
+// =========================================================================
+
+// 1. HELPER STORAGE LOKAL
+function getMatrixStorageKey() {
+    const uid = currentUserId || localStorage.getItem('omniflow_pin') || 'GUEST';
+    return `omniflow_matrix_${uid}`;
+}
+
+function getStoredMatrix() {
+    try {
+        const raw = localStorage.getItem(getMatrixStorageKey());
+        if (!raw) return { Q1: [], Q2: [], Q3: [], Q4: [] };
+        const parsed = JSON.parse(raw);
+        return {
+            Q1: Array.isArray(parsed.Q1) ? parsed.Q1 : [],
+            Q2: Array.isArray(parsed.Q2) ? parsed.Q2 : [],
+            Q3: Array.isArray(parsed.Q3) ? parsed.Q3 : [],
+            Q4: Array.isArray(parsed.Q4) ? parsed.Q4 : []
+        };
+    } catch (e) {
+        return { Q1: [], Q2: [], Q3: [], Q4: [] };
+    }
+}
+
+function saveStoredMatrix(matrixObj) {
+    try {
+        localStorage.setItem(getMatrixStorageKey(), JSON.stringify(matrixObj));
+    } catch (e) {
+        console.error("Gagal simpan matrix lokal:", e);
+    }
+}
+// =========================================================================
+// GLOBAL MASTER TASK & EXECUTION SCHEDULER ENGINE (0ms HYBRID SYNC)
+// =========================================================================
+// =========================================================================
+// PAPAN JADWAL GLOBAL ENGINE (BERSIH, INSTAN & ANTI-MACET)
+// =========================================================================
+let currentScheduleFilter = 'all';
+let isCreatedFromMasterTask = false;
+
+function getScheduleStorageKey() {
+    return `omniflow_global_schedules_${currentUserId || 'GUEST'}`;
+}
+
+function getStoredSchedules() {
+    try {
+        const raw = localStorage.getItem(getScheduleStorageKey());
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveStoredSchedules(list) {
+    try {
+        localStorage.setItem(getScheduleStorageKey(), JSON.stringify(list));
+    } catch (e) {}
+}
+
+let globalScheduleList = getStoredSchedules();
+
+// 1. HUBUNGKAN TOMBOL HEADER "JADWAL" LANGSUNG KE PAPAN JADWAL
+// =========================================================================
+// 🔍 DIAGNOSTIC DETEKTOR ERROR: TOMBOL JADWAL
+// =========================================================================
+// =========================================================================
+// REVISI BERSIH: BUKA PAPAN JADWAL (LANGSUNG TAMPIL & ANTI-BLANK)
+// =========================================================================
+function openScheduleBoard() {
+    currentModeView = 'masterlist';
+
+    // 1. Sembunyikan semua tampilan lain secara mutlak
+    const viewsToHide = ['kanbanBoard', 'calendarView', 'ganttView', 'analyticsView', 'matrixView'];
+    viewsToHide.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.classList.add('hidden');
+            el.classList.remove('flex');
+            el.style.setProperty('display', 'none', 'important');
+        }
+    });
+
+    // 2. Buka paksa kontainer Papan Jadwal (#masterListView) ke layar
+    const mstView = document.getElementById('masterListView');
+    if (mstView) {
+        mstView.classList.remove('hidden');
+        mstView.classList.add('flex');
+        mstView.style.setProperty('display', 'flex', 'important');
+    }
+
+    // 3. Reset status tombol navigasi di header
+    document.querySelectorAll('.view-btn, .matrix-nav-btn, .masterlist-nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const btnJadwal = document.getElementById('btnViewMasterlist');
+    if (btnJadwal) btnJadwal.classList.add('active');
+
+    // 4. Render seluruh daftar kartu jadwal secara mulus
+    if (typeof renderScheduleBoard === 'function') {
+        try {
+            renderScheduleBoard();
+        } catch (err) {
+            console.warn("Gagal merender kartu jadwal:", err);
+        }
+    }
+}
+// FUNGSI RENDER DENGAN PELINDUNG (ANTI-CRASH NULL CHECK)
+function renderScheduleBoard() {
+    const container = document.getElementById('schBoardList');
+    if (!container) return;
+
+    const searchInput = document.getElementById('schSearchInput');
+    const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+
+    // Ambil data yang valid (bersihkan item null)
+    let rawList = (typeof getStoredSchedules === 'function') ? getStoredSchedules() : [];
+    globalScheduleList = (rawList || []).filter(item => item && typeof item === 'object');
+
+    const counts = { all: globalScheduleList.length, today: 0, upcoming: 0, overdue: 0 };
+
+    globalScheduleList.forEach(item => {
+        const itemDate = (item.endDateTime || item.startDateTime || '').split('T')[0];
+        if (!item.isCompleted && itemDate && itemDate < todayStr) counts.overdue++;
+        else if (itemDate === todayStr) counts.today++;
+        else if (itemDate > todayStr) counts.upcoming++;
+    });
+
+    const setC = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+    setC('sCount-all', counts.all);
+    setC('sCount-today', counts.today);
+    setC('sCount-upcoming', counts.upcoming);
+    setC('sCount-overdue', counts.overdue);
+
+    let filtered = globalScheduleList.filter(item => {
+        const itemDate = (item.endDateTime || item.startDateTime || '').split('T')[0];
+        
+        let matchTime = true;
+        if (currentScheduleFilter === 'today') matchTime = (itemDate === todayStr);
+        else if (currentScheduleFilter === 'upcoming') matchTime = (itemDate > todayStr);
+        else if (currentScheduleFilter === 'overdue') matchTime = (!item.isCompleted && itemDate && itemDate < todayStr);
+
+        const matchQuery = !query ||
+                           (item.title && item.title.toLowerCase().includes(query)) ||
+                           (item.modName && item.modName.toLowerCase().includes(query)) ||
+                           (item.pic && item.pic.toLowerCase().includes(query)) ||
+                           (item.desc && item.desc.toLowerCase().includes(query));
+
+        return matchTime && matchQuery;
+    });
+
+    filtered.sort((a, b) => {
+        const timeA = a.startDateTime || a.endDateTime || '';
+        const timeB = b.startDateTime || b.endDateTime || '';
+        return timeA.localeCompare(timeB);
+    });
+
+    if (filtered.length === 0) {
+        container.innerHTML = `
+        <div class="py-16 text-center border border-dashed border-white/10 rounded-2xl bg-black/20 my-auto">
+            <i class="fa-solid fa-calendar-xmark text-3xl text-slate-500 mb-2"></i>
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest">Tidak Ada Jadwal</h4>
+            <p class="text-[11px] text-slate-500">Klik tombol <b>+ Buat Jadwal Baru</b> untuk memasukkan agenda.</p>
+        </div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map(item => {
+        const sTime = item.startDateTime ? item.startDateTime.replace('T', ' ') : '-';
+        const eTime = item.endDateTime ? item.endDateTime.replace('T', ' ') : '-';
+        const isDone = !!item.isCompleted;
+
+        return `
+        <div class="sch-item-card ${isDone ? 'opacity-50' : ''}">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-[9px] font-bold px-2 py-0.5 rounded-lg border border-white/10 flex items-center gap-1.5" style="background: ${item.modColor || '#06b6d4'}20; color: #fff;">
+                        <i class="fa-solid ${item.modIcon || 'fa-calendar-days'}" style="color: ${item.modColor || '#06b6d4'};"></i> ${item.modName || 'Modul'}
+                    </span>
+                    <span class="text-[9px] font-mono font-bold bg-white/10 text-slate-300 px-2 py-0.5 rounded-md">P-${item.prio || '5'}</span>
+                </div>
+
+                <div class="flex items-center gap-1.5 self-end sm:self-auto">
+                    <button type="button" onclick="toggleCompleteSchedule('${item.id}')" class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase transition-all flex items-center gap-1 border ${isDone ? 'bg-emerald-500 text-slate-950 border-emerald-400' : 'bg-white/5 hover:bg-emerald-500/20 text-emerald-400 border-white/10'}" title="Tandai Selesai">
+                        <i class="fa-solid fa-check"></i> <span>${isDone ? 'Selesai' : 'Tandai Selesai'}</span>
+                    </button>
+                    <button type="button" onclick="deleteScheduleItem('${item.id}')" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all text-xs" title="Hapus Jadwal">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h4 class="font-extrabold text-sm text-white mb-1.5 ${isDone ? 'line-through text-slate-400' : ''}">${item.title || 'Tanpa Judul'}</h4>
+            ${item.desc ? `<p class="text-[11px] text-slate-400 mb-2 line-clamp-2">${item.desc}</p>` : ''}
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/5 text-[9px] font-mono text-slate-300">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-300"><i class="fa-regular fa-clock text-slate-500 mr-1"></i> Mulai: ${sTime}</span>
+                    <span class="text-rose-300"><i class="fa-solid fa-flag-checkered text-slate-500 mr-1"></i> Selesai: ${eTime}</span>
+                </div>
+                <span><i class="fa-solid fa-user-astronaut text-slate-500 mr-1"></i> PIC: <b>${item.pic || 'Team'}</b></span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// 2. SET MODE VIEW (MEMBUKA PAPAN JADWAL TANPA MEMANGGIL KODE CRASH LAMA)
+const existingSetModeViewHook = window.setModeView;
+window.setModeView = function(mode) {
+    currentModeView = mode;
+
+    if (mode === 'masterlist') {
+        openScheduleBoard();
+        return;
+    }
+
+    // Sembunyikan masterListView jika pindah ke mode lain
+    const mstView = document.getElementById('masterListView');
+    if (mstView) {
+        mstView.classList.add('hidden');
+        mstView.style.display = 'none';
+    }
+
+    // Atur view lainnya secara normal
+    const kbBoard = document.getElementById('kanbanBoard');
+    const calView = document.getElementById('calendarView');
+    const gntView = document.getElementById('ganttView');
+    const anlView = document.getElementById('analyticsView');
+    const mtxView = document.getElementById('matrixView');
+
+    if (kbBoard) { kbBoard.classList.toggle('hidden', mode !== 'kanban'); kbBoard.style.display = mode === 'kanban' ? '' : 'none'; }
+    if (calView) { calView.classList.toggle('hidden', mode !== 'calendar'); calView.style.display = mode === 'calendar' ? 'flex' : 'none'; }
+    if (gntView) { gntView.classList.toggle('hidden', mode !== 'gantt'); gntView.style.display = mode === 'gantt' ? 'flex' : 'none'; }
+    if (anlView) { anlView.classList.toggle('hidden', mode !== 'analytics'); anlView.style.display = mode === 'analytics' ? 'flex' : 'none'; }
+    if (mtxView) { mtxView.classList.toggle('hidden', mode !== 'matrix'); mtxView.style.display = mode === 'matrix' ? 'flex' : 'none'; }
+
+    if (mode === 'matrix') {
+        if (typeof renderPriorityMatrixDashboard === 'function') renderPriorityMatrixDashboard();
+    } else if (typeof renderActiveView === 'function') {
+        renderActiveView();
+    }
+};
+// 3. KONTROL MODAL DISPATCHER JADWAL
+function openMasterTaskModal() {
+    document.getElementById('formMasterTask').reset();
+    document.getElementById('mtfSelectedModKey').value = activeModule || '';
+    
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const toInputFormat = (d) => {
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+
+    document.getElementById('mtfStartDateTime').value = toInputFormat(now);
+    document.getElementById('mtfEndDateTime').value = toInputFormat(tomorrow);
+    document.getElementById('mtfPic').value = currentUserId || 'Team';
+
+    if (activeModule && MODUL_REGISTRY[activeModule]) {
+        selectModuleForMasterTask(activeModule);
+    } else {
+        document.getElementById('mtfModuleSelectedBadge').classList.add('hidden');
+        document.getElementById('mtfModuleSearch').value = '';
+    }
+
+    document.getElementById('masterTaskModal').classList.remove('hidden');
+}
+
+function closeMasterTaskModal() {
+    document.getElementById('masterTaskModal').classList.add('hidden');
+    const dropdown = document.getElementById('mtfModuleDropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+}
+
+// 4. POPUP BERTINGKAT: BUKA "BUAT MODUL SENDIRI" DARI JADWALKAN
+function triggerCustomModuleFromMaster(typedModuleName) {
+    const dropdown = document.getElementById('mtfModuleDropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+
+    isCreatedFromMasterTask = true;
+    openCustomModuleModal();
+
+    if (typedModuleName) {
+        const nameInput = document.getElementById('cmModName');
+        if (nameInput) {
+            nameInput.value = typedModuleName;
+            updateCustomModulePreview();
+        }
+    }
+}
+
+function handleModulePickerSearch(query) {
+    const q = query.toLowerCase().trim();
+    const dropdown = document.getElementById('mtfModuleDropdown');
+    if (!dropdown) return;
+
+    dropdown.classList.remove('hidden');
+
+    const allKeys = Object.keys(MODUL_REGISTRY);
+    const matches = allKeys.filter(k => {
+        const m = MODUL_REGISTRY[k];
+        return m.name.toLowerCase().includes(q) || m.cat.toLowerCase().includes(q);
+    });
+
+    let html = '';
+
+    if (q && !matches.some(k => MODUL_REGISTRY[k].name.toLowerCase() === q)) {
+        html += `
+        <div onclick="triggerCustomModuleFromMaster('${query.replace(/'/g, "\\'")}')" 
+             class="p-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-fuchsia-500/20 border border-cyan-500/40 hover:border-cyan-400 cursor-pointer flex items-center justify-between text-xs text-white group transition-all shadow-md">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-cyan-400 group-hover:rotate-12 transition-transform"></i>
+                <span>Modul belum ada. <b>[+ Buat Modul "${query}"]</b></span>
+            </span>
+            <span class="text-[9px] bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black px-2.5 py-1 rounded-md shadow-sm">Buat Baru</span>
+        </div>`;
+    }
+
+    html += matches.map(k => {
+        const m = MODUL_REGISTRY[k];
+        const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(m) : (THEME[m.color] || THEME['cyan']);
+        return `
+        <div onclick="selectModuleForMasterTask('${k}')" class="p-2 rounded-lg hover:bg-white/10 cursor-pointer flex items-center justify-between text-xs text-white transition-colors">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid ${m.icon || 'fa-cube'}" style="color: ${theme.hex};"></i>
+                <span class="font-bold">${m.name}</span>
+            </span>
+            <span class="text-[8px] uppercase tracking-wider text-slate-400 font-mono">${m.cat}</span>
+        </div>`;
+    }).join('');
+
+    dropdown.innerHTML = html || '<div class="p-3 text-center text-slate-500 text-xs">Ketik nama modul untuk mencari atau membuatnya.</div>';
+}
+
+function selectModuleForMasterTask(modKey) {
+    const m = MODUL_REGISTRY[modKey];
+    if (!m) return;
+
+    const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(m) : (THEME[m.color] || THEME['cyan']);
+
+    document.getElementById('mtfSelectedModKey').value = modKey;
+    document.getElementById('mtfModuleSearch').value = m.name;
+    document.getElementById('mtfModuleDropdown').classList.add('hidden');
+
+    const badge = document.getElementById('mtfModuleSelectedBadge');
+    badge.classList.remove('hidden');
+    document.getElementById('mtfBadgeDot').style.background = theme.hex;
+    document.getElementById('mtfBadgeText').innerText = m.name;
+    document.getElementById('mtfBadgeCat').innerText = m.cat;
+}
+
+// 5. SIMPAN JADWAL (HANYA MASUK KE PAPAN JADWAL, TIDAK MENYENTUH KANBAN)
+async function saveMasterTask(e) {
+    e.preventDefault();
+
+    const targetModKey = document.getElementById('mtfSelectedModKey').value;
+    if (!targetModKey || !MODUL_REGISTRY[targetModKey]) {
+        ui.error("Silakan pilih modul induk dari daftar!");
+        return;
+    }
+
+    const conf = MODUL_REGISTRY[targetModKey];
+    const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(conf) : (THEME[conf.color] || THEME['cyan']);
+    
+    const startDateTime = document.getElementById('mtfStartDateTime').value;
+    const endDateTime = document.getElementById('mtfEndDateTime').value;
+
+    const scheduleItem = {
+        id: 'SCH-' + Math.floor(100000 + Math.random() * 900000),
+        title: document.getElementById('mtfTitle').value.trim(),
+        prio: document.getElementById('mtfPrio').value || '5',
+        startDateTime: startDateTime,
+        endDateTime: endDateTime,
+        pic: document.getElementById('mtfPic').value.trim(),
+        link: document.getElementById('mtfLink').value.trim(),
+        desc: document.getElementById('mtfDesc').value.trim(),
+        modKey: targetModKey,
+        modName: conf.name,
+        modCat: conf.cat,
+        modColor: theme.hex || '#f59e0b',
+        modIcon: conf.icon || 'fa-calendar-days',
+        isCompleted: false,
+        timestamp: new Date().toISOString()
+    };
+
+    closeMasterTaskModal();
+
+    globalScheduleList = getStoredSchedules();
+    globalScheduleList.unshift(scheduleItem);
+    saveStoredSchedules(globalScheduleList);
+
+    // Langsung buka Papan Jadwal
+    setModeView('masterlist');
+    renderScheduleBoard();
+    ui.notify("Jadwal Berhasil Ditambahkan!");
+
+    fetchAPI('SAVE_SCHEDULE', scheduleItem).catch(err => console.warn("Sync jadwal cloud notice:", err));
+}
+
+// 6. RENDER DAFTAR KARTU JADWAL
+
+function setScheduleTimeFilter(f) {
+    currentScheduleFilter = f;
+    document.querySelectorAll('.sch-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-sfilter') === f);
+    });
+    renderScheduleBoard();
+}
+
+async function toggleCompleteSchedule(id) {
+    const item = globalScheduleList.find(s => s.id === id);
+    if (!item) return;
+    item.isCompleted = !item.isCompleted;
+    saveStoredSchedules(globalScheduleList);
+    renderScheduleBoard();
+    await fetchAPI('TOGGLE_SCHEDULE', { id: id });
+}
+
+async function deleteScheduleItem(id) {
+    globalScheduleList = globalScheduleList.filter(s => s.id !== id);
+    saveStoredSchedules(globalScheduleList);
+    renderScheduleBoard();
+    ui.notify("Jadwal Dihapus");
+    await fetchAPI('DELETE_SCHEDULE', { id: id });
+}
+let priorityMatrixData = getStoredMatrix();
+let draggedModuleKey = null;
+
+// 2. LOAD PRIORITY MATRIX DUA ARAH (LOCAL + CLOUD HEALING)
+async function loadPriorityMatrix() {
+    // A. Langsung pasang data dari memori lokal (0ms)
+    priorityMatrixData = getStoredMatrix();
+    initSidebar();
+    if (currentModeView === 'matrix') {
+        renderPriorityMatrixDashboard();
+    }
+
+    // B. Sinkronkan dengan Backend Google Sheets
+    const uid = currentUserId || localStorage.getItem('omniflow_pin');
+    if (uid) {
+        try {
+            const res = await fetchAPI('GET_MATRIX');
+            if (res && res.success && res.data) {
+                const cloudMatrix = res.data;
+                const hasCloudData = (cloudMatrix.Q1 && cloudMatrix.Q1.length > 0) ||
+                                     (cloudMatrix.Q2 && cloudMatrix.Q2.length > 0) ||
+                                     (cloudMatrix.Q3 && cloudMatrix.Q3.length > 0) ||
+                                     (cloudMatrix.Q4 && cloudMatrix.Q4.length > 0);
+                
+                // Jika cloud punya data, timpa lokal
+                if (hasCloudData) {
+                    priorityMatrixData = {
+                        Q1: cloudMatrix.Q1 || [],
+                        Q2: cloudMatrix.Q2 || [],
+                        Q3: cloudMatrix.Q3 || [],
+                        Q4: cloudMatrix.Q4 || []
+                    };
+                    saveStoredMatrix(priorityMatrixData);
+                    initSidebar();
+                    if (currentModeView === 'matrix') {
+                        renderPriorityMatrixDashboard();
+                    }
+                } else {
+                    // Jika cloud masih kosong tapi lokal ada isinya, cadangkan data lokal ke cloud!
+                    const hasLocalData = (priorityMatrixData.Q1 && priorityMatrixData.Q1.length > 0) ||
+                                         (priorityMatrixData.Q2 && priorityMatrixData.Q2.length > 0) ||
+                                         (priorityMatrixData.Q3 && priorityMatrixData.Q3.length > 0) ||
+                                         (priorityMatrixData.Q4 && priorityMatrixData.Q4.length > 0);
+                    if (hasLocalData) {
+                        fetchAPI('SAVE_MATRIX', priorityMatrixData).catch(() => {});
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn("Matrix cloud sync silent retry:", e);
+        }
+    }
+}
+
+// 3. FUNGSI PINDAH MODUL KE KUADRAN (SIMPAN INSTAN KE LOKAL & CLOUD)
+function moveModuleToQuadrant(modKey, targetQuadrant) {
+    if (!priorityMatrixData) priorityMatrixData = getStoredMatrix();
+
+    // Hapus modul dari kuadran sebelumnya
+    ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+        priorityMatrixData[q] = (priorityMatrixData[q] || []).filter(k => k !== modKey);
+    });
+
+    // Masukkan ke kuadran target
+    if (!priorityMatrixData[targetQuadrant]) priorityMatrixData[targetQuadrant] = [];
+    priorityMatrixData[targetQuadrant].push(modKey);
+
+    // 1. Simpan Instan ke LocalStorage (0ms)
+    saveStoredMatrix(priorityMatrixData);
+    
+    // 2. Render Ulang Layar & Sidebar Langsung
+    renderPriorityMatrixDashboard();
+    initSidebar();
+
+    // 3. Catat di Audit Trail
+    const conf = MODUL_REGISTRY[modKey];
+    if (typeof logAuditActivity === 'function' && conf) {
+        logAuditActivity('STATUS', conf.name, `Dipindahkan ke Prioritas Matriks ${targetQuadrant}`, currentUserId);
+    }
+
+    // 4. Broadcast Real-time jika di mode publik
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // 5. Simpan Permanen ke Google Sheets di Background (Non-blocking)
+    fetchAPI('SAVE_MATRIX', priorityMatrixData).catch(err => {
+        console.warn("Gagal simpan matriks ke cloud:", err);
+    });
+}
+
+function removeModuleFromMatrix(modKey, fromQuadrant) {
+    if (!priorityMatrixData) priorityMatrixData = getStoredMatrix();
+
+    priorityMatrixData[fromQuadrant] = (priorityMatrixData[fromQuadrant] || []).filter(k => k !== modKey);
+
+    saveStoredMatrix(priorityMatrixData);
+    renderPriorityMatrixDashboard();
+    initSidebar();
+
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    fetchAPI('SAVE_MATRIX', priorityMatrixData).catch(() => {});
+}
+
+// 4. REVISI INIT SIDEBAR LENGKAP (TERKELOMPOK BERDASARKAN KUADRAN P1 - P4)
+function initSidebar() {
+    const sb = document.getElementById('sidebarMenu');
+    if (!sb) return;
+
+    // Selalu pastikan data sinkron dengan storage
+    priorityMatrixData = getStoredMatrix();
+
+    const quadrantsConfig = [
+        {
+            key: 'Q1',
+            title: 'PRIORITAS PERTAMA',
+            badge: 'P1',
+            headerColor: 'text-rose-400',
+            badgeStyle: 'bg-rose-500/20 text-rose-300 border-rose-500/40',
+            iconColor: 'text-rose-400',
+            icon: 'fa-triangle-exclamation'
+        },
+        {
+            key: 'Q2',
+            title: 'PRIORITAS KEDUA',
+            badge: 'P2',
+            headerColor: 'text-fuchsia-400',
+            badgeStyle: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40',
+            iconColor: 'text-fuchsia-400',
+            icon: 'fa-bullseye'
+        },
+        {
+            key: 'Q3',
+            title: 'PRIORITAS KETIGA',
+            badge: 'P3',
+            headerColor: 'text-amber-400',
+            badgeStyle: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+            iconColor: 'text-amber-400',
+            icon: 'fa-bolt'
+        },
+        {
+            key: 'Q4',
+            title: 'PRIORITAS KEEMPAT',
+            badge: 'P4',
+            headerColor: 'text-emerald-400',
+            badgeStyle: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+            iconColor: 'text-emerald-400',
+            icon: 'fa-eye'
+        }
+    ];
+
+    let priorityHtml = '';
+
+    // Render masing-masing kuadran di sidebar jika ada isinya
+    quadrantsConfig.forEach(qConf => {
+        const modKeys = priorityMatrixData[qConf.key] || [];
+        if (modKeys.length > 0) {
+            priorityHtml += `
+            <div class="mb-4 pb-2 border-b border-white/5">
+                <h3 class="nav-category text-[9px] ${qConf.headerColor} font-black uppercase tracking-[0.2em] mb-2 px-6 flex items-center justify-between" 
+                    style="border-left: 3px solid currentColor; padding-left: 0.75rem !important;">
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-solid ${qConf.icon} text-[8px]"></i> ${qConf.title}
+                    </span>
+                    <span class="text-[8px] font-mono font-bold ${qConf.badgeStyle} px-1.5 py-0.2 rounded">${modKeys.length}</span>
+                </h3>
+                <div class="space-y-1">
+                    ${modKeys.map(k => {
+                        const m = MODUL_REGISTRY[k];
+                        if (!m) return '';
+
+                        let safeIcon = m.icon || 'fa-cube';
+                        if (safeIcon === 'fa-event' || !safeIcon.startsWith('fa-')) safeIcon = 'fa-calendar-days';
+
+                        return `
+                        <div onclick="switchModule('${k}')" id="nav-pinned-${k}" class="nav-item group !border-white/5 hover:!border-white/20 flex items-center justify-between">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <i class="fa-solid ${safeIcon} nav-icon ${qConf.iconColor} shrink-0"></i> 
+                                <span class="text-[11px] font-bold tracking-wide text-white group-hover:text-amber-200 truncate">${m.name}</span>
+                            </div>
+                            <span class="font-mono text-[8px] font-black px-1.5 py-0.2 rounded border ${qConf.badgeStyle} shrink-0">${qConf.badge}</span>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>`;
+        }
+    });
+
+    // Render Kategori-Kategori Normal
+    const grouped = {};
+    for (const [key, conf] of Object.entries(MODUL_REGISTRY)) {
+        if (!grouped[conf.cat]) grouped[conf.cat] = [];
+        grouped[conf.cat].push({ key, ...conf });
+    }
+
+    let normalHtml = '';
+    for (const [cat, mods] of Object.entries(grouped)) {
+        normalHtml += `
+        <div class="mb-6">
+            <h3 class="nav-category text-[9px] text-slate-500 font-bold uppercase tracking-[0.25em] mb-3 px-8 flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                <span class="group-hover:text-slate-300 transition-colors">${cat}</span> 
+                <i class="fa-solid fa-chevron-down text-[8px] opacity-50 group-hover:opacity-100 transition-opacity"></i>
+            </h3>
+            <div class="space-y-1">
+                ${mods.map(m => {
+                    let safeIcon = m.icon || 'fa-cube';
+                    if (safeIcon === 'fa-event' || !safeIcon.startsWith('fa-')) safeIcon = 'fa-calendar-days';
+
+                    return `
+                    <div onclick="switchModule('${m.key}')" id="nav-${m.key}" class="nav-item group">
+                        <i class="fa-solid ${safeIcon} nav-icon"></i> 
+                        <span class="text-[11px] font-semibold tracking-wide">${m.name}</span>
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>`;
+    }
+
+    sb.innerHTML = priorityHtml + normalHtml;
+}
+
+
+// 2. INTEGRASI VIEW SWITCHER KE TAMPILAN MATRIX
+const originalSetModeView = window.setModeView;
+
+// 3. LOAD DATA MATRIX SAAT APLIKASI MULAI
+// =========================================================================
+// LOAD PRIORITY MATRIX (DATA KEBAL REFRESH & SINKRONISASI AMAN)
+// =========================================================================
+
+// 4. HITUNG METRIK TELEMETRI KARTU MODUL SECARA REAL-TIME
+function getModuleTelemetryStats(modKey) {
+    const tasks = appCache[modKey] || [];
+    const conf = MODUL_REGISTRY[modKey];
+    const finalStep = (conf && conf.steps) ? conf.steps[conf.steps.length - 1] : '';
+
+    const total = tasks.length;
+    let completed = 0;
+    let overdue = 0;
+    let totalRiskCurrency = 0;
+
+    const todayStr = new Date().toISOString().split('T')[0];
+
+    tasks.forEach(t => {
+        if (t.st === finalStep) {
+            completed++;
+        } else {
+            // Cek apakah tanggal deadline sudah lewat
+            if (t.ed && t.ed < todayStr) {
+                overdue++;
+                // Hitung nilai uang jika tugas terlambat
+                if (t.cf && String(t.cf).startsWith('[')) {
+                    try {
+                        const parsed = JSON.parse(t.cf);
+                        parsed.forEach(f => {
+                            if (f.type === 'currency' && f.value) {
+                                const num = Number(String(f.value).replace(/\D/g, ''));
+                                if (!isNaN(num)) totalRiskCurrency += num;
+                            }
+                        });
+                    } catch (e) {}
+                }
+            }
+        }
+    });
+
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    return { total, completed, overdue, percent, totalRiskCurrency };
+}
+
+// 5. RENDER DASHBOARD PRIORITAS UTAMA (HUD + POOL + 4 KUADRAN)
+function renderPriorityMatrixDashboard() {
+    const matrixView = document.getElementById('matrixView');
+    if (!matrixView || matrixView.classList.contains('hidden')) return;
+
+    // Kumpulkan semua modul yang sudah diprioritaskan
+    const prioritizedKeys = new Set([
+        ...priorityMatrixData.Q1,
+        ...priorityMatrixData.Q2,
+        ...priorityMatrixData.Q3,
+        ...priorityMatrixData.Q4
+    ]);
+
+    // A. UPDATE HUD EXECUTIVE RADAR (ATAS)
+    let totalOverdue = 0;
+    let grandRiskCurrency = 0;
+
+    prioritizedKeys.forEach(key => {
+        const stats = getModuleTelemetryStats(key);
+        totalOverdue += stats.overdue;
+        grandRiskCurrency += stats.totalRiskCurrency;
+    });
+
+    document.getElementById('mtxUrgentTasksCount').innerText = totalOverdue;
+    document.getElementById('mtxCapitalAtRisk').innerText = 'Rp ' + grandRiskCurrency.toLocaleString('id-ID');
+    document.getElementById('mtxTotalPriorityCount').innerText = `${prioritizedKeys.size} Modul`;
+
+    // B. RENDER ZONE A: POOL REPOSITORY (MODUL YANG BELUM MASUK MATRIX)
+    renderMatrixPool(prioritizedKeys);
+
+    // C. RENDER ZONE B: 4 KUADRAN EISENHOWER
+    ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+        renderQuadrantList(q);
+    });
+}
+
+// RENDER POOL KATALOG MODUL
+function renderMatrixPool(prioritizedKeys) {
+    const container = document.getElementById('mtxModulesPoolContainer');
+    if (!container) return;
+
+    const query = (document.getElementById('mtxPoolSearchInput').value || '').toLowerCase().trim();
+    const poolKeys = Object.keys(MODUL_REGISTRY).filter(k => !prioritizedKeys.has(k));
+
+    document.getElementById('mtxPoolCountBadge').innerText = `${poolKeys.length} Tersedia`;
+
+    const filteredKeys = poolKeys.filter(k => {
+        const conf = MODUL_REGISTRY[k];
+        return !query || conf.name.toLowerCase().includes(query) || conf.cat.toLowerCase().includes(query);
+    });
+
+    if (filteredKeys.length === 0) {
+        container.innerHTML = `
+        <div class="p-8 text-center border border-dashed border-white/10 rounded-xl bg-black/20 text-slate-500 text-xs">
+            Tidak ada modul yang tersedia di katalog.
+        </div>`;
+        return;
+    }
+
+    container.innerHTML = filteredKeys.map(k => {
+        const conf = MODUL_REGISTRY[k];
+        const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(conf) : (THEME[conf.color] || THEME['cyan']);
+        const stats = getModuleTelemetryStats(k);
+
+        return `
+        <div draggable="true" 
+             ondragstart="handleMatrixDragStart(event, '${k}')" 
+             class="matrix-module-card group bg-black/40 border-white/10 hover:border-white/20">
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2 min-w-0">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs shrink-0 shadow-md" style="background: ${theme.hex};">
+                        <i class="fa-solid ${conf.icon}"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-xs font-bold text-white truncate group-hover:text-amber-300 transition-colors">${conf.name}</h5>
+                        <span class="text-[8px] uppercase tracking-wider text-slate-400 block truncate">${conf.cat}</span>
+                    </div>
+                </div>
+
+                <!-- Tombol Dropdown Prioritaskan (Ramah HP / Touch Screen) -->
+                <div class="flex items-center gap-1 shrink-0">
+                    <button type="button" onclick="quickAddModuleToQuadrant('${k}', 'Q1')" class="px-2 py-1 rounded bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white text-[8px] font-black uppercase transition-all" title="Masuk Q1">+ Q1</button>
+                    <button type="button" onclick="quickAddModuleToQuadrant('${k}', 'Q2')" class="px-2 py-1 rounded bg-fuchsia-500/20 hover:bg-fuchsia-500 text-fuchsia-300 hover:text-white text-[8px] font-black uppercase transition-all" title="Masuk Q2">+ Q2</button>
+                    <button type="button" onclick="quickAddModuleToQuadrant('${k}', 'Q3')" class="px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-white text-[8px] font-black uppercase transition-all" title="Masuk Q3">+ Q3</button>
+                </div>
+            </div>
+
+            <!-- Mini Telemetry Bar -->
+            <div class="flex items-center justify-between text-[9px] font-mono text-slate-400 pt-1.5 border-t border-white/5">
+                <span>Tugas: <b class="text-white">${stats.total}</b></span>
+                <span class="${stats.overdue > 0 ? 'text-rose-400 font-bold' : ''}">Terlambat: ${stats.overdue}</span>
+                <span>Selesai: ${stats.percent}%</span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// RENDER KUADRAN SPESIFIK
+function renderQuadrantList(quadrantKey) {
+    const listEl = document.getElementById(`mtxList-${quadrantKey}`);
+    const countEl = document.getElementById(`mtxCount-${quadrantKey}`);
+    if (!listEl) return;
+
+    const moduleKeys = priorityMatrixData[quadrantKey] || [];
+    if (countEl) countEl.innerText = `${moduleKeys.length} Modul`;
+
+    if (moduleKeys.length === 0) {
+        listEl.innerHTML = `
+        <div class="h-full py-8 flex flex-col items-center justify-center text-center border border-dashed border-white/10 rounded-xl bg-black/10 text-slate-500 text-[10px]">
+            <i class="fa-solid fa-cloud-arrow-down text-lg mb-1.5 opacity-40"></i>
+            <span>Tarik modul ke sini atau klik tombol + Q pada katalog</span>
+        </div>`;
+        return;
+    }
+
+    listEl.innerHTML = moduleKeys.map(k => {
+        const conf = MODUL_REGISTRY[k] || { name: k, cat: 'Modul', icon: 'fa-cube', color: 'cyan' };
+        const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(conf) : (THEME[conf.color] || THEME['cyan']);
+        const stats = getModuleTelemetryStats(k);
+
+        return `
+        <div draggable="true" 
+             ondragstart="handleMatrixDragStart(event, '${k}')" 
+             class="matrix-module-card group bg-black/50 border-white/10 hover:border-white/25">
+            
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs shrink-0 shadow-md" style="background: ${theme.hex};">
+                        <i class="fa-solid ${conf.icon}"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-xs font-black text-white truncate drop-shadow-sm group-hover:text-amber-200 transition-colors">${conf.name}</h5>
+                        <span class="text-[8px] uppercase tracking-wider text-slate-400 block truncate">${conf.cat}</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <!-- Quick Jump Button: 1-Klik Buka Kanban -->
+                    <button type="button" onclick="jumpToModuleFromMatrix('${k}')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-cyan-300 hover:text-white text-[9px] font-black uppercase tracking-wider transition-all flex items-center gap-1" title="Buka Papan Kanban">
+                        <span>Buka</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                    </button>
+                    <!-- Tombol Hapus dari Matriks -->
+                    <button type="button" onclick="removeModuleFromMatrix('${k}', '${quadrantKey}')" class="w-6 h-6 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all text-[10px]" title="Keluarkan dari Prioritas">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bilah Progres & Status Tugas -->
+            <div class="space-y-1.5 pt-2 border-t border-white/5">
+                <div class="flex items-center justify-between text-[9px] font-mono">
+                    <span class="text-slate-400">Total: <b class="text-white">${stats.total}</b></span>
+                    ${stats.overdue > 0 ? `<span class="text-rose-400 font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>${stats.overdue} Overdue</span>` : '<span class="text-emerald-400">Tepat Waktu</span>'}
+                    <span class="text-slate-300 font-bold">${stats.percent}% Selesai</span>
+                </div>
+                <div class="w-full h-1.5 rounded-full bg-black/60 border border-white/10 overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: ${stats.percent}%; background: ${theme.hex};"></div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// 6. LOGIKA DRAG & DROP
+function handleMatrixDragStart(e, modKey) {
+    draggedModuleKey = modKey;
+    e.dataTransfer.setData('text/plain', modKey);
+}
+
+function handleMatrixDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drag-over');
+}
+
+function handleMatrixDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+}
+
+function handleMatrixDrop(e, targetQuadrant) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
+
+    const modKey = draggedModuleKey || e.dataTransfer.getData('text/plain');
+    if (!modKey) return;
+
+    moveModuleToQuadrant(modKey, targetQuadrant);
+}
+
+function quickAddModuleToQuadrant(modKey, targetQuadrant) {
+    moveModuleToQuadrant(modKey, targetQuadrant);
+}
+
+
+function filterMatrixPoolDisplay() {
+    renderPriorityMatrixDashboard();
+}
+
+// 7. LOMPAT LANGSUNG DARI MATRIX KE KANBAN MODUL
+async function jumpToModuleFromMatrix(modKey) {
+    setModeView('kanban');
+    await switchModule(modKey);
+}
+
+// 8. PENYEMATAN OTOMATIS KE PUNCAK SIDEBAR (⭐ PRIORITAS UTAMA)
+function updateSidebarPinnedModules() {
+    initSidebar();
+}
+
+// Intercept initSidebar untuk menyuntikkan kategori Prioritas di paling atas
+
+// =========================================================================
 let wbCanvas = null;
 let wbCtx = null;
 let isDrawingWb = false;
@@ -5254,6 +6777,7 @@ function saveStoredCustomModules(modsList) {
     }
 }
 // 8. SIMPAN DAN TERBITKAN MODUL KUSTOM
+// Gantikan bagian akhir fungsi saveNewCustomModule(e) dengan logika ini:
 async function saveNewCustomModule(e) {
     e.preventDefault();
 
@@ -5279,46 +6803,55 @@ async function saveNewCustomModule(e) {
     const picLabel = document.getElementById('cmPicLabel').value.trim() || "Penanggung Jawab";
     const pdfTitle = document.getElementById('cmPdfTitle').value.trim().toUpperCase() || "LAPORAN PEKERJAAN RESMI";
 
-    // Konfigurasi Modul Kustom Lengkap
     const newModuleConfig = {
         key: moduleKey,
         cat: category,
         name: name,
         icon: selectedCmIcon,
-        color: selectedCmHexColor, // Menyimpan HEX warna spektrum murni
+        color: selectedCmHexColor,
         steps: [...cmBuilderSteps],
         pdf: { title: pdfTitle, pic: picLabel },
         cf: { label: "Data Spesifik", ph: "Keterangan tambahan modul..." },
         isCustom: true
     };
 
-    // 1. Simpan ke Registry Memori
+    // 1. Daftarkan seketika ke memori & LocalStorage
     MODUL_REGISTRY[moduleKey] = newModuleConfig;
-
-    // 2. Simpan ke LocalStorage
     const storedList = getStoredCustomModules();
     storedList.unshift(newModuleConfig);
     saveStoredCustomModules(storedList);
 
-    // 3. Render Ulang Sidebar
+    // 2. Render ulang sidebar
     initSidebar();
 
-    // 4. Tutup Modal
+    // 3. Tutup Modal Studio
     closeCustomModuleModal();
-    ui.notify(`Modul "${name}" Berhasil Diterbitkan!`);
 
-    // 5. Pindah ke modul baru tersebut seketika
-    await switchModule(moduleKey);
-
-    // 6. Catat Audit Log
-    if (typeof logAuditActivity === 'function') {
-        logAuditActivity('CREATE', name, `Menerbitkan Modul Kustom [${category}] dengan warna ${selectedCmHexColor}.`);
+    // 🚀 4. KUNCI INTEGRASI: JIKA DIBUKA DARI FORM JADWALKAN:
+    if (isCreatedFromMasterTask) {
+        isCreatedFromMasterTask = false;
+        // Otomatis pilih modul baru di form Jadwalkan yang masih terbuka!
+        selectModuleForMasterTask(moduleKey);
+        ui.notify(`Modul "${name}" Berhasil Dibuat & Dipilih!`);
+        
+        // Simpan modul baru ke Google Sheets di background
+        fetchAPI('SAVE_CUSTOM_MODULE', newModuleConfig, moduleKey).catch(() => {});
+        return; // Jangan berpindah halaman, biarkan user melanjutkan input tugas!
     }
 
-    // 7. Sync ke Cloud Google Sheets
-    fetchAPI('SAVE_CUSTOM_MODULE', newModuleConfig, moduleKey).catch(err => {
-        console.warn("Gagal simpan modul ke cloud:", err);
-    });
+    // Perilaku normal jika dibuka dari tombol sidebar:
+    ui.notify(`Modul "${name}" Berhasil Diterbitkan!`);
+    await switchModule(moduleKey);
+
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('CREATE', name, `Menerbitkan Modul Kustom [${category}].`);
+    }
+
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    fetchAPI('SAVE_CUSTOM_MODULE', newModuleConfig, moduleKey).catch(() => {});
 }
 // 1. HELPER STORAGE LOKAL (ANTI-HILANG SAAT REFRESH)
 
@@ -6869,22 +8402,33 @@ window.switchModule = async function(modKey) {
         }
 
         // Router untuk merender tampilan yang sedang dipilih
-        function renderActiveView() {
-            if (!activeModule) return;
-            const tasksData = appCache[activeModule] || [];
-              updateInboxBadge();
+      // =========================================================================
+// REVISI: RENDER ACTIVE VIEW (ISOLASI KETAT ANTI-DATA NEMPEL)
+// =========================================================================
+function renderActiveView() {
+    if (!activeModule) return;
+    
+    // 👉 KUNCI ISOLASI: Hanya ambil tugas yang BENAR-BENAR milik activeModule!
+    // Tugas dari modul lain yang salah kamar otomatis disingkirkan dari layar!
+    const rawTasks = appCache[activeModule] || [];
+    const tasksData = rawTasks.filter(t => !t.modKey || t.modKey === activeModule);
+    
+    if (typeof updateInboxBadge === 'function') {
+        updateInboxBadge();
+    }
 
-            if (currentModeView === 'kanban') {
-                renderKanban(activeModule, tasksData);
-            } else if (currentModeView === 'calendar') {
-                renderCalendarView(tasksData);
-            } else if (currentModeView === 'gantt') {
-                renderGanttView(tasksData);
-            } else if (currentModeView === 'analytics') {
-                triggerAnalyticsView(tasksData); // Panggil Engine Analytics & Chart.js
-            }
+    if (currentModeView === 'kanban') {
+        renderKanban(activeModule, tasksData);
+    } else if (currentModeView === 'calendar') {
+        renderCalendarView(tasksData);
+    } else if (currentModeView === 'gantt') {
+        renderGanttView(tasksData);
+    } else if (currentModeView === 'analytics') {
+        if (typeof triggerAnalyticsView === 'function') {
+            triggerAnalyticsView(tasksData);
         }
-
+    }
+}
         // =========================================================
         // 2. CALENDAR VIEW ENGINE (MONTHLY GRID)
         // =========================================================
@@ -6898,277 +8442,248 @@ window.switchModule = async function(modKey) {
             renderActiveView();
         }
 
-        function renderCalendarView(tasksData) {
-            const grid = document.getElementById('calendarGrid');
-            const monthTitle = document.getElementById('calendarMonthTitle');
-            if (!grid || !monthTitle) return;
+// =========================================================================
+// REVISI: CALENDAR VIEW ENGINE (MENDUKUNG KODE HEX KUSTOM & SCROLL MULUS)
+// =========================================================================
+function renderCalendarView(tasksData) {
+    const grid = document.getElementById('calendarGrid');
+    const monthTitle = document.getElementById('calendarMonthTitle');
+    if (!grid || !monthTitle) return;
 
-            const year = calendarCurrentDate.getFullYear();
-            const month = calendarCurrentDate.getMonth();
+    const year = calendarCurrentDate.getFullYear();
+    const month = calendarCurrentDate.getMonth();
 
-            // Format Judul Bulan (Contoh: "AGUSTUS 2026")
-            const monthNames = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
-            monthTitle.innerText = `${monthNames[month]} ${year}`;
+    const monthNames = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
+    monthTitle.innerText = `${monthNames[month]} ${year}`;
 
-            grid.innerHTML = ''; // Clear
+    grid.innerHTML = ''; // Bersihkan kalender lama
 
-            const firstDayOfMonth = new Date(year, month, 1);
-            const lastDayOfMonth = new Date(year, month + 1, 0);
-            
-            // Konversi Day of Week (0 = Mon, 6 = Sun)
-            let startDay = firstDayOfMonth.getDay() - 1;
-            if (startDay === -1) startDay = 6; 
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    
+    let startDay = firstDayOfMonth.getDay() - 1;
+    if (startDay === -1) startDay = 6; 
 
-            const totalDaysInMonth = lastDayOfMonth.getDate();
-            const prevMonthLastDay = new Date(year, month, 0).getDate();
+    const totalDaysInMonth = lastDayOfMonth.getDate();
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+    const todayStr = formatYYYYMMDD(new Date());
 
-            const todayStr = formatYYYYMMDD(new Date());
-            const conf = MODUL_REGISTRY[activeModule];
-            const theme = THEME[conf ? conf.color : 'cyan'];
+    const conf = MODUL_REGISTRY[activeModule];
+    // 👉 KUNCI: Gunakan getModuleTheme agar warna HEX modul kustom terbaca aman!
+    const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(conf) : (THEME[conf ? conf.color : 'cyan'] || THEME['cyan']);
+    const themeHex = theme.hex || '#06b6d4';
 
-            let dayCounter = 1;
-            let nextMonthDayCounter = 1;
+    let dayCounter = 1;
+    let nextMonthDayCounter = 1;
+    const totalCells = (startDay + totalDaysInMonth > 35) ? 42 : 35;
 
-            // Render Grid 35 atau 42 Sel (5 atau 6 Minggu)
-            const totalCells = (startDay + totalDaysInMonth > 35) ? 42 : 35;
+    // Render 35 atau 42 kotak tanggal lengkap dari tanggal 1 sampai akhir bulan
+    for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        let cellDateObj;
 
-            for (let i = 0; i < totalCells; i++) {
-                const cell = document.createElement('div');
-                let cellDateObj;
-                let isCurrentMonth = false;
-
-                if (i < startDay) {
-                    // Hari Bulan Sebelumnya
-                    const prevDay = prevMonthLastDay - (startDay - i - 1);
-                    cellDateObj = new Date(year, month - 1, prevDay);
-                    cell.className = 'calendar-day-cell other-month';
-                } else if (dayCounter <= totalDaysInMonth) {
-                    // Hari Bulan Ini
-                    cellDateObj = new Date(year, month, dayCounter);
-                    isCurrentMonth = true;
-                    cell.className = 'calendar-day-cell';
-                    if (formatYYYYMMDD(cellDateObj) === todayStr) {
-                        cell.classList.add('today');
-                    }
-                    dayCounter++;
-                } else {
-                    // Hari Bulan Berikutnya
-                    cellDateObj = new Date(year, month + 1, nextMonthDayCounter);
-                    cell.className = 'calendar-day-cell other-month';
-                    nextMonthDayCounter++;
-                }
-
-                const cellDateStr = formatYYYYMMDD(cellDateObj);
-
-                // Header Nomor Tanggal
-                const dateNumEl = document.createElement('div');
-                dateNumEl.className = `text-[11px] font-black font-mono mb-1 ${cellDateStr === todayStr ? 'text-cyan-400' : 'text-slate-400'}`;
-                dateNumEl.innerText = cellDateObj.getDate();
-                cell.appendChild(dateNumEl);
-
-                // Filter Tugas yang Melintasi Tanggal Sel Ini (Start <= CellDate <= End)
-                const matchingTasks = tasksData.filter(t => {
-                    const sd = t.sd;
-                    const ed = t.ed || t.sd;
-                    return cellDateStr >= sd && cellDateStr <= ed;
-                });
-
-                // Render Task Pills di dalam Sel
-                const pillsContainer = document.createElement('div');
-                pillsContainer.className = 'flex flex-col gap-1 overflow-y-auto max-h-[85px] custom-scrollbar';
-
-                matchingTasks.forEach(t => {
-                    const pill = document.createElement('div');
-                    
-                    // Tentukan warna pill berdasarkan statusnya
-                    let pillStyle = `background: ${theme.hex}30; border: 1px solid ${theme.hex}60; text-color: #fff;`;
-                    if (t.st === conf.steps[conf.steps.length - 1]) {
-                        pillStyle = `background: rgba(16, 185, 129, 0.25); border: 1px solid rgba(16, 185, 129, 0.5);`;
-                    } else if (t.st !== conf.steps[0]) {
-                        pillStyle = `background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5);`;
-                    }
-
-                    pill.style.cssText = pillStyle;
-                    pill.className = 'text-[9px] font-bold px-2 py-1 rounded-lg truncate cursor-pointer hover:scale-105 transition-transform flex items-center justify-between shadow-sm';
-                    pill.title = `${t.nm} (${t.sd} s/d ${t.ed}) - Klik untuk Detail`;
-                    pill.onclick = (e) => { e.stopPropagation(); openDetailModal(t.id); };
-
-                    pill.innerHTML = `<span class="truncate">${t.nm}</span><span class="text-[7px] opacity-75 font-mono ml-1 shrink-0">P${t.pr}</span>`;
-                    pillsContainer.appendChild(pill);
-                });
-
-                cell.appendChild(pillsContainer);
-                grid.appendChild(cell);
+        if (i < startDay) {
+            const prevDay = prevMonthLastDay - (startDay - i - 1);
+            cellDateObj = new Date(year, month - 1, prevDay);
+            cell.className = 'calendar-day-cell other-month';
+        } else if (dayCounter <= totalDaysInMonth) {
+            cellDateObj = new Date(year, month, dayCounter);
+            cell.className = 'calendar-day-cell';
+            if (formatYYYYMMDD(cellDateObj) === todayStr) {
+                cell.classList.add('today');
             }
+            dayCounter++;
+        } else {
+            cellDateObj = new Date(year, month + 1, nextMonthDayCounter);
+            cell.className = 'calendar-day-cell other-month';
+            nextMonthDayCounter++;
         }
 
+        const cellDateStr = formatYYYYMMDD(cellDateObj);
+
+        // Nomor Tanggal
+        const dateNumEl = document.createElement('div');
+        dateNumEl.className = `text-[11px] font-black font-mono mb-1 ${cellDateStr === todayStr ? 'text-cyan-400' : 'text-slate-400'}`;
+        dateNumEl.innerText = cellDateObj.getDate();
+        cell.appendChild(dateNumEl);
+
+        // Saring tugas yang melintasi tanggal ini
+        const matchingTasks = (tasksData || []).filter(t => {
+            const sd = t.sd;
+            const ed = t.ed || t.sd;
+            return cellDateStr >= sd && cellDateStr <= ed;
+        });
+
+        const pillsContainer = document.createElement('div');
+        pillsContainer.className = 'flex flex-col gap-1 overflow-y-auto max-h-[75px] custom-scrollbar';
+
+        // Render pill tugas dengan warna HEX aman (tanpa crash)
+        matchingTasks.forEach(t => {
+            const pill = document.createElement('div');
+            let pillStyle = `background: ${themeHex}25; border: 1px solid ${themeHex}60; color: #fff;`;
+            
+            const finalStep = (conf && conf.steps) ? conf.steps[conf.steps.length - 1] : '';
+            if (t.st === finalStep) {
+                pillStyle = `background: rgba(16, 185, 129, 0.25); border: 1px solid rgba(16, 185, 129, 0.5); color: #fff;`;
+            }
+
+            pill.style.cssText = pillStyle;
+            pill.className = 'text-[9px] font-bold px-2 py-1 rounded-lg truncate cursor-pointer hover:scale-105 transition-transform flex items-center justify-between shadow-sm';
+            pill.title = `${t.nm} (${t.sd} s/d ${t.ed}) - Klik untuk Detail`;
+            pill.onclick = (e) => { e.stopPropagation(); openDetailModal(t.id); };
+
+            pill.innerHTML = `<span class="truncate">${t.nm}</span><span class="text-[7px] opacity-75 font-mono ml-1 shrink-0">P${t.pr || '1'}</span>`;
+            pillsContainer.appendChild(pill);
+        });
+
+        cell.appendChild(pillsContainer);
+        grid.appendChild(cell);
+    }
+}
         // =========================================================
         // 3. GANTT CHART TIMELINE ENGINE (OVERLAPPING TIMELINE)
         // =========================================================
        // =========================================================
         // 3. REVISI GANTT CHART TIMELINE ENGINE (FULL SCREEN STRETCH)
         // =========================================================
-        function renderGanttView(tasksData) {
-            const container = document.getElementById('ganttBodyContainer');
-            if (!container) return;
+     // =========================================================================
+// REVISI: GANTT CHART ENGINE (MENDUKUNG KODE HEX KUSTOM & TAMPIL UTUH)
+// =========================================================================
+function renderGanttView(tasksData) {
+    const container = document.getElementById('ganttBodyContainer');
+    if (!container) return;
 
-            if (tasksData.length === 0) {
-                container.innerHTML = `
-                <div class="p-16 flex flex-col items-center justify-center text-center my-auto">
-                    <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-slate-500 shadow-inner">
-                        <i class="fa-solid fa-chart-gantt text-2xl"></i>
-                    </div>
-                    <h4 class="text-slate-300 font-extrabold text-sm uppercase tracking-widest mb-1">Belum Ada Data Timeline</h4>
-                    <p class="text-slate-500 text-xs">Tambahkan tugas baru untuk melihat visualisasi Gantt Chart.</p>
-                </div>`;
-                return;
-            }
+    if (!tasksData || tasksData.length === 0) {
+        container.innerHTML = `
+        <div class="p-16 flex flex-col items-center justify-center text-center my-auto">
+            <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-slate-500 shadow-inner">
+                <i class="fa-solid fa-chart-gantt text-2xl"></i>
+            </div>
+            <h4 class="text-slate-300 font-extrabold text-sm uppercase tracking-widest mb-1">Belum Ada Data Timeline</h4>
+            <p class="text-slate-500 text-xs">Tambahkan tugas baru untuk melihat visualisasi Gantt Chart pada modul ini.</p>
+        </div>`;
+        return;
+    }
 
-            const conf = MODUL_REGISTRY[activeModule];
-            const theme = THEME[conf ? conf.color : 'cyan'];
+    const conf = MODUL_REGISTRY[activeModule];
+    const theme = (typeof getModuleTheme === 'function') ? getModuleTheme(conf) : (THEME[conf ? conf.color : 'cyan'] || THEME['cyan']);
+    const themeHex = theme.hex || '#06b6d4';
 
-            // 1. Cari Tanggal Terawal (Min) dan Terakhir (Max) dari Seluruh Tugas
-            let minDateObj = new Date();
-            let maxDateObj = new Date();
+    // Cari rentang tanggal terawal dan terjauh
+    let minDateObj = new Date();
+    let maxDateObj = new Date();
 
-            tasksData.forEach((t, idx) => {
-                const sd = parseLocalDateStr(t.sd);
-                const ed = parseLocalDateStr(t.ed || t.sd);
-
-                if (idx === 0) {
-                    minDateObj = new Date(sd);
-                    maxDateObj = new Date(ed);
-                } else {
-                    if (sd < minDateObj) minDateObj = new Date(sd);
-                    if (ed > maxDateObj) maxDateObj = new Date(ed);
-                }
-            });
-
-            // Buffer: Mulai 3 Hari Sebelum Tanggal Terawal
-            minDateObj.setDate(minDateObj.getDate() - 3);
-
-            // 🌟 SOLUSI LAYAR KOSONG: HITUNG HARI SECARA DINAMIS MEMENUHI LEBAR LAYAR (MINIMAL 30 HARI)
-            const dayWidth = 48; // px per hari
-            const leftPanelWidth = 288; // Lebar panel kiri w-72 = 288px
-            const containerWidth = container.clientWidth || 1000;
-            const availableWidth = Math.max(600, containerWidth - leftPanelWidth);
-            
-            // Hitung berapa hari yang dibutuhkan untuk mengisi seluruh lebar monitor
-            const minDaysToFillScreen = Math.ceil(availableWidth / dayWidth) + 3;
-            const taskSpanDays = Math.ceil((maxDateObj - minDateObj) / (1000 * 60 * 60 * 24)) + 10;
-
-            // Gunakan angka terbesar agar kalender selalu penuh se-layar (minimal 30 hari / 1 bulan)
-            const totalTimelineDays = Math.max(minDaysToFillScreen, taskSpanDays, 30);
-
-            const todayStr = formatYYYYMMDD(new Date());
-
-            // 2. Build Header Tanggal & Grid Lines
-            let headerDatesHtml = '';
-            let gridColsHtml = '';
-            let currentDateIter = new Date(minDateObj);
-
-            for (let d = 0; d < totalTimelineDays; d++) {
-                const dateStr = formatYYYYMMDD(currentDateIter);
-                const isToday = dateStr === todayStr;
-                const dayName = new Intl.DateTimeFormat('id-ID', { weekday: 'short' }).format(currentDateIter).toUpperCase();
-                
-                headerDatesHtml += `
-                <div class="gantt-header-date ${isToday ? 'is-today' : 'text-slate-400'}">
-                    <div class="text-[9px] font-extrabold tracking-wider opacity-80">${dayName}</div>
-                    <div class="font-mono text-xs font-black mt-0.5">${currentDateIter.getDate()}</div>
-                </div>`;
-
-                gridColsHtml += `<div class="gantt-grid-col ${isToday ? 'bg-cyan-500/5' : ''}"></div>`;
-
-                currentDateIter.setDate(currentDateIter.getDate() + 1);
-            }
-
-            // 3. Build Rows Tugas & Dynamic Floating Bar
-            let rowsHtml = '';
-
-            tasksData.forEach(t => {
-                const sd = parseLocalDateStr(t.sd);
-                const ed = parseLocalDateStr(t.ed || t.sd);
-
-                const startOffsetDays = Math.max(0, Math.floor((sd - minDateObj) / (1000 * 60 * 60 * 24)));
-                const durationDays = Math.max(1, Math.floor((ed - sd) / (1000 * 60 * 60 * 24)) + 1);
-
-                const barLeftPx = startOffsetDays * dayWidth;
-                const barWidthPx = durationDays * dayWidth;
-
-                // Gradasi Warna & Bayangan Neon Sesuai Status Step
-                let barGrad = `linear-gradient(135deg, ${theme.hex}, #3b82f6)`;
-                let barGlow = `${theme.hex}80`;
-
-                if (t.st === conf.steps[conf.steps.length - 1]) {
-                    barGrad = `linear-gradient(135deg, #10b981, #059669)`; // Finish = Emerald
-                    barGlow = `rgba(16, 185, 129, 0.7)`;
-                } else if (t.st !== conf.steps[0]) {
-                    barGrad = `linear-gradient(135deg, #f59e0b, #ea580c)`; // In Progress = Amber
-                    barGlow = `rgba(245, 158, 11, 0.7)`;
-                }
-
-                rowsHtml += `
-                <div class="gantt-row">
-                    <!-- Sticky Left Task Info Panel -->
-                    <div class="w-72 shrink-0 px-4 py-2.5 border-r border-white/10 flex items-center justify-between sticky left-0 bg-slate-900/95 backdrop-blur-xl z-30 shadow-[5px_0_15px_rgba(0,0,0,0.4)]">
-                        <div class="truncate pr-2">
-                            <h4 class="text-xs font-black text-white truncate drop-shadow-sm">${t.nm}</h4>
-                            <div class="flex items-center gap-2 mt-1">
-                                <span class="text-[9px] font-bold text-slate-300 bg-white/10 px-2 py-0.5 rounded-md border border-white/10 flex items-center gap-1">
-                                    <i class="fa-solid fa-user-astronaut text-cyan-400 text-[8px]"></i> ${(t.pc || 'No PIC').substring(0,10)}
-                                </span>
-                                <span class="text-[9px] font-mono text-cyan-300 font-bold">${t.sd}</span>
-                            </div>
-                        </div>
-                        <span class="text-[9px] bg-black/40 text-white font-mono font-black px-2 py-1 rounded-lg border border-white/10 shrink-0 shadow-sm">P-${t.pr || '1'}</span>
-                    </div>
-
-                    <!-- Right Timeline Grid & Dynamic Floating Bar -->
-                    <div class="gantt-bar-wrapper flex-grow relative" style="width: ${totalTimelineDays * dayWidth}px;">
-                        <!-- Grid Lines Background -->
-                        <div class="gantt-grid-bg">
-                            ${gridColsHtml}
-                        </div>
-
-                        <!-- Floating Gradient Gantt Bar -->
-                        <div class="gantt-bar" 
-                             style="left: ${barLeftPx}px; width: ${barWidthPx}px; background: ${barGrad}; --bar-glow: ${barGlow};"
-                             onclick="openDetailModal('${t.id}')"
-                             title="${t.nm} (${t.sd} s/d ${t.ed}) • Status: ${t.st}">
-                            
-                            <div class="flex items-center gap-1.5 truncate pr-2">
-                                <i class="fa-solid fa-play text-[8px] opacity-90 drop-shadow"></i>
-                                <span class="truncate font-black tracking-wide">${t.nm}</span>
-                            </div>
-                            
-                            <span class="font-mono text-[8px] font-black bg-black/40 px-2 py-0.5 rounded-md border border-white/20 shrink-0 backdrop-blur-sm shadow-sm">
-                                ${durationDays} HARI
-                            </span>
-                        </div>
-                    </div>
-                </div>`;
-            });
-
-            // 4. Inject Full Structure
-            container.innerHTML = `
-            <div class="inline-block min-w-full">
-                <!-- Timeline Header Bar -->
-                <div class="flex border-b border-white/10 bg-slate-900/90 sticky top-0 z-40 backdrop-blur-xl shadow-md">
-                    <div class="w-72 shrink-0 px-4 py-3 text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] border-r border-white/10 sticky left-0 bg-slate-900 z-50 flex items-center justify-between">
-                        <span>TUGAS & INFORMASI</span>
-                        <i class="fa-solid fa-bars-staggered text-cyan-400"></i>
-                    </div>
-                    <div class="flex">
-                        ${headerDatesHtml}
-                    </div>
-                </div>
-                <!-- Timeline Body Rows -->
-                <div class="relative">
-                    ${rowsHtml}
-                </div>
-            </div>`;
+    tasksData.forEach((t, idx) => {
+        const sd = parseLocalDateStr(t.sd);
+        const ed = parseLocalDateStr(t.ed || t.sd);
+        if (idx === 0) {
+            minDateObj = new Date(sd);
+            maxDateObj = new Date(ed);
+        } else {
+            if (sd < minDateObj) minDateObj = new Date(sd);
+            if (ed > maxDateObj) maxDateObj = new Date(ed);
         }
+    });
+
+    minDateObj.setDate(minDateObj.getDate() - 3);
+
+    const dayWidth = 48;
+    const leftPanelWidth = 288;
+    const containerWidth = container.clientWidth || 1000;
+    const availableWidth = Math.max(600, containerWidth - leftPanelWidth);
+    const minDaysToFillScreen = Math.ceil(availableWidth / dayWidth) + 3;
+    const taskSpanDays = Math.ceil((maxDateObj - minDateObj) / (1000 * 60 * 60 * 24)) + 10;
+    const totalTimelineDays = Math.max(minDaysToFillScreen, taskSpanDays, 30);
+    const todayStr = formatYYYYMMDD(new Date());
+
+    let headerDatesHtml = '';
+    let gridColsHtml = '';
+    let currentDateIter = new Date(minDateObj);
+
+    for (let d = 0; d < totalTimelineDays; d++) {
+        const dateStr = formatYYYYMMDD(currentDateIter);
+        const isToday = dateStr === todayStr;
+        const dayName = new Intl.DateTimeFormat('id-ID', { weekday: 'short' }).format(currentDateIter).toUpperCase();
+        
+        headerDatesHtml += `
+        <div class="gantt-header-date ${isToday ? 'is-today' : 'text-slate-400'}">
+            <div class="text-[9px] font-extrabold tracking-wider opacity-80">${dayName}</div>
+            <div class="font-mono text-xs font-black mt-0.5">${currentDateIter.getDate()}</div>
+        </div>`;
+
+        gridColsHtml += `<div class="gantt-grid-col ${isToday ? 'bg-cyan-500/5' : ''}"></div>`;
+        currentDateIter.setDate(currentDateIter.getDate() + 1);
+    }
+
+    let rowsHtml = '';
+    const finalStep = (conf && conf.steps) ? conf.steps[conf.steps.length - 1] : '';
+
+    tasksData.forEach(t => {
+        const sd = parseLocalDateStr(t.sd);
+        const ed = parseLocalDateStr(t.ed || t.sd);
+
+        const startOffsetDays = Math.max(0, Math.floor((sd - minDateObj) / (1000 * 60 * 60 * 24)));
+        const durationDays = Math.max(1, Math.floor((ed - sd) / (1000 * 60 * 60 * 24)) + 1);
+
+        const barLeftPx = startOffsetDays * dayWidth;
+        const barWidthPx = durationDays * dayWidth;
+
+        let barGrad = `linear-gradient(135deg, ${themeHex}, #3b82f6)`;
+        let barGlow = `${themeHex}80`;
+
+        if (t.st === finalStep) {
+            barGrad = `linear-gradient(135deg, #10b981, #059669)`;
+            barGlow = `rgba(16, 185, 129, 0.7)`;
+        } else if (conf && t.st !== conf.steps[0]) {
+            barGrad = `linear-gradient(135deg, #f59e0b, #ea580c)`;
+            barGlow = `rgba(245, 158, 11, 0.7)`;
+        }
+
+        rowsHtml += `
+        <div class="gantt-row">
+            <div class="w-72 shrink-0 px-4 py-2.5 border-r border-white/10 flex items-center justify-between sticky left-0 bg-slate-900/95 backdrop-blur-xl z-30 shadow-[5px_0_15px_rgba(0,0,0,0.4)]">
+                <div class="truncate pr-2">
+                    <h4 class="text-xs font-black text-white truncate drop-shadow-sm">${t.nm}</h4>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[9px] font-bold text-slate-300 bg-white/10 px-2 py-0.5 rounded-md border border-white/10 flex items-center gap-1">
+                            <i class="fa-solid fa-user-astronaut text-cyan-400 text-[8px]"></i> ${(t.pc || 'No PIC').substring(0,10)}
+                        </span>
+                        <span class="text-[9px] font-mono text-cyan-300 font-bold">${t.sd}</span>
+                    </div>
+                </div>
+                <span class="text-[9px] bg-black/40 text-white font-mono font-black px-2 py-1 rounded-lg border border-white/10 shrink-0 shadow-sm">P-${t.pr || '1'}</span>
+            </div>
+
+            <div class="gantt-bar-wrapper flex-grow relative" style="width: ${totalTimelineDays * dayWidth}px;">
+                <div class="gantt-grid-bg">${gridColsHtml}</div>
+                <div class="gantt-bar" 
+                     style="left: ${barLeftPx}px; width: ${barWidthPx}px; background: ${barGrad}; --bar-glow: ${barGlow};"
+                     onclick="openDetailModal('${t.id}')"
+                     title="${t.nm} (${t.sd} s/d ${t.ed}) • Status: ${t.st}">
+                    <div class="flex items-center gap-1.5 truncate pr-2">
+                        <i class="fa-solid fa-play text-[8px] opacity-90 drop-shadow"></i>
+                        <span class="truncate font-black tracking-wide">${t.nm}</span>
+                    </div>
+                    <span class="font-mono text-[8px] font-black bg-black/40 px-2 py-0.5 rounded-md border border-white/20 shrink-0 shadow-sm">
+                        ${durationDays} HARI
+                    </span>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    container.innerHTML = `
+    <div class="inline-block min-w-full">
+        <div class="flex border-b border-white/10 bg-slate-900/90 sticky top-0 z-40 backdrop-blur-xl shadow-md">
+            <div class="w-72 shrink-0 px-4 py-3 text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] border-r border-white/10 sticky left-0 bg-slate-900 z-50 flex items-center justify-between">
+                <span>TUGAS & INFORMASI</span>
+                <i class="fa-solid fa-bars-staggered text-cyan-400"></i>
+            </div>
+            <div class="flex">${headerDatesHtml}</div>
+        </div>
+        <div class="relative">${rowsHtml}</div>
+    </div>`;
+}
         // --- GLOBAL STATE ---
         let currentUserId = localStorage.getItem('omniflow_pin') || '';
         let activeModule = null; // Kunci modul aktif
@@ -7777,6 +9292,8 @@ function checkAuth() {
         updateSidebarProfileUI();
         loadCustomModules();
         initSidebar();
+        loadCustomModules();
+        
     }
 }
 
@@ -7862,48 +9379,14 @@ function logout() {
        // =========================================================================
 // REVISI: SIDEBAR RENDERER DENGAN AUTO-FALLBACK ICON KUSTOM
 // =========================================================================
-function initSidebar() {
-    const sb = document.getElementById('sidebarMenu');
-    if (!sb) return;
-    let html = '';
-    
-    // Group by category
-    const grouped = {};
-    for (const [key, conf] of Object.entries(MODUL_REGISTRY)) {
-        if (!grouped[conf.cat]) grouped[conf.cat] = [];
-        grouped[conf.cat].push({ key, ...conf });
-    }
+// =========================================================================
+// REVISI: INIT SIDEBAR DENGAN URUTAN PRIORITAS SINKRON & NOMOR URUT
+// =========================================================================
+// =========================================================================
+// REVISI: INIT SIDEBAR TERKELOMPOK BERDASARKAN KUADRAN MATRIX (P1 - P4)
+// =========================================================================
 
-    for (const [cat, mods] of Object.entries(grouped)) {
-        html += `
-        <div class="mb-6">
-            <h3 class="nav-category text-[9px] text-slate-500 font-bold uppercase tracking-[0.25em] mb-3 px-8 flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                <span class="group-hover:text-slate-300 transition-colors">${cat}</span> 
-                <i class="fa-solid fa-chevron-down text-[8px] opacity-50 group-hover:opacity-100 transition-opacity"></i>
-            </h3>
-            <div class="space-y-1">
-                ${mods.map(m => {
-                    // 👉 AUTO-FIX IKON: Jika ikon "fa-event" atau kosong, otomatis ganti ke fa-calendar-days
-                    let safeIcon = m.icon || 'fa-cube';
-                    if (safeIcon === 'fa-event' || !safeIcon.startsWith('fa-')) {
-                        const nameLower = (m.name + ' ' + m.cat).toLowerCase();
-                        safeIcon = (nameLower.includes('event') || nameLower.includes('acara')) 
-                            ? 'fa-calendar-days' 
-                            : 'fa-cube';
-                    }
-
-                    return `
-                    <div onclick="switchModule('${m.key}')" id="nav-${m.key}" class="nav-item group">
-                        <i class="fa-solid ${safeIcon} nav-icon"></i> 
-                        <span class="text-[11px] font-semibold tracking-wide">${m.name}</span>
-                    </div>`;
-                }).join('')}
-            </div>
-        </div>`;
-    }
-    sb.innerHTML = html;
-}
-        // --- MODULE SWITCHER & SWR CACHING ---
+// --- MODULE SWITCHER & SWR CACHING ---
 // --- MODULE SWITCHER & SWR CACHING (PREMIUM DESIGN INJECTOR) ---
        // =========================================================
         // REVISI FUNGSI SWITCH MODULE (SAFE, INSTANT 0ms, NO ERROR)
@@ -8455,6 +9938,7 @@ applyTaskModalTheme(activeModule);
         if (existingTask) currentStatus = existingTask.st;
     }
 
+   // Pastikan di dalam pembentukan objek taskData pada fungsi saveTask(e):
     const taskData = {
         id: isEdit ? editId : ('TSK-' + Math.floor(100000 + Math.random() * 900000)),
         nm: document.getElementById('fTitle').value.trim(),
@@ -8465,7 +9949,8 @@ applyTaskModalTheme(activeModule);
         lk: document.getElementById('fLink').value.trim(),
         pc: document.getElementById('fPic').value.trim(),
         st: currentStatus, 
-        cf: customFieldJSON
+        cf: customFieldJSON,
+        modKey: activeModule // 👉 KUNCI: Kunci tugas ke modul yang sedang dibuka!
     };
 
     // 🚀 LANGSUNG TUTUP MODAL & UPDATE TAMPILAN INSTAN (0ms)
