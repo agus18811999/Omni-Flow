@@ -1484,6 +1484,27 @@
     z-index: 10;
 }
 /* =========================================================
+   DELETE MODULE BUTTON & DANGER GLOW STYLES
+   ========================================================= */
+.btn-delete-module {
+    background: rgba(225, 29, 72, 0.12);
+    border: 1px solid rgba(225, 29, 72, 0.3);
+    color: #fb7185;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+}
+.btn-delete-module:hover {
+    background: rgba(225, 29, 72, 0.3);
+    border-color: rgba(225, 29, 72, 0.8);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(225, 29, 72, 0.45);
+    transform: translateY(-1px);
+}
+.btn-delete-module:active {
+    transform: scale(0.95);
+}
+/* =========================================================
    SCROLL VERTIKAL KALENDER (ANTI-NYUNGSEP TANGGAL 30/31)
    ========================================================= */
 #calendarView {
@@ -1558,6 +1579,38 @@
     transform: translateY(-2px);
     border-color: rgba(245, 158, 11, 0.4);
     box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+}
+/* =========================================================
+   SCROLL HORIZONTAL KHUSUS AREA JUDUL MODUL (ANTI-NYUNGSEP)
+   ========================================================= */
+.header-title-scroller {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch; /* Mulus di Safari iOS & Chrome Android */
+    overscroll-behavior-x: contain;
+    scrollbar-width: none !important;  /* Firefox */
+    -ms-overflow-style: none !important;
+}
+
+.header-title-scroller::-webkit-scrollbar {
+    display: none !important;
+    width: 0;
+    height: 0;
+}
+
+/* Scroller Tombol Kanan Header (Bila layar sempit / laptop kecil) */
+.header-actions-scroller {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.header-actions-scroller::-webkit-scrollbar {
+    display: none !important;
+    width: 0;
+    height: 0;
 }
 /* Agenda View Buckets */
 .agenda-bucket {
@@ -1866,96 +1919,119 @@
      <!-- ==========================================
          HEADER UTAMA (SCROLL HORIZONTAL & INBOX NOTIFIKASI READY)
          ========================================== -->
-    <header class="glass-panel rounded-[1.75rem] p-3.5 md:p-4 mb-5 flex flex-col xl:flex-row justify-between items-center gap-3 relative z-20 shrink-0 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.5)] overflow-hidden">
+ <!-- ==========================================
+         HEADER UTAMA (DILENGKAPI SCROLL HORIZONTAL JUDUL & TOMBOL ANTI-NYUNGSEP)
+         ========================================== -->
+    <header class="glass-panel rounded-[1.75rem] p-3 md:p-4 mb-5 flex flex-col xl:flex-row justify-between items-center gap-3 relative z-20 shrink-0 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.5)] overflow-hidden">
         
         <!-- Dynamic Ambient Glow di Dalam Header -->
         <div id="headerGlow" class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[80px] pointer-events-none opacity-40 transition-colors duration-1000"></div>
 
-        <!-- 1. SISI KIRI: Ikon 3D Ringkas & Judul Modul -->
-        <div class="flex items-center gap-3 relative z-10 w-full xl:w-auto justify-between xl:justify-start shrink-0">
-            <div class="flex items-center gap-3">
-                <!-- 📱 TOMBOL BUKA SIDEBAR KHUSUS HP (Letakkan di Header Sisi Kiri) -->
-<button type="button" 
-        onclick="openMobileSidebar()" 
-        class="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white shrink-0 shadow-md transition-all active:scale-95 mr-2">
-    <i class="fa-solid fa-bars-staggered text-sm text-cyan-400"></i>
-</button>
+        <!-- 1. SISI KIRI: Ikon & Judul Modul (DILENGKAPI SCROLL HORIZONTAL MANDIRI) -->
+        <div class="flex items-center gap-2.5 sm:gap-3 relative z-10 w-full xl:w-auto min-w-0 max-w-full xl:max-w-[340px] 2xl:max-w-[440px] justify-between xl:justify-start shrink">
+            <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <!-- 📱 TOMBOL BUKA SIDEBAR KHUSUS HP -->
+                <button type="button" 
+                        onclick="openMobileSidebar()" 
+                        class="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white shrink-0 shadow-md transition-all active:scale-95 mr-1">
+                    <i class="fa-solid fa-bars-staggered text-sm text-cyan-400"></i>
+                </button>
+
+                <!-- Ikon Modul -->
                 <div id="modIcon" class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center shadow-lg transition-all duration-500 border border-white/20 bg-white/5 shrink-0 p-[2px]">
                     <i class="fa-solid fa-border-all text-base text-white"></i>
                 </div>
-                <div class="flex flex-col">
-                    <h2 id="modTitle" class="font-heading text-base md:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-200 tracking-wide drop-shadow-md leading-tight">Pilih Modul</h2>
-                    <div class="flex items-center gap-1.5 mt-0.5">
-                        <span id="modDot" class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                        <p id="modCategory" class="text-[9px] text-slate-400 uppercase tracking-[0.2em] font-bold drop-shadow-sm">Workspace Manager</p>
+
+                <!-- 🌟 SCROLLER HORIZONTAL KHUSUS JUDUL MODUL YANG PANJANG -->
+                <div class="header-title-scroller flex flex-col min-w-0 flex-1 overflow-x-auto overflow-y-hidden whitespace-nowrap pr-1">
+                    <h2 id="modTitle" class="font-heading text-base md:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-200 tracking-wide drop-shadow-md leading-tight whitespace-nowrap cursor-grab active:cursor-grabbing" title="Geser jika nama modul panjang">
+                        Pilih Modul
+                    </h2>
+                    <div class="flex items-center gap-1.5 mt-0.5 whitespace-nowrap">
+                        <span id="modDot" class="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0"></span>
+                        <p id="modCategory" class="text-[9px] text-slate-400 uppercase tracking-[0.2em] font-bold drop-shadow-sm whitespace-nowrap">
+                            Workspace Manager
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-       <!-- 2. SISI KANAN: Clock + View Switcher + VAULT + Inbox Notif + Workflow + New Task (Scroll Horizontal Anti-Nyungsep) -->
-      <div class="flex items-center gap-2 sm:gap-2.5 relative z-10 w-full xl:w-auto justify-start xl:justify-end shrink-0">      
+        <!-- 2. SISI KANAN: Clock + Switcher + Tools + New Task (Scroll Horizontal Anti-Nyungsep) -->
+        <div class="header-actions-scroller flex items-center gap-2 sm:gap-2.5 relative z-10 w-full xl:w-auto justify-start xl:justify-end shrink-0 overflow-x-auto overflow-y-hidden whitespace-nowrap py-0.5">      
+            
             <!-- Widget Jam Ringkas -->
             <div class="flex flex-col items-center bg-black/40 px-3 py-1 rounded-lg border border-white/10 shadow-inner backdrop-blur-md shrink-0">
                 <span id="clock" class="font-mono text-xs md:text-sm font-black text-white tracking-widest drop-shadow-sm">00:00:00</span>
                 <span id="date" class="text-[7px] text-cyan-400 uppercase tracking-[0.2em] font-extrabold">TANGGAL</span>
             </div>
 
-            <!-- View Switcher Group + TOMBOL VAULT INTEGRATED -->
-           <!-- View Switcher Group (HANYA BAGIAN INI YANG MEMILIKI SCROLL HORIZONTAL) -->
-<!-- View Switcher Group (DIBATASI LEBARNYA AGAR NEW TASK TIDAK TERDORONG) -->
-<div id="switcherScrollBox" class="switcher-scroll-box flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10 backdrop-blur-md shadow-inner shrink min-w-0 max-w-[180px] sm:max-w-[240px] lg:max-w-[280px] xl:max-w-[320px]">
-    
-    <button type="button" onclick="setModeView('kanban')" id="btnViewKanban" class="view-btn active !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Papan Kanban">
-        <i class="fa-solid fa-border-all text-[9px]"></i> <span class="hidden sm:inline">Kanban</span>
-    </button>
-    
-    <button type="button" onclick="setModeView('calendar')" id="btnViewCalendar" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Kalender Bulanan">
-        <i class="fa-solid fa-calendar-days text-[9px]"></i> <span class="hidden sm:inline">Calendar</span>
-    </button>
-    
-    <button type="button" onclick="setModeView('gantt')" id="btnViewGantt" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Timeline Gantt Chart">
-        <i class="fa-solid fa-chart-gantt text-[9px]"></i> <span class="hidden sm:inline">Gantt</span>
-    </button>
-    
-    <button type="button" onclick="setModeView('analytics')" id="btnViewAnalytics" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Ringkasan Analitik & Grafik">
-        <i class="fa-solid fa-chart-pie text-[9px]"></i> <span class="hidden sm:inline">Analytics</span>
-    </button>
+            <!-- View Switcher Group (Terkunci Kapasitas Lebarnya) -->
+            <div id="switcherScrollBox" class="switcher-scroll-box flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10 backdrop-blur-md shadow-inner shrink min-w-0 max-w-[190px] xs:max-w-[240px] sm:max-w-[300px] lg:max-w-[350px] xl:max-w-[410px]">
+                
+                <button type="button" onclick="setModeView('kanban')" id="btnViewKanban" class="view-btn active !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Papan Kanban">
+                    <i class="fa-solid fa-border-all text-[9px]"></i> <span class="hidden sm:inline">Kanban</span>
+                </button>
+                
+                <button type="button" onclick="setModeView('calendar')" id="btnViewCalendar" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Kalender Bulanan">
+                    <i class="fa-solid fa-calendar-days text-[9px]"></i> <span class="hidden sm:inline">Calendar</span>
+                </button>
+                
+                <button type="button" onclick="setModeView('gantt')" id="btnViewGantt" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Timeline Gantt Chart">
+                    <i class="fa-solid fa-chart-gantt text-[9px]"></i> <span class="hidden sm:inline">Gantt</span>
+                </button>
+                
+                <button type="button" onclick="setModeView('analytics')" id="btnViewAnalytics" class="view-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Tampilan Ringkasan Analitik & Grafik">
+                    <i class="fa-solid fa-chart-pie text-[9px]"></i> <span class="hidden sm:inline">Analytics</span>
+                </button>
 
-    <!-- 📂 FITUR DOKUMEN & ASSET VAULT BUTTON -->
-    <button type="button" onclick="openVaultModal()" id="btnOpenVault" class="vault-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Brankas Dokumen, SOP & Referensi Aset">
-        <i class="fa-solid fa-folder-open text-amber-400 text-[10px]"></i>
-        <span class="hidden sm:inline">Vault</span>
-        <span id="vaultBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-amber-500/30 text-amber-200 font-mono font-black">0</span>
-    </button>
-      <button type="button" onclick="openAuditDrawer()" id="btnOpenAudit" class="audit-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Jejak Audit & Riwayat Perubahan Modul">
-        <i class="fa-solid fa-clock-rotate-left text-sky-400 text-[10px]"></i>
-        <span class="hidden sm:inline">Audit</span>
-        <span id="auditBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-sky-500/30 text-sky-200 font-mono font-black">0</span>
-    </button>
-     <button type="button" onclick="openNotesDrawer()" id="btnOpenNotes" class="notes-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Catatan Cepat, Memo & Scratchpad Tim">
-        <i class="fa-solid fa-note-sticky text-fuchsia-400 text-[10px]"></i>
-        <span class="hidden sm:inline">Notes</span>
-        <span id="notesBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-fuchsia-500/30 text-fuchsia-200 font-mono font-black">0</span>
-    </button>
-    <button type="button" onclick="openWhiteboardDrawer()" id="btnOpenWhiteboard" class="whiteboard-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Papan Sketsa, Diagram Alur & Mindmap">
-        <i class="fa-solid fa-paintbrush text-emerald-400 text-[10px]"></i>
-        <span class="hidden sm:inline">Canvas</span>
-    </button>
-    <!-- 🎯 FITUR BARU: PRIORITY MATRIX VIEW BUTTON -->
-    <button type="button" onclick="setModeView('matrix')" id="btnViewMatrix" class="matrix-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Pusat Kendali Prioritas Lintas Modul">
-        <i class="fa-solid fa-crosshairs text-amber-400 text-[10px]"></i>
-        <span class="hidden sm:inline">Matrix</span>
-    </button>
-    <!-- ⚡ TOMBOL ENTRI CEPAT JADWAL TUGAS LINTAS MODUL -->
-     <!-- Ubah onclick menjadi openScheduleBoard() -->
-<button type="button" onclick="openScheduleBoard()" class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white px-3.5 py-2 rounded-xl font-black text-[9.5px] tracking-wider uppercase shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:-translate-y-0.5 transition-all flex items-center gap-1.5 border border-white/20 whitespace-nowrap shrink-0">
-    <i class="fa-solid fa-calendar-check text-amber-200 text-[10px]"></i>
-    <span class="hidden sm:inline">Jadwal</span>
-</button>
-</div>
+                <!-- 📂 VAULT -->
+                <button type="button" onclick="openVaultModal()" id="btnOpenVault" class="vault-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Brankas Dokumen & Aset">
+                    <i class="fa-solid fa-folder-open text-amber-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Vault</span>
+                    <span id="vaultBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-amber-500/30 text-amber-200 font-mono font-black">0</span>
+                </button>
 
-            <!-- FITUR INBOX LONCENG NOTIFIKASI DEADLINE -->
+                <!-- 📜 AUDIT -->
+                <button type="button" onclick="openAuditDrawer()" id="btnOpenAudit" class="audit-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Jejak Audit & Riwayat Perubahan">
+                    <i class="fa-solid fa-clock-rotate-left text-sky-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Audit</span>
+                    <span id="auditBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-sky-500/30 text-sky-200 font-mono font-black">0</span>
+                </button>
+
+                <!-- 📝 NOTES -->
+                <button type="button" onclick="openNotesDrawer()" id="btnOpenNotes" class="notes-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Catatan Cepat & Memo Tim">
+                    <i class="fa-solid fa-note-sticky text-fuchsia-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Notes</span>
+                    <span id="notesBadgeCount" class="ml-0.5 px-1.5 py-0.2 rounded-full text-[8px] bg-fuchsia-500/30 text-fuchsia-200 font-mono font-black">0</span>
+                </button>
+
+                <!-- 🎨 CANVAS -->
+                <button type="button" onclick="openWhiteboardDrawer()" id="btnOpenWhiteboard" class="whiteboard-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Papan Sketsa, Diagram Alur & Mindmap">
+                    <i class="fa-solid fa-paintbrush text-emerald-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Canvas</span>
+                </button>
+
+                <!-- 🎯 MATRIX -->
+                <button type="button" onclick="setModeView('matrix')" id="btnViewMatrix" class="matrix-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Pusat Kendali Prioritas Lintas Modul">
+                    <i class="fa-solid fa-crosshairs text-amber-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Matrix</span>
+                </button>
+
+                <!-- 📋 MASTER LIST -->
+                <button type="button" onclick="setModeView('masterlist')" id="btnViewMasterlist" class="masterlist-nav-btn !py-1.5 !px-2.5 !text-[9px] shrink-0" title="Pusat Kendali Daftar Tugas & Jadwal">
+                    <i class="fa-solid fa-list-check text-sky-400 text-[10px]"></i>
+                    <span class="hidden sm:inline">Master List</span>
+                </button>
+
+                <!-- ⚡ JADWAL -->
+                <button type="button" onclick="openScheduleBoard()" class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white px-3.5 py-1.5 rounded-xl font-black text-[9.5px] tracking-wider uppercase shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:-translate-y-0.5 transition-all flex items-center gap-1.5 border border-white/20 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-calendar-check text-amber-200 text-[10px]"></i>
+                    <span class="hidden sm:inline">Jadwal</span>
+                </button>
+            </div>
+
+            <!-- FITUR INBOX NOTIFIKASI -->
             <button type="button" onclick="openInboxModal()" id="btnInbox" class="relative flex items-center justify-center w-9 h-9 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white rounded-xl border border-white/10 hover:border-white/20 transition-all shadow-md backdrop-blur-md hover:-translate-y-0.5 shrink-0" title="Kotak Masuk Notifikasi Deadline">
                 <i class="fa-solid fa-bell text-xs text-amber-400"></i>
                 <span id="inboxBadge" class="hidden absolute -top-1 -right-1 min-w-[16px] h-[16px] bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-full text-[8px] font-black px-1 flex items-center justify-center shadow-lg border border-slate-900 animate-pulse">0</span>
@@ -1965,6 +2041,15 @@
             <button type="button" onclick="openWorkflowModal()" class="flex items-center gap-1.5 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 text-[9px] font-extrabold tracking-wider uppercase transition-all duration-300 shadow-md backdrop-blur-md hover:-translate-y-0.5 shrink-0 whitespace-nowrap" title="Kustomisasi Kolom Kanban Modul">
                 <i class="fa-solid fa-sliders text-cyan-400 text-[10px]"></i>
                 <span class="hidden md:inline">Workflow</span>
+            </button>
+
+            <!-- 🗑️ Tombol Hapus Modul -->
+            <button type="button" 
+                    onclick="confirmDeleteCurrentModule()" 
+                    id="btnDeleteModule" 
+                    class="btn-delete-module hidden flex items-center justify-center w-9 h-9 rounded-xl shadow-md backdrop-blur-md shrink-0" 
+                    title="Hapus Modul Ini Secara Permanen">
+                <i class="fa-solid fa-trash-can text-xs"></i>
             </button>
 
             <!-- Tombol New Task -->
@@ -4637,6 +4722,7 @@
         // =========================================================
         // =========================================================
         // INBOX DEADLINE NOTIFICATION ENGINE (H-1, TODAY, OVERDUE)
+    
         // =========================================================
         let currentInboxFilter = 'all'; // State filter aktif
 
@@ -4895,6 +4981,129 @@ function saveStoredMatrix(matrixObj) {
 // GLOBAL MASTER TASK & EXECUTION SCHEDULER ENGINE (0ms HYBRID SYNC)
 // =========================================================================
 // =========================================================================
+// DELETE MODULE ENGINE (OPTIMISTIC 0ms, MULTI-TENANT & REFRESH SAFE)
+// =========================================================================
+
+// 1. HELPER STORAGE DAFTAR MODUL YANG DIHAPUS (AGAR TIDAK MUNCUL LAGI SAAT REFRESH)
+function getDeletedModulesList() {
+    try {
+        const uid = currentUserId || localStorage.getItem('omniflow_pin') || 'GUEST';
+        const raw = localStorage.getItem(`omniflow_deleted_mods_${uid}`);
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveDeletedModulesList(list) {
+    try {
+        const uid = currentUserId || localStorage.getItem('omniflow_pin') || 'GUEST';
+        localStorage.setItem(`omniflow_deleted_mods_${uid}`, JSON.stringify(list));
+    } catch (e) {}
+}
+
+// 2. MODAL KONFIRMASI HAPUS MODUL (SWEETALERT LUXURY CONFIRMATION)
+function confirmDeleteCurrentModule() {
+    if (!activeModule || !MODUL_REGISTRY[activeModule]) {
+        ui.error("Tidak ada modul yang sedang aktif untuk dihapus!");
+        return;
+    }
+
+    const conf = MODUL_REGISTRY[activeModule];
+    const moduleNameToDelete = conf.name;
+    const targetModuleKey = activeModule;
+    const isCustom = !!conf.isCustom || targetModuleKey.startsWith('Cust_');
+
+    Swal.fire({
+        title: `Hapus Modul "${moduleNameToDelete}"?`,
+        html: `
+            <div class="text-xs text-slate-300 space-y-2 text-left bg-black/40 p-3.5 rounded-xl border border-white/10 mt-2 font-mono">
+                <p class="text-rose-400 font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-triangle-exclamation"></i> TINDAKAN PERMANEN TIDAK DAPAT DIBATALKAN!
+                </p>
+                <p>• Seluruh tugas & kolom Kanban di modul ini akan dimusnahkan.</p>
+                <p>• Data di spreadsheet cloud akan dibersihkan.</p>
+                ${isCustom ? '<p class="text-cyan-300">• Tab sheet kustom akan dihapus dari Google Sheets.</p>' : '<p class="text-amber-300">• Modul resmi ini akan disingkirkan dari workspace Anda.</p>'}
+            </div>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48',
+        cancelButtonColor: '#334155',
+        confirmButtonText: 'Ya, Hapus Permanen!',
+        cancelButtonText: 'Batal',
+        background: '#0f172a',
+        color: '#fff',
+        focusCancel: true
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            executeOptimisticDeleteModule(targetModuleKey, moduleNameToDelete, isCustom);
+        }
+    });
+}
+
+// 3. EKSEKUSI HAPUS KILAT 0ms (INSTAN TANPA LOADING SPINNER)
+function executeOptimisticDeleteModule(moduleKey, moduleName, isCustom) {
+    // A. Catat ke daftar modul terhapus agar kebal dari refresh browser
+    const deletedList = getDeletedModulesList();
+    if (!deletedList.includes(moduleKey)) {
+        deletedList.push(moduleKey);
+        saveDeletedModulesList(deletedList);
+    }
+
+    // B. Hapus dari MODUL_REGISTRY di memori aktif
+    delete MODUL_REGISTRY[moduleKey];
+
+    // C. Jika modul kustom: bersihkan dari local storage custom modules
+    if (isCustom && typeof getStoredCustomModules === 'function') {
+        const remainingCustom = getStoredCustomModules().filter(m => m.key !== moduleKey);
+        if (typeof saveStoredCustomModules === 'function') {
+            saveStoredCustomModules(remainingCustom);
+        }
+    }
+
+    // D. Bersihkan dari Priority Matrix jika modul ini sempat diprioritaskan
+    if (typeof priorityMatrixData === 'object' && priorityMatrixData) {
+        ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+            if (Array.isArray(priorityMatrixData[q])) {
+                priorityMatrixData[q] = priorityMatrixData[q].filter(k => k !== moduleKey);
+            }
+        });
+        if (typeof saveStoredMatrix === 'function') {
+            saveStoredMatrix(priorityMatrixData);
+        }
+    }
+
+    // E. Hapus cache tugas lokal modul ini
+    delete appCache[moduleKey];
+    const uid = currentUserId || localStorage.getItem('omniflow_pin') || 'GUEST';
+    localStorage.removeItem(`omniflow_tasks_${uid}_${moduleKey}`);
+
+    // F. Reset UI Layar Utama Kembali Bersih ke Awal (State Roket)
+    resetWorkspaceUI();
+
+    // G. Render ulang sidebar seketika itu juga (Modul langsung lenyap dari daftar)
+    initSidebar();
+
+    // H. Munculkan Notifikasi Berhasil
+    ui.notify(`Modul "${moduleName}" Berhasil Dihapus!`);
+
+    // I. Catat ke Audit Trail
+    if (typeof logAuditActivity === 'function') {
+        logAuditActivity('DELETE', moduleName, `Modul dihapus permanen dari workspace oleh ${currentUserId || 'User'}`);
+    }
+
+    // J. Broadcast ke Rekan Tim jika di Mode Publik
+    if (typeof notifyDataChanged === 'function') {
+        notifyDataChanged();
+    }
+
+    // 🚀 K. SINKRONISASI PENGHAPUSAN KE GOOGLE SHEETS CLOUD (SILENT & NON-BLOCKING)
+    fetchAPI('DELETE_MODULE', null, moduleKey).catch(err => {
+        console.warn("Silent cloud module delete notice:", err);
+    });
+}
+
+// =========================================================================
 // PAPAN JADWAL GLOBAL ENGINE (BERSIH, INSTAN & ANTI-MACET)
 // =========================================================================
 let currentScheduleFilter = 'all';
@@ -4966,6 +5175,7 @@ function openScheduleBoard() {
         }
     }
 }
+
 // FUNGSI RENDER DENGAN PELINDUNG (ANTI-CRASH NULL CHECK)
 function renderScheduleBoard() {
     const container = document.getElementById('schBoardList');
@@ -5478,10 +5688,12 @@ function initSidebar() {
             </div>`;
         }
     });
+    const deletedList = (typeof getDeletedModulesList === 'function') ? getDeletedModulesList() : [];
 
     // Render Kategori-Kategori Normal
     const grouped = {};
     for (const [key, conf] of Object.entries(MODUL_REGISTRY)) {
+    if (deletedList.includes(key)) continue; 
         if (!grouped[conf.cat]) grouped[conf.cat] = [];
         grouped[conf.cat].push({ key, ...conf });
     }
@@ -9336,6 +9548,9 @@ function logout() {
             // 1. Reset Header ke Tampilan Awal ("Pilih Modul")
             const modTitle = document.getElementById('modTitle');
             if (modTitle) modTitle.innerText = 'Pilih Modul';
+            // Di dalam fungsi resetWorkspaceUI(), bersamaan dengan btnCreate.classList.add('hidden'):
+    const btnDelete = document.getElementById('btnDeleteModule');
+    if (btnDelete) btnDelete.classList.add('hidden');
 
             const modCategory = document.getElementById('modCategory');
             if (modCategory) modCategory.innerText = 'Workspace Manager';
@@ -9417,6 +9632,9 @@ async function switchModule(modKey) {
     MODUL_REGISTRY[modKey].steps = getActiveWorkflow(modKey);
     const conf = MODUL_REGISTRY[modKey];
     const theme = getModuleTheme(conf);
+    // Di dalam fungsi switchModule(modKey), tepat setelah btnCreate:
+    const btnDelete = document.getElementById('btnDeleteModule');
+    if (btnDelete) btnDelete.classList.remove('hidden');
 
     // 3. PERBARUI HEADER & AMBIENCE WARNA SECARA INSTAN (0ms)
     const modTitle = document.getElementById('modTitle');
